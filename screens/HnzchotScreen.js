@@ -4,7 +4,7 @@ const HnzchotScreen = ({navigation}) => {
   useEffect(() => {
     let secTimer = setInterval(() => {
       navigation.replace('GeneralMessages');
-    }, 2 * 60 * 1000);
+    }, 1 * 60 * 1000);
     return () => clearInterval(secTimer);
   }, []);
   return <HnzchotList />;

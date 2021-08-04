@@ -27,7 +27,7 @@ const generalMessagesList = () => {
     <View style={styles.container}>
       <View style={styles.containerA}>
         <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-          הנצחות
+          הודעות
         </Text>
       </View>
       <View style={styles.containerB}>
@@ -98,20 +98,23 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     flex: 5,
     flexDirection: 'column',
-    backgroundColor: '#f5f5dc',
     marginTop: '15@s',
     margin: '5@s',
     padding: '10@s',
+    backgroundColor: '#fff5cc',
+    marginBottom: '45@s',
   },
   boxContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '300@s',
-    height: '50@ms',
+    height: '90@ms',
+    padding: '3@s',
     borderRadius: '10@s',
     backgroundColor: '#ffd24d',
   },
   headerTextColor: {
+    marginBottom: '13@s',
     fontSize: '35@s',
     color: '#ff4d4d',
     textAlign: 'center',

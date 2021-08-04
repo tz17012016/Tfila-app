@@ -4,7 +4,7 @@ const OlimLatoraScreen = ({navigation}) => {
   useEffect(() => {
     let secTimer = setInterval(() => {
       navigation.replace('Hnzchot');
-    }, 2 * 60 * 1000);
+    }, 1 * 60 * 1000);
     return () => clearInterval(secTimer);
   }, []);
   return <OlimLatoraList />;

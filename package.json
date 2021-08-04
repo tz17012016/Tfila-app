@@ -4,7 +4,7 @@
   "proxy": "https://btmanagement.herokuapp.com",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "npx",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",

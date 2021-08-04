@@ -4,7 +4,7 @@ const WelcomeTimeScreen = ({navigation}) => {
   useEffect(() => {
     let secTimer = setInterval(() => {
       navigation.replace('TfilotTime');
-    }, 2 * 60 * 1000);
+    }, 1 * 60 * 1000);
     return () => clearInterval(secTimer);
   }, []);
   return <WelcomeTime />;

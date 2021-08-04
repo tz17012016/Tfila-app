@@ -1,15 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getHnzchot, getHebrowDate} from '../redux/actions/hnzchotActions';
-import {
-  ImageBackground,
-  FlatList,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  LogBox,
-} from 'react-native';
+import {Text, View, LogBox} from 'react-native';
 import Hebcal from 'hebcal';
 import {ScaledSheet} from 'react-native-size-matters';
 
@@ -17,7 +9,6 @@ const HnzchotList = () => {
   const dispatch = useDispatch();
   const hnzchotsList = useSelector(state => ({...state.hnzchotList}));
   const {hnzchots, loading, success} = hnzchotsList;
-  console.log(hnzchots);
   LogBox.ignoreLogs(['Setting a timer']);
 
   useEffect(() => {
@@ -125,30 +116,33 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 5,
+    flex: 5.5,
     flexDirection: 'column',
-    backgroundColor: '#f5f5dc',
+    backgroundColor: '#fff5cc',
     borderRadius: 10,
     margin: '5@s',
     marginTop: '15@s',
+    marginBottom: '45@s',
     padding: '10@s',
   },
   innergridViewC: {
     flex: 2,
   },
   innerContainerA: {
-    height: '20@s',
+    height: '10@s',
   },
   innerContainerB: {},
   boxContainer: {
-    width: '80@s',
-    height: '60@ms',
-    borderRadius: 3,
+    width: '70@s',
+    height: '70@ms',
+    borderRadius: 5,
     backgroundColor: '#ffd24d',
     opacity: 0.6,
+    padding: '3@s',
     margin: '3@s',
   },
   headerTextColor: {
+    marginBottom: '13@s',
     fontSize: '35@s',
     color: '#ff4d4d',
     textAlign: 'center',

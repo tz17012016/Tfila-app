@@ -185,11 +185,10 @@ const styles = ScaledSheet.create({
     flex: 5,
     flexDirection: 'column',
     flexWrap: 'wrap',
-
-    backgroundColor: '#f5f5dc',
+    backgroundColor: '#fff5cc',
     borderRadius: 10,
     margin: '5@s',
-    marginTop: '10@s',
+    marginBottom: '60@s',
     padding: '10@s',
   },
   innergridViewC: {
@@ -202,14 +201,14 @@ const styles = ScaledSheet.create({
   boxContainer: {
     width: '100@s',
     height: '100@ms',
-
     borderRadius: 3,
     backgroundColor: '#ffd24d',
     opacity: 0.6,
     margin: '6@s',
   },
   headerTextColor: {
-    fontSize: '40@s',
+    fontSize: '35@s',
+    marginBottom: '12@s',
     color: '#ff4d4d',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',

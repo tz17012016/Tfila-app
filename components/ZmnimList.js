@@ -159,13 +159,12 @@ const styles = ScaledSheet.create({
   },
   containerA: {
     flex: 1,
-
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
   containerB: {
-    flex: 2.8,
+    flex: 2.9,
 
     flexDirection: 'row',
   },
@@ -173,7 +172,6 @@ const styles = ScaledSheet.create({
     height: '50@s',
     width: '50@s',
     flex: 1,
-
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -190,30 +188,32 @@ const styles = ScaledSheet.create({
     flex: 2,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#f5f5dc',
+    backgroundColor: '#fff5cc',
     justifyContent: 'center',
     borderRadius: 10,
     margin: '5@s',
-    marginTop: '10@s',
+    marginBottom: '40@s',
     padding: '10@s',
   },
   innergridViewC: {
     flex: 2,
   },
   innerContainerA: {
-    height: '20@s',
+    height: '5@s',
   },
   innerContainerB: {},
   boxContainer: {
-    width: '100@s',
-    height: '70@ms',
-
+    width: '85@s',
+    height: '65@ms',
     borderRadius: 3,
     backgroundColor: '#ffd24d',
     opacity: 0.6,
     margin: '3@s',
+    marginTop: '3@s',
+    padding: '2@s',
   },
   headerTextColor: {
+    marginBottom: '8@s',
     fontSize: '40@s',
     color: '#ff4d4d',
     textAlign: 'center',

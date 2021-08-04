@@ -4,7 +4,7 @@ const ZmanimScreen = ({navigation}) => {
   useEffect(() => {
     let secTimer = setInterval(() => {
       navigation.replace('WelcomeTime');
-    }, 2 * 60 * 1000);
+    }, 1 * 60 * 1000);
     return () => clearInterval(secTimer);
   }, []);
   return <ZmnimList />;

@@ -4,7 +4,7 @@ const TfilotTimeScreen = ({navigation}) => {
   useEffect(() => {
     let secTimer = setInterval(() => {
       navigation.replace('OlimLatora');
-    }, 2 * 60 * 1000);
+    }, 1 * 60 * 1000);
     return () => clearInterval(secTimer);
   }, []);
   return <TfilotTimeList />;

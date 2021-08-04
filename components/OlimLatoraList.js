@@ -154,25 +154,25 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
   },
   containerA: {
-    flex: 1,
+    flex: 0.9,
     flexDirection: 'row',
     justifyContent: 'center',
-
     alignItems: 'flex-end',
+  },
+  containerB: {
+    flex: 2.8,
+
+    flexDirection: 'row',
   },
   innA: {
     flexDirection: 'row',
+
     flex: 2,
   },
   innB: {
     flex: 1,
     flexDirection: 'row',
-
     justifyContent: 'center',
-  },
-  containerB: {
-    flex: 2.8,
-    flexDirection: 'row',
   },
   containerA1: {
     height: '50@s',
@@ -188,35 +188,38 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-evenly',
   },
   innergridViewA: {
-    flex: 1.2,
+    flex: 1,
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 5,
+    flex: 5.5,
     flexDirection: 'column',
-    backgroundColor: '#f5f5dc',
+    backgroundColor: '#fff5cc',
     borderRadius: 10,
     margin: '5@s',
     marginTop: '15@s',
+    marginBottom: '45@s',
     padding: '10@s',
   },
   innergridViewC: {
     flex: 2,
   },
   innerContainerA: {
-    height: '20@s',
+    height: '12@s',
   },
   innerContainerB: {},
   boxContainer: {
     width: '100@s',
-    height: '70@ms',
-    borderRadius: 3,
+    height: '65@ms',
+    borderRadius: 5,
     backgroundColor: '#ffd24d',
     opacity: 0.6,
     margin: '3@s',
+    marginTop: '4@s',
   },
   headerTextColor: {
-    fontSize: '35@s',
+    fontSize: '32@s',
+    marginBottom: '6@s',
     color: '#ff4d4d',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
