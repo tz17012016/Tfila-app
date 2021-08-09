@@ -99,6 +99,23 @@ const TfilotTimeList = () => {
                   </View>
                 </View>
                 <View style={styles.gridView}>
+<View style={styles.boxContainer}>
+                    <View style={styles.innerContainerA}></View>
+                    <View style={styles.innerContainerB}>
+                      <Text style={styles.itemName}>
+                        {tfilotTimeObject[5]?.title}
+                      </Text>
+                      <Text style={styles.itemName}>
+                        {new Date(tfilotTimeObject[5]?.time)
+                          .toLocaleTimeString('he-IL', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false,
+                          })
+                          .slice(0, 5)}
+                      </Text>
+                    </View>
+                  </View>
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
