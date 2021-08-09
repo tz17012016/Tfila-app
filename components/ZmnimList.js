@@ -91,9 +91,9 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>חצות</Text>
+                      <Text style={styles.itemName}>חצות היום</Text>
                       <Text style={styles.itemName}>
-                        {zmanim && zmanim.SunRise}
+                        {zmanim && zmanim.MidDay}
                       </Text>
                     </View>
                   </View>
@@ -185,10 +185,9 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 2,
+    flex: 3.9,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#fff5cc',
     justifyContent: 'center',
     borderRadius: 10,
     margin: '5@s',
@@ -203,8 +202,8 @@ const styles = ScaledSheet.create({
   },
   innerContainerB: {},
   boxContainer: {
-    width: '85@s',
-    height: '65@ms',
+    width: '110@s',
+    height: '75@ms',
     borderRadius: 3,
     backgroundColor: '#ffd24d',
     opacity: 0.6,
@@ -220,7 +219,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   itemName: {
-    fontSize: '15@s',
+    fontSize: '20@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',

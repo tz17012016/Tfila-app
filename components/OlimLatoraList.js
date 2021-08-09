@@ -10,7 +10,7 @@ const OlimLatoraList = () => {
     ...state.olimLatoraList,
   }));
   const {olimLatoras, loading, success} = olimLatoraList;
-  const oleObject = Object.assign({}, olimLatoras?.reverse());
+  const oleObject = Object.assign({}, olimLatoras);
   LogBox.ignoreLogs(['Setting a timer']);
 
   useEffect(() => {
@@ -44,54 +44,10 @@ const OlimLatoraList = () => {
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
                         <Text style={styles.itemName}>
-                          {oleObject[3]?.title}
+                          {oleObject[4]?.title}
                         </Text>
                         <Text style={styles.itemName}>
-                          {oleObject[3]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
-                          {oleObject[2]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[2]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
-                          {oleObject[1]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[1]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
-                          {oleObject[0]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[0]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
-                          {oleObject[6]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[6]?.name}
+                          {oleObject[4]?.name}
                         </Text>
                       </View>
                     </View>
@@ -110,10 +66,54 @@ const OlimLatoraList = () => {
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
                         <Text style={styles.itemName}>
-                          {oleObject[4]?.title}
+                          {oleObject[6]?.title}
                         </Text>
                         <Text style={styles.itemName}>
-                          {oleObject[4]?.name}
+                          {oleObject[6]?.name}
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={styles.boxContainer}>
+                      <View style={styles.innerContainerA}></View>
+                      <View style={styles.innerContainerB}>
+                        <Text style={styles.itemName}>
+                          {oleObject[7]?.title}
+                        </Text>
+                        <Text style={styles.itemName}>
+                          {oleObject[7]?.name}
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={styles.boxContainer}>
+                      <View style={styles.innerContainerA}></View>
+                      <View style={styles.innerContainerB}>
+                        <Text style={styles.itemName}>
+                          {oleObject[1]?.title}
+                        </Text>
+                        <Text style={styles.itemName}>
+                          {oleObject[1]?.name}
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={styles.boxContainer}>
+                      <View style={styles.innerContainerA}></View>
+                      <View style={styles.innerContainerB}>
+                        <Text style={styles.itemName}>
+                          {oleObject[2]?.title}
+                        </Text>
+                        <Text style={styles.itemName}>
+                          {oleObject[2]?.name}
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={styles.boxContainer}>
+                      <View style={styles.innerContainerA}></View>
+                      <View style={styles.innerContainerB}>
+                        <Text style={styles.itemName}>
+                          {oleObject[3]?.title}
+                        </Text>
+                        <Text style={styles.itemName}>
+                          {oleObject[3]?.name}
                         </Text>
                       </View>
                     </View>
@@ -125,10 +125,10 @@ const OlimLatoraList = () => {
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
                         <Text style={styles.itemName}>
-                          {oleObject[7]?.title}
+                          {oleObject[0]?.title}
                         </Text>
                         <Text style={styles.itemName}>
-                          {oleObject[7]?.name}
+                          {oleObject[0]?.name}
                         </Text>
                       </View>
                     </View>
@@ -194,7 +194,6 @@ const styles = ScaledSheet.create({
   innergridViewB: {
     flex: 5.5,
     flexDirection: 'column',
-    backgroundColor: '#fff5cc',
     borderRadius: 10,
     margin: '5@s',
     marginTop: '15@s',

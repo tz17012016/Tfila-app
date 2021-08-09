@@ -101,7 +101,6 @@ const styles = ScaledSheet.create({
     marginTop: '15@s',
     margin: '5@s',
     padding: '10@s',
-    backgroundColor: '#fff5cc',
     marginBottom: '45@s',
   },
   boxContainer: {

@@ -17,7 +17,7 @@ const TfilotTimeList = () => {
   const tfilotTimeList = useSelector(state => ({...state.tfilotTimeList}));
   const {tfilotTimes, loading, success} = tfilotTimeList;
 
-  const tfilotTimeObject = Object.assign({}, tfilotTimes?.reverse());
+  const tfilotTimeObject = Object.assign({}, tfilotTimes);
   LogBox.ignoreLogs(['Setting a timer']);
 
   useEffect(() => {
@@ -50,63 +50,10 @@ const TfilotTimeList = () => {
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
                       <Text style={styles.itemName}>
-                        {tfilotTimeObject[2]?.title}
+                        {tfilotTimeObject[3]?.title}
                       </Text>
                       <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[2]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>
-                        {tfilotTimeObject[1]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[1]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>
-                        {tfilotTimeObject[0]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[0]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.gridView}>
-<View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>
-                        {tfilotTimeObject[5]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[5]?.time)
+                        {new Date(tfilotTimeObject[3]?.time)
                           .toLocaleTimeString('he-IL', {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -137,10 +84,63 @@ const TfilotTimeList = () => {
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
                       <Text style={styles.itemName}>
-                        {tfilotTimeObject[3]?.title}
+                        {tfilotTimeObject[5]?.title}
                       </Text>
                       <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[3]?.time)
+                        {new Date(tfilotTimeObject[5]?.time)
+                          .toLocaleTimeString('he-IL', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false,
+                          })
+                          .slice(0, 5)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.gridView}>
+                  <View style={styles.boxContainer}>
+                    <View style={styles.innerContainerA}></View>
+                    <View style={styles.innerContainerB}>
+                      <Text style={styles.itemName}>
+                        {tfilotTimeObject[0]?.title}
+                      </Text>
+                      <Text style={styles.itemName}>
+                        {new Date(tfilotTimeObject[0]?.time)
+                          .toLocaleTimeString('he-IL', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false,
+                          })
+                          .slice(0, 5)}
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.boxContainer}>
+                    <View style={styles.innerContainerA}></View>
+                    <View style={styles.innerContainerB}>
+                      <Text style={styles.itemName}>
+                        {tfilotTimeObject[1]?.title}
+                      </Text>
+                      <Text style={styles.itemName}>
+                        {new Date(tfilotTimeObject[1]?.time)
+                          .toLocaleTimeString('he-IL', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false,
+                          })
+                          .slice(0, 5)}
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.boxContainer}>
+                    <View style={styles.innerContainerA}></View>
+                    <View style={styles.innerContainerB}>
+                      <Text style={styles.itemName}>
+                        {tfilotTimeObject[2]?.title}
+                      </Text>
+                      <Text style={styles.itemName}>
+                        {new Date(tfilotTimeObject[2]?.time)
                           .toLocaleTimeString('he-IL', {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -178,14 +178,12 @@ const styles = ScaledSheet.create({
   },
   containerB: {
     flex: 2.8,
-
     flexDirection: 'row',
   },
   containerA1: {
     height: '50@s',
     width: '50@s',
     flex: 1,
-
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -195,14 +193,12 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-evenly',
   },
   innergridViewA: {
-    flex: 1.2,
+    flex: 1,
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 5,
+    flex: 6,
     flexDirection: 'column',
-    flexWrap: 'wrap',
-    backgroundColor: '#fff5cc',
     borderRadius: 10,
     margin: '5@s',
     marginBottom: '60@s',
@@ -216,7 +212,7 @@ const styles = ScaledSheet.create({
   },
   innerContainerB: {},
   boxContainer: {
-    width: '100@s',
+    width: '120@s',
     height: '100@ms',
     borderRadius: 3,
     backgroundColor: '#ffd24d',
@@ -231,7 +227,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   itemName: {
-    fontSize: '15@s',
+    fontSize: '18@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',

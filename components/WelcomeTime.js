@@ -50,7 +50,12 @@ const WelcomeTime = () => {
                       <View style={styles.innerContainerA11}>
                         <View style={styles.innerContainerA}>
                           <View style={styles.widthBox}>
-                            <Text style={[styles.itemName, styles.headerColor]}>
+                            <Text
+                              style={[
+                                styles.itemName1,
+                                styles.headerTextColor1,
+                                styles.headerColor,
+                              ]}>
                               הפטרה
                             </Text>
 
@@ -61,7 +66,12 @@ const WelcomeTime = () => {
                         </View>
                         <View style={styles.innerContainerA}>
                           <View>
-                            <Text style={[styles.itemName, styles.headerColor]}>
+                            <Text
+                              style={[
+                                styles.itemName1,
+                                styles.headerTextColor1,
+                                styles.headerColor,
+                              ]}>
                               פרשת השבוע
                             </Text>
                             <Text style={styles.itemName}>
@@ -92,7 +102,7 @@ const WelcomeTime = () => {
                           </View>
                           <View style={styles.innerContainerB}>
                             <Text style={styles.itemClock}>
-                              {zmanim && zmanim.ParashaDetails}
+                              {zmanim && zmanim.Parasha}
                             </Text>
                           </View>
                           <View style={styles.innerContainerB}>
@@ -214,12 +224,20 @@ const styles = ScaledSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  itemName1: {
+    fontSize: '18@s',
+    color: '#000',
+    textAlign: 'center',
+  },
   headerTextColor: {
     marginBottom: '10@s',
     fontSize: '40@s',
     color: '#ff4d4d',
     textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
+    fontFamily: 'HadasimCLM-Bold',
+  },
+  headerTextColor1: {
+    fontFamily: 'HadasimCLM-Bold',
   },
   itemClock: {
     fontSize: '20@s',

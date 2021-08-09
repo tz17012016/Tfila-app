@@ -118,7 +118,6 @@ const styles = ScaledSheet.create({
   innergridViewB: {
     flex: 5.5,
     flexDirection: 'column',
-    backgroundColor: '#fff5cc',
     borderRadius: 10,
     margin: '5@s',
     marginTop: '15@s',
