@@ -120,15 +120,15 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   itemCode: {
-    fontWeight: 'bold',
+    fontWeight: '900',
     fontSize: '40@s',
     color: '#000',
   },
   itemTitle: {
     fontSize: '15@s',
-    color: 'red',
     textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#ff0000',
   },
   itemName: {
     fontSize: '12@s',
@@ -136,6 +136,7 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
+
   textWithShadow: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},

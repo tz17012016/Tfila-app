@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getHnzchot, getHebrowDate} from '../redux/actions/hnzchotActions';
+import {getHnzchot} from '../redux/actions/hnzchotActions';
 import {Text, View, LogBox} from 'react-native';
 import Hebcal from 'hebcal';
 import {ScaledSheet} from 'react-native-size-matters';
@@ -47,10 +47,9 @@ const HnzchotList = () => {
                         <View key={hnzchot._id} style={styles.boxContainer}>
                           <View style={styles.innerContainerA} />
                           <View style={styles.innerContainerB}>
-                            <Text style={styles.itemName}>
+                            <Text style={styles.itemTitle}>
                               {`${hnzchot?.parntName} בן ${hnzchot?.name}`}
                             </Text>
-                            {console.log(HebrewDate(hnzchot?.dateOfDeath))}
                             <Text style={styles.itemName}>
                               {HebrewDate(hnzchot?.dateOfDeath)}
                             </Text>
@@ -132,7 +131,7 @@ const styles = ScaledSheet.create({
   },
   innerContainerB: {},
   boxContainer: {
-    width: '70@s',
+    width: '80@s',
     height: '70@ms',
     borderRadius: 5,
     backgroundColor: '#ffd24d',
@@ -152,6 +151,13 @@ const styles = ScaledSheet.create({
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
+  },
+  itemTitle: {
+    fontSize: '12@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#ff0000',
+    fontWeight: '900',
   },
   textWithShadow: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',

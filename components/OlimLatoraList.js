@@ -43,7 +43,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[4]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -54,7 +54,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[5]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -65,7 +65,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[6]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -76,7 +76,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[7]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -87,7 +87,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[1]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -98,7 +98,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[2]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -109,7 +109,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[3]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -124,7 +124,7 @@ const OlimLatoraList = () => {
                     <View style={styles.boxContainer}>
                       <View style={styles.innerContainerA}></View>
                       <View style={styles.innerContainerB}>
-                        <Text style={styles.itemName}>
+                        <Text style={styles.itemTitle}>
                           {oleObject[0]?.title}
                         </Text>
                         <Text style={styles.itemName}>
@@ -229,6 +229,13 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
+  itemTitle: {
+    fontSize: '18@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#ff0000',
+    fontWeight: '900',
+  },
   textWithShadow: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
@@ -237,6 +244,3 @@ const styles = ScaledSheet.create({
 });
 
 export default OlimLatoraList;
-/**
- *
- */

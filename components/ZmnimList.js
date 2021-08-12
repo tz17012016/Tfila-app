@@ -38,7 +38,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>פלג המנחה</Text>
+                      <Text style={styles.itemTitle}>פלג המנחה</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.PlagHamincha}
                       </Text>
@@ -47,7 +47,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>מנחה קטנה</Text>
+                      <Text style={styles.itemTitle}>מנחה קטנה</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.MinhaKtana}
                       </Text>
@@ -58,7 +58,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>צאת הכוכבים</Text>
+                      <Text style={styles.itemTitle}>צאת הכוכבים</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.ZetHakochavim}
                       </Text>
@@ -67,7 +67,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>שקיעה</Text>
+                      <Text style={styles.itemTitle}>שקיעה</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.SunSet}
                       </Text>
@@ -78,7 +78,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>דף היומי</Text>
+                      <Text style={styles.itemTitle}>דף היומי</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.DafYomi}
                       </Text>
@@ -91,7 +91,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>חצות היום</Text>
+                      <Text style={styles.itemTitle}>חצות היום</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.MidDay}
                       </Text>
@@ -100,7 +100,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>זריחה</Text>
+                      <Text style={styles.itemTitle}>זריחה</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.SunRise}
                       </Text>
@@ -111,7 +111,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>סוזת"פ</Text>
+                      <Text style={styles.itemTitle}>סוזת"פ</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.SofZmanTfilaGra}
                       </Text>
@@ -120,7 +120,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>סוזק"ש</Text>
+                      <Text style={styles.itemTitle}>סוזק"ש</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.SofZmanKriatShmaGra}
                       </Text>
@@ -131,7 +131,7 @@ const ZmnimList = () => {
                   <View style={styles.boxContainer}>
                     <View style={styles.innerContainerA}></View>
                     <View style={styles.innerContainerB}>
-                      <Text style={styles.itemName}>מנחה גדולה</Text>
+                      <Text style={styles.itemTitle}>מנחה גדולה</Text>
                       <Text style={styles.itemName}>
                         {zmanim && zmanim.MinhaGedola}
                       </Text>
@@ -219,10 +219,17 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   itemName: {
-    fontSize: '20@s',
+    fontSize: '17@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
+  },
+  itemTitle: {
+    fontSize: '18@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#ff0000',
+    fontWeight: '900',
   },
   textWithShadow: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',

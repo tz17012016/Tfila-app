@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {BASE_URL} from '../../utilities/baseUrl';
 import {
   ZMANIM_GET_REQUEST,
   ZMANIM_GET_SUCCESS,
@@ -7,9 +8,7 @@ import {
 export const getZmanim = () => async dispatch => {
   try {
     dispatch({type: ZMANIM_GET_REQUEST});
-    const {data} = await axios.get(
-      `https://btmanagement.herokuapp.com/api/zmanim`,
-    );
+    const {data} = await axios.get(`${BASE_URL}/api/zmanim`);
     dispatch({type: ZMANIM_GET_SUCCESS, payload: data});
   } catch (error) {
     dispatch({
