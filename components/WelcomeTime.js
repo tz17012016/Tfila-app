@@ -160,7 +160,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 2,
+    flex: 2.5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     backgroundColor: '#fff5cc',
@@ -174,7 +174,6 @@ const styles = ScaledSheet.create({
   },
   containerB: {
     marginTop: '15@s',
-
     flex: 2.6,
     flexDirection: 'row',
   },
@@ -207,15 +206,15 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
   },
   itemTitle: {
-    fontSize: '18@s',
+    fontSize: '24@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#ff0000',
     fontWeight: '900',
   },
   headerTextColor: {
-    marginBottom: '10@s',
     fontSize: '40@s',
+    marginBottom: '8@s',
     color: '#ff4d4d',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',

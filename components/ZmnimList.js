@@ -181,7 +181,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-evenly',
   },
   innergridViewA: {
-    flex: 0.9,
+    flex: 1,
     flexDirection: 'row',
   },
   innergridViewB: {
@@ -190,7 +190,7 @@ const styles = ScaledSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     borderRadius: 10,
-    margin: '5@s',
+    marginTop: '10@s',
     marginBottom: '40@s',
     padding: '10@s',
   },
@@ -219,13 +219,13 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   itemName: {
-    fontSize: '17@s',
+    fontSize: '16@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
   itemTitle: {
-    fontSize: '18@s',
+    fontSize: '17@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#ff0000',

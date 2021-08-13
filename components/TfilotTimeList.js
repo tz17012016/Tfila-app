@@ -212,8 +212,8 @@ const styles = ScaledSheet.create({
   },
   innerContainerB: {},
   boxContainer: {
-    width: '120@s',
-    height: '100@ms',
+    width: '130@s',
+    height: '110@ms',
     borderRadius: 3,
     backgroundColor: '#ffd24d',
     opacity: 0.6,

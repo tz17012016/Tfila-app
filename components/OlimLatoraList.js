@@ -188,11 +188,11 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-evenly',
   },
   innergridViewA: {
-    flex: 1,
+    flex: 0.7,
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 5.5,
+    flex: 6,
     flexDirection: 'column',
     borderRadius: 10,
     margin: '5@s',
@@ -204,12 +204,12 @@ const styles = ScaledSheet.create({
     flex: 2,
   },
   innerContainerA: {
-    height: '12@s',
+    height: '8@s',
   },
   innerContainerB: {},
   boxContainer: {
-    width: '100@s',
-    height: '65@ms',
+    width: '110@s',
+    height: '70@ms',
     borderRadius: 5,
     backgroundColor: '#ffd24d',
     opacity: 0.6,
