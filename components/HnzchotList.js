@@ -1,26 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getHnzchot} from '../redux/actions/hnzchotActions';
+import React from 'react';
 import {Text, View, LogBox} from 'react-native';
 import Hebcal from 'hebcal';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const HnzchotList = () => {
-  const dispatch = useDispatch();
-  const hnzchotsList = useSelector(state => ({...state.hnzchotList}));
-  const {hnzchots, loading, success} = hnzchotsList;
-  LogBox.ignoreLogs(['Setting a timer']);
-
-  useEffect(() => {
-    loadHnzchots();
-
-    setInterval(() => loadHnzchots(), 1000 * 60 * 60);
-  }, [dispatch]);
-
-  const loadHnzchots = () => {
-    return dispatch(getHnzchot());
-  };
-
+const HnzchotList = ({hnzchotList}) => {
+  const {hnzchots, loading, success} = hnzchotList;
   const HebrewDate = dateOfDeath => {
     let hebrewDate = new Hebcal.HDate(new Date(dateOfDeath)).toString('h');
     return hebrewDate;

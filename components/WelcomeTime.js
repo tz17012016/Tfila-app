@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getZmanim} from '../redux/actions/zmanimActions';
-import {ImageBackground, Text, View, LogBox} from 'react-native';
+import {Text, View, LogBox} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const WelcomeTime = () => {
-  const dispatch = useDispatch();
-  const zmanimsList = useSelector(state => ({...state.zmanimsList}));
+const WelcomeTime = ({zmanimsList}) => {
   const {loading, success, zmanim} = zmanimsList;
   //יש לבדוק את הזמן
   const [time, setTime] = useState(() =>
@@ -14,21 +10,15 @@ const WelcomeTime = () => {
   );
   LogBox.ignoreLogs(['Setting a timer']);
   useEffect(() => {
-    loadZmanims();
     let clock = setInterval(() => {
       setTime(new Date().toLocaleTimeString('he-IL'));
     }, 1000);
-    let secTimer = setInterval(() => loadZmanims(), 1000 * 60 * 60 * 24);
     return () => (
-      clearInterval(secTimer),
       clearInterval(clock),
       setTime(() => new Date().toLocaleTimeString('he-IL'))
     );
-  }, [dispatch]);
+  }, []);
 
-  const loadZmanims = () => {
-    return dispatch(getZmanim());
-  };
   return (
     <>
       <View style={styles.container}>

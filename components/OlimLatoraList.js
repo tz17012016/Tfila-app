@@ -1,27 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getOlimLatora} from '../redux/actions/olimLatoraActions';
+import React from 'react';
 import {Text, View, LogBox} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const OlimLatoraList = () => {
-  const dispatch = useDispatch();
-  const olimLatoraList = useSelector(state => ({
-    ...state.olimLatoraList,
-  }));
+const OlimLatoraList = ({olimLatoraList}) => {
   const {olimLatoras, loading, success} = olimLatoraList;
   const oleObject = Object.assign({}, olimLatoras);
-  LogBox.ignoreLogs(['Setting a timer']);
-
-  useEffect(() => {
-    loadOlimLatora();
-
-    setInterval(() => loadOlimLatora(), 1000 * 60 * 60);
-  }, [dispatch]);
-
-  const loadOlimLatora = () => {
-    return dispatch(getOlimLatora());
-  };
 
   return (
     <>

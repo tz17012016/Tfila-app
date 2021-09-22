@@ -1,28 +1,8 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getGeneralMessages} from '../redux/actions/generalMessagesActions';
+import React from 'react';
 import {Text, View, LogBox} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-
-const generalMessagesList = () => {
-  const dispatch = useDispatch();
-  const generalMessagesList = useSelector(state => ({
-    ...state.generalMessagesList,
-  }));
+const generalMessagesList = ({generalMessagesList}) => {
   const {generalMessages, loading, success} = generalMessagesList;
-
-  LogBox.ignoreLogs(['Setting a timer']);
-
-  useEffect(() => {
-    loadHnzchots();
-
-    setInterval(() => loadHnzchots(), 1000 * 60 * 60);
-  }, [dispatch]);
-
-  const loadHnzchots = () => {
-    return dispatch(getGeneralMessages());
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.containerA}>

@@ -1,6 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getTfilotTime} from '../redux/actions/tfilotTimeActions';
+import React from 'react';
 import {
   ImageBackground,
   FlatList,
@@ -12,23 +10,10 @@ import {
 } from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const TfilotTimeList = () => {
-  const dispatch = useDispatch();
-  const tfilotTimeList = useSelector(state => ({...state.tfilotTimeList}));
+const TfilotTimeList = ({tfilotTimeList}) => {
   const {tfilotTimes, loading, success} = tfilotTimeList;
 
   const tfilotTimeObject = Object.assign({}, tfilotTimes);
-  LogBox.ignoreLogs(['Setting a timer']);
-
-  useEffect(() => {
-    loadTfilotTime();
-
-    setInterval(() => loadTfilotTime(), 1000 * 60 * 60);
-  }, [dispatch]);
-
-  const loadTfilotTime = () => {
-    return dispatch(getTfilotTime());
-  };
 
   return (
     <>

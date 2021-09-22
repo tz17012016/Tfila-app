@@ -7,6 +7,7 @@ import {hnzchotListReducer} from './reducers/hnzchotReducers';
 import {olimLatoraListReducer} from './reducers/olimLatoraReducers';
 import {generalMessagesListReducer} from './reducers/generalMessagesReducers';
 import {tfilotTimeListReducer} from './reducers/tfilotTimeReducers';
+import {dbListReducer} from './reducers/dbReducers';
 
 const reducer = combineReducers({
   zmanimsList: zmanimsListReducer,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   olimLatoraList: olimLatoraListReducer,
   generalMessagesList: generalMessagesListReducer,
   tfilotTimeList: tfilotTimeListReducer,
+  dbList: dbListReducer,
 });
 
 const middleware = [thunk];

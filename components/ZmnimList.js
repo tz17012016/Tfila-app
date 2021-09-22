@@ -1,23 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getZmanim} from '../redux/actions/zmanimActions';
-import {View, Text, Image, LogBox} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const ZmnimList = () => {
-  const dispatch = useDispatch();
-  const zmanimsList = useSelector(state => ({...state.zmanimsList}));
+const ZmnimList = ({zmanimsList}) => {
   const {loading, success, zmanim} = zmanimsList;
-
-  LogBox.ignoreLogs(['Setting a timer']);
-
-  useEffect(() => {
-    loadZmanims();
-    setInterval(() => loadZmanims(), 1000 * 60 * 60 * 24);
-  }, [dispatch]);
-
-  const loadZmanims = () => {
-    return dispatch(getZmanim());
-  };
 
   return (
     <>
