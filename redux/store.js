@@ -15,7 +15,7 @@ const reducer = combineReducers({
   olimLatoraList: olimLatoraListReducer,
   generalMessagesList: generalMessagesListReducer,
   tfilotTimeList: tfilotTimeListReducer,
-  dbList: dbListReducer,
+  // dbList: dbListReducer,
 });
 
 const middleware = [thunk];
