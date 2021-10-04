@@ -1,8 +1,21 @@
 import React from 'react';
-import {Text, View, LogBox} from 'react-native';
+import {Text, View, ImageBackground, LogBox} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const generalMessagesList = ({generalMessagesList}) => {
+import Test from './Test';
+const generalMessagesList = ({generalMessagesList, mSTime}) => {
   const {generalMessages, loading, success} = generalMessagesList;
+  const [messageIndex, setMessageIndex] = React.useState(0);
+  React.useEffect(() => {
+    // Move on to the next message every `n` milliseconds
+    let timeout;
+    if (messageIndex < generalMessages.length - 1) {
+      timeout = setTimeout(() => setMessageIndex(messageIndex + 1), 4 * 1000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [generalMessages, messageIndex]);
   return (
     <View style={styles.container}>
       <View style={styles.containerA}>
@@ -18,23 +31,20 @@ const generalMessagesList = ({generalMessagesList}) => {
             <View style={styles.innergridViewA} />
             <View style={styles.innergridViewB}>
               <View style={styles.gridView}>
-                {generalMessages &&
-                  generalMessages.map(generalMessage => {
-                    return (
-                      <View
-                        key={generalMessage._id}
-                        style={styles.boxContainer}>
-                        <View>
-                          <Text style={styles.itemTitle}>
-                            {generalMessage?.title}
-                          </Text>
-                          <Text style={styles.itemName}>
-                            {generalMessage?.content}
-                          </Text>
-                        </View>
-                      </View>
-                    );
-                  })}
+                <View style={styles.boxContainer}>
+                  <ImageBackground
+                    style={[styles.ImageBackground, styles.boxContainer]}
+                    source={require('../images/Untitled-3.png')}>
+                    <View>
+                      <Text style={styles.itemTitle}>
+                        {generalMessages[messageIndex].title}
+                      </Text>
+                      <Text style={styles.itemName}>
+                        {generalMessages[messageIndex].content}
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </View>
               </View>
             </View>
             <View style={styles.innergridViewA} />
@@ -42,6 +52,9 @@ const generalMessagesList = ({generalMessagesList}) => {
         ) : (
           <Text>error</Text>
         )}
+        {/* {console.log(generalMessages[messageIndex].title)}
+        {console.log(generalMessages[messageIndex].content)}
+        {console.log('--------------------------------------')} */}
       </View>
     </View>
   );
@@ -87,10 +100,9 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '300@s',
-    height: '90@ms',
+    height: '175@ms',
     padding: '3@s',
     borderRadius: '10@s',
-    backgroundColor: '#ffd24d',
   },
   headerTextColor: {
     marginBottom: '13@s',
@@ -116,7 +128,13 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
-
+  ImageBackground: {
+    flex: 1,
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+  },
   textWithShadow: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
@@ -125,3 +143,34 @@ const styles = ScaledSheet.create({
 });
 
 export default generalMessagesList;
+/**
+ *  <Text style={styles.itemTitle}>
+                            {generalMessages[messageIndex].title}
+                          </Text>
+                          <Text style={styles.itemName}>
+                            {generalMessages[messageIndex].content}
+                          </Text>
+                        </View>
+ * 
+ * 
+ * 
+ * 
+ * 
+ * {generalMessages &&
+                  generalMessages.map(generalMessage => {
+                    return (
+                      <View
+                        key={generalMessage._id}
+                        style={styles.boxContainer}>
+                        <View>
+                          <Text style={styles.itemTitle}>
+                            {generalMessage?.title}
+                          </Text>
+                          <Text style={styles.itemName}>
+                            {generalMessage?.content}
+                          </Text>
+                        </View>
+                      </View>
+                    );
+                  })}
+ */

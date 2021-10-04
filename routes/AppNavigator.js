@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getGeneralMessages} from '../redux/actions/generalMessagesActions';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  createNavigationContainerRef,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import {Image, Dimensions, View, Text} from 'react-native';
@@ -19,13 +22,20 @@ import WelcomeTimeScreen from '../screens/WelcomeTimeScreen';
 
 const Stack = createStackNavigator();
 const {width, height} = Dimensions.get('screen');
-
+// export const navigationRef = React.createRef();
+// export const navigationRef = createNavigationContainerRef();
+// export function navigate(name, params) {
+//   if (navigationRef.isReady()) {
+//     navigationRef.navigate(name, params);
+//   }
+// }
 const AppNavigator = () => {
   const dispatch = useDispatch();
-
+  const [counter, setCounter] = useState(0);
   const generalMessagesList = useSelector(state => ({
     ...state.generalMessagesList,
   }));
+  const refCounter = useRef(counter);
   const {
     loading: messagesLoading,
     success: messagesSuccess,
@@ -57,7 +67,6 @@ const AppNavigator = () => {
     success: zmanimsSuccess,
     zmanim,
   } = zmanimsList;
-  console.log(hnzchotList);
   useEffect(() => {
     loadDb();
 
@@ -88,6 +97,32 @@ const AppNavigator = () => {
       loadZmanims()
     );
   };
+
+  // const startTimeout = () => {
+  //   setInterval(() => {
+  //     const arrLengh = screenNamesArry.length;
+  //     const nextScreen = screenNamesArry[(counter + 1) % arrLengh];
+  //     setCounter(refCounter.current + 1);
+  //     navigate(nextScreen);
+  //   }, 1000);
+  // };
+
+  // useEffect(() => {
+  //   startTimeout();
+  // }, []);
+
+  // const checkNamesArray = changeOptions => {
+  //   const {
+  //     Zmanim,
+  //     WelcomeTime,
+  //     TfilotTime,
+  //     OlimLatora,
+  //     Hnzchot,
+  //     GeneralMessages,
+  //   } = changeOptions;
+  //   let screenNames = [];
+  // };
+
   let reaplaseScreanName = {
     Zmanim: 'Zmanim',
     WelcomeTime: 'WelcomeTime',
@@ -96,6 +131,23 @@ const AppNavigator = () => {
     Hnzchot: 'Hnzchot',
     GeneralMessages: 'GeneralMessages',
   };
+  // const screenNamesArry = [
+  //   'zmanimm',
+  //   'WelcomeTime',
+  //   'TfilotTime',
+  //   'OlimLatora',
+  //   'Hnzchot',
+  //   'GeneralMessages',
+  // ];
+  // let screenDetails = new Map([
+  //   ['Zmanim', zmanim],
+  //   ['WelcomeTime', zmanim],
+  //   ['TfilotTime', tfilotTimes],
+  //   ['OlimLatora', olimLatoras],
+  //   ['Hnzchot', hnzchots],
+  //   ['GeneralMessages', generalMessages],
+  // ]);
+
   let changeOptions = {
     Zmanim: zmanim,
     TfilotTime: tfilotTimes,
@@ -103,7 +155,89 @@ const AppNavigator = () => {
     Hnzchot: hnzchots,
     GeneralMessages: generalMessages,
   };
-  console.log(changeOptions);
+  const Renders = () => {
+    return (
+      <NavigationContainer>
+        <Image
+          source={require('../images/Bgk.png')}
+          style={{
+            width,
+            height,
+            position: 'absolute',
+          }}
+        />
+        <Stack.Navigator
+          screenOptions={{
+            header: () => null,
+            cardStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}>
+          <Stack.Screen name="Zmanim">
+            {props => (
+              <ZmanimScreen
+                {...props}
+                zmanimsList={zmanimsList}
+                reaplaseScreanName={reaplaseScreanName}
+                changeOptions={changeOptions}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="WelcomeTime">
+            {props => (
+              <WelcomeTimeScreen
+                {...props}
+                zmanimsList={zmanimsList}
+                reaplaseScreanName={reaplaseScreanName}
+                changeOptions={changeOptions}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="TfilotTime">
+            {props => (
+              <TfilotTimeScreen
+                {...props}
+                tfilotTimeList={tfilotTimeList}
+                reaplaseScreanName={reaplaseScreanName}
+                changeOptions={changeOptions}
+              />
+            )}
+          </Stack.Screen>
+
+          <Stack.Screen name="OlimLatora">
+            {props => (
+              <OlimLatoraScreen
+                {...props}
+                olimLatoraList={olimLatoraList}
+                reaplaseScreanName={reaplaseScreanName}
+                changeOptions={changeOptions}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="Hnzchot">
+            {props => (
+              <HnzchotScreen
+                {...props}
+                hnzchotList={hnzchotList}
+                reaplaseScreanName={reaplaseScreanName}
+                changeOptions={changeOptions}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="GeneralMessages">
+            {props => (
+              <GeneralMessagesScreen
+                {...props}
+                generalMessagesList={generalMessagesList}
+                reaplaseScreanName={reaplaseScreanName}
+                changeOptions={changeOptions}
+              />
+            )}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
   const Loding = () => {
     return (
       <View>
@@ -112,23 +246,36 @@ const AppNavigator = () => {
     );
   };
   return (
-    <NavigationContainer>
-      <Image
-        source={require('../images/Bgk.png')}
-        style={{
-          width,
-          height,
-          position: 'absolute',
-        }}
-      />
-      <Stack.Navigator
-        screenOptions={{
-          header: () => null,
-          cardStyle: {
-            backgroundColor: 'transparent',
-          },
-        }}>
-        {zmanimsLoading &&
+    <>
+      {zmanimsLoading &&
+      tfilotTimeLoading &&
+      olimLatoraLoading &&
+      messagesLoading &&
+      olimLatoraLoading ? (
+        <Loding />
+      ) : (
+        <Renders />
+      )}
+    </>
+  );
+};
+
+export default AppNavigator;
+/**
+ * <Stack.Screen name="Zmanim" component={ZmanimScreen} />
+        <Stack.Screen name="WelcomeTime" component={WelcomeTimeScreen} />
+        <Stack.Screen name="TfilotTime" component={TfilotTimeScreen} />
+        <Stack.Screen name="OlimLatora" component={OlimLatoraScreen} />
+        <Stack.Screen name="Hnzchot" component={HnzchotScreen} />
+        <Stack.Screen
+          name="GeneralMessages"
+          component={GeneralMessagesScreen}
+        />
+ *
+ */
+
+/**
+         *   {zmanimsLoading &&
         tfilotTimeLoading &&
         olimLatoraLoading &&
         messagesLoading &&
@@ -203,9 +350,4 @@ const AppNavigator = () => {
         ) : (
           <Stack.Screen name="loding" component={Loding} />
         )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
-
-export default AppNavigator;
+         */

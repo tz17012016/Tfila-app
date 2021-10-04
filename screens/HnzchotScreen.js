@@ -1,44 +1,38 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import HnzchotList from '../components/HnzchotList';
 import {useFocusEffect} from '@react-navigation/native';
-const HnzchotScreen = ({
-  navigation,
-  hnzchotList,
-  reaplaseScreanName,
-  changeOptions,
-}) => {
-  const checkOptions = (changeOptions, reaplaseScreanName, navigation) => {
-    switch (changeOptions) {
-      case changeOptions.zmanim.length >= 1:
+import {useNavigation} from '@react-navigation/native';
+const HnzchotScreen = ({hnzchotList, reaplaseScreanName, changeOptions}) => {
+  const refCounter = useRef(changeOptions);
+  const navigation = useNavigation();
+  const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
+    switch (true) {
+      case refCounter.current.GeneralMessages?.length >= 1:
         return navigation.replace(reaplaseScreanName.GeneralMessages);
-      case changeOptions.GeneralMessages.length >= 1:
-        return navigation.replace(reaplaseScreanName.Hnzchot);
-      case changeOptions.tfilotTimes.length >= 1:
+      case Object.keys(refCounter.current.Zmanim).length >= 1:
+        return navigation.replace(reaplaseScreanName.Zmanim);
+      case refCounter.current.TfilotTime?.length >= 1:
         return navigation.replace(reaplaseScreanName.TfilotTime);
-      case changeOptions.hnzchots.length >= 1:
+      case refCounter.current.OlimLatora?.length >= 1:
         return navigation.replace(reaplaseScreanName.OlimLatora);
       default:
         return navigation.replace(reaplaseScreanName.Hnzchot);
     }
   };
-  useEffect(() => {
-    let secTimer = setInterval(() => {
-      // checkOptions(changeOptions, reaplaseScreanName, navigation);
-      switch (changeOptions) {
-        case changeOptions.zmanim.length >= 1:
-          return navigation.replace(reaplaseScreanName.GeneralMessages);
-        case changeOptions.GeneralMessages.length >= 1:
-          return navigation.replace(reaplaseScreanName.Hnzchot);
-        case changeOptions.tfilotTimes.length >= 1:
-          return navigation.replace(reaplaseScreanName.TfilotTime);
-        case changeOptions.hnzchots.length >= 1:
-          return navigation.replace(reaplaseScreanName.OlimLatora);
-        default:
-          return navigation.replace(reaplaseScreanName.Hnzchot);
-      }
-    }, 1 * 60 * 1000);
-    return () => clearInterval(secTimer);
-  }, []);
+  // useEffect(() => {
+  //   let secTimer = setInterval(() => {
+  //     checkOptions(refCounter, reaplaseScreanName, navigation);
+  //   }, 5 * 1000);
+  //   return () => clearInterval(secTimer);
+  // }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      let secTimer = setTimeout(() => {
+        checkOptions(refCounter, reaplaseScreanName, navigation);
+      }, 50 * 1000);
+      return () => clearTimeout(secTimer);
+    }, []),
+  );
   return <HnzchotList hnzchotList={hnzchotList} />;
 };
 // const HnzchotScreen = ({navigation, hnzchotList}) => {

@@ -42,7 +42,11 @@ const WelcomeTime = ({zmanimsList}) => {
                           <View style={styles.widthBox}>
                             <Text style={styles.itemTitle}>הפטרה</Text>
                             <Text style={styles.itemName}>
-                              {zmanim && zmanim.HaftaraTemani}
+                              {zmanim &&
+                                zmanim.HaftaraTemani.split('\\{.*?\\}')}
+                              {console.log(
+                                zmanim.HaftaraTemani.split('\\{.*?\\}'),
+                              )}
                             </Text>
                           </View>
                         </View>
@@ -64,30 +68,26 @@ const WelcomeTime = ({zmanimsList}) => {
                         <View style={styles.boxContainer1}>
                           <View style={styles.innerContainerA}>
                             <View style={styles.innerContainerA}>
-                              <Text style={styles.itemName}>
+                              <Text style={styles.itemTitle1}>
                                 {zmanim && zmanim.Date}
                               </Text>
                             </View>
 
                             <View style={styles.innerContainerA}>
-                              <Text style={styles.itemName}>
+                              <Text style={styles.itemTitle1}>
                                 {zmanim && zmanim.HebrewDate}
                               </Text>
                             </View>
                           </View>
                           <View style={styles.innerContainerB}>
-                            <Text style={styles.itemClock}>
-                              {zmanim && zmanim.Parasha}
-                            </Text>
-                          </View>
-                          <View style={styles.innerContainerB}>
-                            <Text style={styles.itemClock}>
-                              {zmanim && zmanim.GeshemTal}
-                            </Text>
-                          </View>
-                          <View style={styles.innerContainerB}>
-                            <Text style={styles.itemName}>
+                            <Text style={styles.itemTitle}>
                               {zmanim && zmanim.SelectedDayHeader}
+                            </Text>
+                          </View>
+
+                          <View style={styles.innerContainerB}>
+                            <Text style={styles.itemTitle}>
+                              {zmanim && zmanim.GeshemTal}
                             </Text>
                           </View>
                           {zmanim && zmanim.OmerDescription.length >= 1 ? (
@@ -143,6 +143,7 @@ const styles = ScaledSheet.create({
   },
   box2: {
     flex: 1,
+    height: '100@s',
     width: '400@s',
   },
   innergridViewA: {
@@ -153,13 +154,12 @@ const styles = ScaledSheet.create({
     flex: 2.5,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#fff5cc',
     justifyContent: 'center',
     borderRadius: 10,
     marginBottom: '45@s',
   },
   widthBox: {
-    width: '300@s',
+    width: '200@s',
     marginRight: '5@s',
   },
   containerB: {
@@ -169,7 +169,9 @@ const styles = ScaledSheet.create({
   },
   boxContainer1: {
     borderRadius: '10@s',
+    width: '400@s',
     backgroundColor: '#80bfff',
+    height: '100@s',
   },
   innerContainerA1: {
     height: '100@ms',
@@ -200,6 +202,13 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#ff0000',
+    fontWeight: '900',
+  },
+  itemTitle1: {
+    fontSize: '24@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#000',
     fontWeight: '900',
   },
   headerTextColor: {

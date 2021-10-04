@@ -1,14 +1,40 @@
 import React from 'react';
-import {Text, View, LogBox} from 'react-native';
+import {Text, View, Image, ImageBackground, LogBox} from 'react-native';
 import Hebcal from 'hebcal';
 import {ScaledSheet} from 'react-native-size-matters';
 
 const HnzchotList = ({hnzchotList}) => {
   const {hnzchots, loading, success} = hnzchotList;
+  const [arrIndex, setArrIndex] = React.useState(0);
+  let newHnzchots = [];
+  React.useEffect(() => {
+    // Move on to the next arr every `n` milliseconds
+    let timeout;
+    if (arrIndex < newHnzchots.length - 1) {
+      timeout = setTimeout(() => setArrIndex(arrIndex + 1), 5 * 1000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [newHnzchots, arrIndex]);
+
   const HebrewDate = dateOfDeath => {
     let hebrewDate = new Hebcal.HDate(new Date(dateOfDeath)).toString('h');
     return hebrewDate;
   };
+
+  const sliceIntoChunks = (arr, chunkSize) => {
+    const res = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      const chunk = arr.slice(i, i + chunkSize);
+      res.push(chunk);
+    }
+    return res;
+  };
+  if (hnzchots) {
+    newHnzchots = sliceIntoChunks(hnzchots, 8);
+  }
+
   return (
     <>
       <View style={styles.container}>
@@ -25,19 +51,33 @@ const HnzchotList = ({hnzchotList}) => {
               <View style={styles.innergridViewA} />
               <View style={styles.innergridViewB}>
                 <View style={styles.gridView}>
-                  {hnzchots &&
-                    hnzchots.map(hnzchot => {
+                  {newHnzchots[arrIndex] &&
+                    newHnzchots[arrIndex].map(hnzchot => {
                       return (
                         <View key={hnzchot._id} style={styles.boxContainer}>
-                          <View style={styles.innerContainerA} />
-                          <View style={styles.innerContainerB}>
-                            <Text style={styles.itemTitle}>
-                              {`${hnzchot?.parntName} בן ${hnzchot?.name}`}
-                            </Text>
-                            <Text style={styles.itemName}>
-                              {HebrewDate(hnzchot?.dateOfDeath)}
-                            </Text>
-                          </View>
+                          <ImageBackground
+                            style={styles.ImageBackground}
+                            source={require('../images/Untitled-1.png')}>
+                            <View style={styles.innerBoxContainer}>
+                              <View style={styles.innerContainerC}>
+                                <Image
+                                  style={{
+                                    height: 50,
+                                    width: 10,
+                                  }}
+                                  source={require('../images/giphy.gif')}
+                                />
+                              </View>
+                              <View style={styles.innerContainerB}>
+                                <Text style={styles.itemTitle}>
+                                  {`${hnzchot?.parntName}  ${hnzchot?.name}`}
+                                </Text>
+                                <Text style={styles.itemName}>
+                                  {HebrewDate(hnzchot?.dateOfDeath)}
+                                </Text>
+                              </View>
+                            </View>
+                          </ImageBackground>
                         </View>
                       );
                     })}
@@ -64,11 +104,17 @@ const styles = ScaledSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-
     alignItems: 'flex-end',
+  },
+  innerBoxContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   innA: {
     flexDirection: 'row',
+
     flex: 2,
   },
   innB: {
@@ -81,6 +127,7 @@ const styles = ScaledSheet.create({
     flex: 2.8,
     flexDirection: 'row',
   },
+
   containerA1: {
     height: '50@s',
     width: '50@s',
@@ -92,6 +139,7 @@ const styles = ScaledSheet.create({
   gridView: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+
     justifyContent: 'space-evenly',
   },
   innergridViewA: {
@@ -103,45 +151,50 @@ const styles = ScaledSheet.create({
     flexDirection: 'column',
     borderRadius: 10,
     margin: '5@s',
-    marginTop: '15@s',
     marginBottom: '45@s',
-    padding: '10@s',
+
+    padding: '2@s',
   },
-  innergridViewC: {
-    flex: 2,
-  },
-  innerContainerA: {
-    height: '10@s',
-  },
+  innergridViewC: {},
+
+  innerContainerA: {},
   innerContainerB: {},
   boxContainer: {
-    width: '80@s',
+    width: '120@s',
     height: '70@ms',
     borderRadius: 5,
-    backgroundColor: '#ffd24d',
-    opacity: 0.6,
+    backgroundColor: '#a6a6a6',
     padding: '3@s',
     margin: '3@s',
   },
+  innerContainerC: {},
   headerTextColor: {
     marginBottom: '13@s',
+
     fontSize: '35@s',
     color: '#ff4d4d',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
   itemName: {
-    fontSize: '10@s',
+    fontSize: '8@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
   itemTitle: {
-    fontSize: '12@s',
+    fontSize: '8@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#ff0000',
     fontWeight: '900',
+  },
+  ImageBackground: {
+    flex: 1,
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
   },
   textWithShadow: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
