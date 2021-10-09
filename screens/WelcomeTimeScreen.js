@@ -2,11 +2,16 @@ import React, {useEffect, useRef} from 'react';
 import WelcomeTime from '../components/WelcomeTime';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import {ImageBackground, Dimensions, View, Text} from 'react-native';
+import Heder from '../components/Heder';
+import Footer from '../components/Footer';
+const {width, height} = Dimensions.get('screen');
 const WelcomeTimeScreen = ({
   zmanimsList,
   reaplaseScreanName,
   changeOptions,
 }) => {
+  const {Hnzchot = []} = changeOptions;
   const refCounter = useRef(changeOptions);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
@@ -36,11 +41,23 @@ const WelcomeTimeScreen = ({
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 50 * 1000);
+      }, 15 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
-  return <WelcomeTime zmanimsList={zmanimsList} />;
+  return (
+    <ImageBackground
+      source={require('../images/parshBg.jpg')}
+      resizeMode="cover"
+      style={{
+        width,
+        height,
+      }}>
+      <Heder zmanimsList={zmanimsList} />
+      <WelcomeTime zmanimsList={zmanimsList} />
+      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
+    </ImageBackground>
+  );
 };
 // const WelcomeTimeScreen = ({navigation, zmanimsList}) => {
 //   useFocusEffect(

@@ -2,8 +2,11 @@ import React, {useEffect, useRef} from 'react';
 import TfilotTimeList from '../components/TfilotTimeList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import Heder from '../components/Heder';
+import Footer from '../components/Footer';
 const TfilotTimeScreen = ({
   tfilotTimeList,
+  zmanimsList,
   reaplaseScreanName,
   changeOptions,
 }) => {
@@ -33,11 +36,17 @@ const TfilotTimeScreen = ({
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 50 * 1000);
+      }, 5 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
-  return <TfilotTimeList tfilotTimeList={tfilotTimeList} />;
+  return (
+    <>
+      <Heder zmanimsList={zmanimsList} />
+      <TfilotTimeList tfilotTimeList={tfilotTimeList} />
+      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
+    </>
+  );
 };
 
 // const TfilotTimeScreen = ({navigation, tfilotTimeList}) => {

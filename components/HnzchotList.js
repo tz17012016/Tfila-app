@@ -11,7 +11,7 @@ const HnzchotList = ({hnzchotList}) => {
     // Move on to the next arr every `n` milliseconds
     let timeout;
     if (arrIndex < newHnzchots.length - 1) {
-      timeout = setTimeout(() => setArrIndex(arrIndex + 1), 5 * 1000);
+      timeout = setTimeout(() => setArrIndex(arrIndex + 1), 2 * 1000);
     }
     return () => {
       clearTimeout(timeout);
@@ -32,7 +32,7 @@ const HnzchotList = ({hnzchotList}) => {
     return res;
   };
   if (hnzchots) {
-    newHnzchots = sliceIntoChunks(hnzchots, 8);
+    newHnzchots = sliceIntoChunks(hnzchots, 6);
   }
 
   return (
@@ -57,20 +57,12 @@ const HnzchotList = ({hnzchotList}) => {
                         <View key={hnzchot._id} style={styles.boxContainer}>
                           <ImageBackground
                             style={styles.ImageBackground}
-                            source={require('../images/Untitled-1.png')}>
+                            source={require('../images/neshama.png')}>
                             <View style={styles.innerBoxContainer}>
-                              <View style={styles.innerContainerC}>
-                                <Image
-                                  style={{
-                                    height: 50,
-                                    width: 10,
-                                  }}
-                                  source={require('../images/giphy.gif')}
-                                />
-                              </View>
+                              <View style={styles.innerContainerC}></View>
                               <View style={styles.innerContainerB}>
                                 <Text style={styles.itemTitle}>
-                                  {`${hnzchot?.parntName}  ${hnzchot?.name}`}
+                                  {`${hnzchot?.parntName} ${hnzchot?.gender}  ${hnzchot?.name}`}
                                 </Text>
                                 <Text style={styles.itemName}>
                                   {HebrewDate(hnzchot?.dateOfDeath)}
@@ -96,15 +88,19 @@ const HnzchotList = ({hnzchotList}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    height: '100%',
+    height: '66%',
     flexDirection: 'column',
     justifyContent: 'center',
   },
   containerA: {
-    flex: 1,
+    flex: 0.7,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
+  },
+  containerB: {
+    flex: 2.7,
+    flexDirection: 'row',
   },
   innerBoxContainer: {
     flex: 1,
@@ -123,37 +119,20 @@ const styles = ScaledSheet.create({
 
     justifyContent: 'center',
   },
-  containerB: {
-    flex: 2.8,
-    flexDirection: 'row',
-  },
 
-  containerA1: {
-    height: '50@s',
-    width: '50@s',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
   gridView: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   innergridViewA: {
     flex: 1,
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 5.5,
+    flex: 5,
     flexDirection: 'column',
     borderRadius: 10,
-    margin: '5@s',
-    marginBottom: '45@s',
-
-    padding: '2@s',
   },
   innergridViewC: {},
 
@@ -161,18 +140,13 @@ const styles = ScaledSheet.create({
   innerContainerB: {},
   boxContainer: {
     width: '120@s',
-    height: '70@ms',
+    height: '95@ms',
     borderRadius: 5,
-    backgroundColor: '#a6a6a6',
-    padding: '3@s',
-    margin: '3@s',
   },
   innerContainerC: {},
   headerTextColor: {
-    marginBottom: '13@s',
-
     fontSize: '35@s',
-    color: '#ff4d4d',
+    color: '#3333ff',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },

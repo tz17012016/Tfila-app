@@ -2,8 +2,11 @@ import React, {useEffect, useRef} from 'react';
 import OlimLatoraList from '../components/OlimLatoraList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import Heder from '../components/Heder';
+import Footer from '../components/Footer';
 const OlimLatoraScreen = ({
   olimLatoraList,
+  zmanimsList,
   reaplaseScreanName,
   changeOptions,
 }) => {
@@ -11,14 +14,14 @@ const OlimLatoraScreen = ({
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
+      case refCounter.current.Shiorim?.length >= 1:
+        return navigation.replace(reaplaseScreanName.Shiorim);
       case refCounter.current.Hnzchot?.length >= 1:
         return navigation.replace(reaplaseScreanName.Hnzchot);
       case refCounter.current.GeneralMessages?.length >= 1:
         return navigation.replace(reaplaseScreanName.GeneralMessages);
       case Object.keys(refCounter.current.Zmanim).length >= 1:
         return navigation.replace(reaplaseScreanName.Zmanim);
-      case refCounter.current.TfilotTime?.length >= 1:
-        return navigation.replace(reaplaseScreanName.TfilotTime);
       default:
         return navigation.replace(reaplaseScreanName.OlimLatora);
     }
@@ -33,11 +36,17 @@ const OlimLatoraScreen = ({
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 50 * 1000);
+      }, 15 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
-  return <OlimLatoraList olimLatoraList={olimLatoraList} />;
+  return (
+    <>
+      <Heder zmanimsList={zmanimsList} />
+      <OlimLatoraList olimLatoraList={olimLatoraList} />
+      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
+    </>
+  );
 };
 // const OlimLatoraScreen = ({navigation, olimLatoraList}) => {
 //   useFocusEffect(

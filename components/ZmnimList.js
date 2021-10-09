@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, ImageBackground, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 const ZmnimList = ({zmanimsList}) => {
   const {loading, success, zmanim} = zmanimsList;
-
   return (
     <>
       <View style={styles.container}>
@@ -114,13 +113,18 @@ const ZmnimList = ({zmanimsList}) => {
                 </View>
                 <View style={styles.gridView}>
                   <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>מנחה גדולה</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.MinhaGedola}
-                      </Text>
-                    </View>
+                    <ImageBackground
+                      source={require('../images/neshama.png')}
+                      resizeMode="cover"
+                      style={styles.ImageBackground}>
+                      <View style={styles.innerContainerA}></View>
+                      <View style={styles.innerContainerB}>
+                        <Text style={styles.itemTitle}>מנחה גדולה</Text>
+                        <Text style={styles.itemName}>
+                          {zmanim && zmanim.MinhaGedola}
+                        </Text>
+                      </View>
+                    </ImageBackground>
                   </View>
                 </View>
               </View>
@@ -138,7 +142,7 @@ const ZmnimList = ({zmanimsList}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    height: '100%',
+    height: '66%',
     flexDirection: 'column',
     justifyContent: 'center',
   },
@@ -175,9 +179,6 @@ const styles = ScaledSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     borderRadius: 10,
-    marginTop: '10@s',
-    marginBottom: '40@s',
-    padding: '10@s',
   },
   innergridViewC: {
     flex: 2,
@@ -190,15 +191,12 @@ const styles = ScaledSheet.create({
     width: '110@s',
     height: '75@ms',
     borderRadius: 3,
-    backgroundColor: '#ffd24d',
-    opacity: 0.6,
     margin: '3@s',
     marginTop: '3@s',
     padding: '2@s',
   },
   headerTextColor: {
-    marginBottom: '8@s',
-    fontSize: '40@s',
+    fontSize: '20@s',
     color: '#ff4d4d',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
@@ -220,6 +218,10 @@ const styles = ScaledSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10,
+  },
+  ImageBackground: {
+    width: '100%',
+    height: '100%',
   },
 });
 

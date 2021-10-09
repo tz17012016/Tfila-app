@@ -23,84 +23,46 @@ const WelcomeTime = ({zmanimsList}) => {
     <>
       <View style={styles.container}>
         <View style={styles.containerA}>
-          <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-            {time}
-          </Text>
-        </View>
-        <View style={styles.containerB}>
           {loading ? (
             <Text>loding...</Text>
           ) : success ? (
             <>
               <View style={styles.innergridViewA}></View>
               <View style={styles.innergridViewB}>
-                <View style={styles.box}>
-                  <View style={styles.box1}>
-                    <View style={styles.innerContainerA1}>
-                      <View style={styles.innerContainerA11}>
-                        <View style={styles.innerContainerA}>
-                          <View style={styles.widthBox}>
-                            <Text style={styles.itemTitle}>הפטרה</Text>
-                            <Text style={styles.itemName}>
-                              {zmanim &&
-                                zmanim.HaftaraTemani.split('\\{.*?\\}')}
-                              {console.log(
-                                zmanim.HaftaraTemani.split('\\{.*?\\}'),
-                              )}
-                            </Text>
-                          </View>
-                        </View>
-                        <View style={styles.innerContainerA}>
-                          <View>
-                            <Text style={styles.itemTitle}>פרשת השבוע</Text>
-                            <Text style={styles.itemName}>
-                              {zmanim && zmanim.ParashaOnly}
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
+                <View style={styles.innerViewA}>
+                  <View style={styles.box3}>
+                    <View style={styles.box5}>
+                      <Text style={styles.itemTextShideTitle}>צאת השבת</Text>
+                      <Text style={styles.itemTextShide}>
+                        {zmanim && zmanim.MotzeyShabat}
+                      </Text>
                     </View>
                   </View>
-
-                  <View style={styles.box2A}>
-                    <View style={styles.box2}>
-                      <View style={styles.boxContainer}>
-                        <View style={styles.boxContainer1}>
-                          <View style={styles.innerContainerA}>
-                            <View style={styles.innerContainerA}>
-                              <Text style={styles.itemTitle1}>
-                                {zmanim && zmanim.Date}
-                              </Text>
-                            </View>
-
-                            <View style={styles.innerContainerA}>
-                              <Text style={styles.itemTitle1}>
-                                {zmanim && zmanim.HebrewDate}
-                              </Text>
-                            </View>
-                          </View>
-                          <View style={styles.innerContainerB}>
-                            <Text style={styles.itemTitle}>
-                              {zmanim && zmanim.SelectedDayHeader}
-                            </Text>
-                          </View>
-
-                          <View style={styles.innerContainerB}>
-                            <Text style={styles.itemTitle}>
-                              {zmanim && zmanim.GeshemTal}
-                            </Text>
-                          </View>
-                          {zmanim && zmanim.OmerDescription.length >= 1 ? (
-                            <View style={styles.innerContainerA}>
-                              <Text style={styles.itemOmer}>
-                                {zmanim && zmanim.OmerDescription}
-                              </Text>
-                            </View>
-                          ) : (
-                            <></>
-                          )}
-                        </View>
-                      </View>
+                </View>
+                <View style={styles.innerViewB}>
+                  <View style={styles.box1}></View>
+                  <View style={styles.box2}>
+                    <Text style={styles.itemTextShideTitle}>פרשת השבוע</Text>
+                    <Text style={styles.itemTextShide}>
+                      {zmanim && zmanim.ParashaOnly}
+                    </Text>
+                  </View>
+                  <View style={styles.box2}></View>
+                  <View style={styles.box2}>
+                    <Text style={styles.itemTextShideTitle}>הפטרה</Text>
+                    <Text style={styles.itemTextShide}>
+                      {zmanim &&
+                        zmanim.HaftaraTemani.replace(/\(([^\)]+)\)/g, '')}
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.innerViewA}>
+                  <View style={styles.box3}>
+                    <View style={styles.box4}>
+                      <Text style={styles.itemTextShideTitle}>כניסת שבת</Text>
+                      <Text style={styles.itemTextShide1}>
+                        {zmanim && zmanim.HadlakatNerot}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -119,8 +81,9 @@ const WelcomeTime = ({zmanimsList}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    height: '100%',
+    height: '66%',
     flexDirection: 'column',
+
     justifyContent: 'center',
     marginHorizontal: '5%',
     alignItems: 'center',
@@ -128,23 +91,6 @@ const styles = ScaledSheet.create({
   containerA: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  box: {
-    flex: 1,
-  },
-  box1: {
-    flex: 1,
-  },
-  box2A: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  box2: {
-    flex: 1,
-    height: '100@s',
-    width: '400@s',
   },
   innergridViewA: {
     flex: 0.3,
@@ -158,78 +104,85 @@ const styles = ScaledSheet.create({
     borderRadius: 10,
     marginBottom: '45@s',
   },
-  widthBox: {
-    width: '200@s',
-    marginRight: '5@s',
-  },
-  containerB: {
-    marginTop: '15@s',
-    flex: 2.6,
-    flexDirection: 'row',
-  },
-  boxContainer1: {
-    borderRadius: '10@s',
-    width: '400@s',
-    backgroundColor: '#80bfff',
-    height: '100@s',
-  },
-  innerContainerA1: {
-    height: '100@ms',
-    marginTop: '10@s',
-  },
-  innerContainerA11: {
+  innerViewA: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    flexDirection: 'column',
   },
+  innerViewB: {
+    flex: 1.3,
 
-  innerContainerA: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    flexDirection: 'column',
   },
-  innerContainerB: {
+  box1: {
+    flex: 1.7,
+    height: '100@s',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  boxContainer: {},
-  itemName: {
-    fontSize: '15@s',
-    color: '#000',
-    fontWeight: 'bold',
-    textAlign: 'center',
+  box2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100@s',
+    marginLeft: '10@s',
+    marginBottom: '2@s',
   },
-  itemTitle: {
-    fontSize: '24@s',
-    textAlign: 'center',
+  box3: {
+    flex: 1.7,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  box4: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: '55@s',
+    marginTop: '20@s',
+  },
+  box5: {
+    marginRight: '35@s',
+    marginTop: '20@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  itemText: {
+    fontSize: '10@s',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#ff0000',
+    color: '#3333ff',
     fontWeight: '900',
+    alignItems: 'center',
+    paddingRight: '5@s',
   },
-  itemTitle1: {
-    fontSize: '24@s',
-    textAlign: 'center',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#000',
-    fontWeight: '900',
-  },
-  headerTextColor: {
-    fontSize: '40@s',
-    marginBottom: '8@s',
-    color: '#ff4d4d',
-    textAlign: 'center',
-    fontFamily: 'HadasimCLM-Bold',
-  },
-  itemClock: {
+  itemTextShide: {
     fontSize: '20@s',
-    color: '#ffffff',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#3333ff',
+    fontWeight: '900',
+    alignItems: 'center',
+    paddingRight: '5@s',
   },
-  itemOmer: {
+  itemTextShide1: {
+    fontSize: '20@s',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#3333ff',
+    fontWeight: '900',
+    alignItems: 'center',
+  },
+  itemTextShideTitle: {
     fontSize: '15@s',
-    color: '#80bfff',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#00ccff',
+    fontWeight: '900',
   },
 });
 
 export default WelcomeTime;
+/**
+ * <Text style={styles.itemName}>
+                              {zmanim &&
+                                zmanim.HaftaraTemani.replace(
+                                  /\(([^\)]+)\)/g,
+                                  '',
+                                )}
+                              {console.log(zmanim.HaftaraTemani)}
+                            </Text>
+ */

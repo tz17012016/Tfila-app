@@ -2,10 +2,13 @@ import React, {useEffect, useRef} from 'react';
 import GeneralMessagesList from '../components/GeneralMessagesList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import Heder from '../components/Heder';
+import Footer from '../components/Footer';
 const GeneralMessagesScreen = ({
   generalMessagesList,
   reaplaseScreanName,
   changeOptions,
+  zmanimsList,
 }) => {
   const refCounter = useRef(changeOptions);
   const navigation = useNavigation();
@@ -34,16 +37,20 @@ const GeneralMessagesScreen = ({
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 50 * 1000);
+      }, 15 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
 
   return (
-    <GeneralMessagesList
-      mSTime={mSTime}
-      generalMessagesList={generalMessagesList}
-    />
+    <>
+      <Heder zmanimsList={zmanimsList} />
+      <GeneralMessagesList
+        mSTime={mSTime}
+        generalMessagesList={generalMessagesList}
+      />
+      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
+    </>
   );
 };
 

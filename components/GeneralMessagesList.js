@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, ImageBackground, LogBox} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import Test from './Test';
+import Test from './Yahrzeit';
 const generalMessagesList = ({generalMessagesList, mSTime}) => {
   const {generalMessages, loading, success} = generalMessagesList;
   const [messageIndex, setMessageIndex] = React.useState(0);
@@ -34,7 +34,7 @@ const generalMessagesList = ({generalMessagesList, mSTime}) => {
                 <View style={styles.boxContainer}>
                   <ImageBackground
                     style={[styles.ImageBackground, styles.boxContainer]}
-                    source={require('../images/Untitled-3.png')}>
+                    source={require('../images/box4.png')}>
                     <View>
                       <Text style={styles.itemTitle}>
                         {generalMessages[messageIndex].title}
@@ -62,7 +62,7 @@ const generalMessagesList = ({generalMessagesList, mSTime}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    height: '100%',
+    height: '66%',
     flexDirection: 'column',
     justifyContent: 'center',
   },
@@ -91,23 +91,18 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     flex: 5,
     flexDirection: 'column',
-    marginTop: '15@s',
-    margin: '5@s',
-    padding: '10@s',
-    marginBottom: '45@s',
+    marginBottom: '10@s',
   },
   boxContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '300@s',
     height: '175@ms',
-    padding: '3@s',
     borderRadius: '10@s',
   },
   headerTextColor: {
-    marginBottom: '13@s',
     fontSize: '35@s',
-    color: '#ff4d4d',
+    color: '#3333ff',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
@@ -121,12 +116,14 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#ff0000',
+    marginBottom: '20@s',
   },
   itemName: {
     fontSize: '12@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
+    marginBottom: '30@s',
   },
   ImageBackground: {
     flex: 1,

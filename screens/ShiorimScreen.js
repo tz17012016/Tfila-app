@@ -1,47 +1,48 @@
 import React, {useEffect, useRef} from 'react';
-import HnzchotList from '../components/HnzchotList';
+import ShiorimList from '../components/ShiorimList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import {ImageBackground, Dimensions, View, Text} from 'react-native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
-const HnzchotScreen = ({
-  hnzchotList,
-  reaplaseScreanName,
+const {width, height} = Dimensions.get('screen');
+const ShiorimScreen = ({
   zmanimsList,
+  shiorimList,
+  reaplaseScreanName,
   changeOptions,
 }) => {
+  const {Hnzchot = []} = changeOptions;
   const refCounter = useRef(changeOptions);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
+      case refCounter.current.Hnzchot?.length >= 1:
+        return navigation.replace(reaplaseScreanName.Hnzchot);
       case refCounter.current.GeneralMessages?.length >= 1:
         return navigation.replace(reaplaseScreanName.GeneralMessages);
       case Object.keys(refCounter.current.Zmanim).length >= 1:
         return navigation.replace(reaplaseScreanName.Zmanim);
-      case refCounter.current.TfilotTime?.length >= 1:
-        return navigation.replace(reaplaseScreanName.TfilotTime);
-      case refCounter.current.OlimLatora?.length >= 1:
-        return navigation.replace(reaplaseScreanName.OlimLatora);
       default:
-        return navigation.replace(reaplaseScreanName.Hnzchot);
+        return navigation.replace(reaplaseScreanName.WelcomeTime);
     }
   };
 
   useFocusEffect(
     React.useCallback(() => {
-      let secTimer = setTimeout(() => {
-        checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 15 * 1000);
-      return () => clearTimeout(secTimer);
+      // let secTimer = setTimeout(() => {
+      //   checkOptions(refCounter, reaplaseScreanName, navigation);
+      // }, 15 * 1000);
+      // return () => clearTimeout(secTimer);
     }, []),
   );
   return (
     <>
       <Heder zmanimsList={zmanimsList} />
-      <HnzchotList hnzchotList={hnzchotList} />
+      <ShiorimList shiorimList={shiorimList} />
       <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
     </>
   );
 };
 
-export default HnzchotScreen;
+export default ShiorimScreen;

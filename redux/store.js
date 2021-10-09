@@ -8,6 +8,7 @@ import {olimLatoraListReducer} from './reducers/olimLatoraReducers';
 import {generalMessagesListReducer} from './reducers/generalMessagesReducers';
 import {tfilotTimeListReducer} from './reducers/tfilotTimeReducers';
 import {dbListReducer} from './reducers/dbReducers';
+import {shiorimListReducer} from './reducers/shiorimReducers';
 
 const reducer = combineReducers({
   zmanimsList: zmanimsListReducer,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   olimLatoraList: olimLatoraListReducer,
   generalMessagesList: generalMessagesListReducer,
   tfilotTimeList: tfilotTimeListReducer,
+  shiorimList: shiorimListReducer,
   // dbList: dbListReducer,
 });
 

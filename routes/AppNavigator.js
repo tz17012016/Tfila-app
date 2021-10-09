@@ -12,6 +12,7 @@ import {getHnzchot} from '../redux/actions/hnzchotActions';
 import {getOlimLatora} from '../redux/actions/olimLatoraActions';
 import {getTfilotTime} from '../redux/actions/tfilotTimeActions';
 import {getZmanim} from '../redux/actions/zmanimActions';
+import {getShiorim} from '../redux/actions/shiorimActions';
 
 import ZmanimScreen from '../screens/ZmanimScreen';
 import HnzchotScreen from '../screens/HnzchotScreen';
@@ -19,6 +20,7 @@ import TfilotTimeScreen from '../screens/TfilotTimeScreen';
 import GeneralMessagesScreen from '../screens/GeneralMessagesScreen';
 import OlimLatoraScreen from '../screens/OlimLatoraScreen';
 import WelcomeTimeScreen from '../screens/WelcomeTimeScreen';
+import ShiorimScreen from '../screens/ShiorimScreen';
 
 const Stack = createStackNavigator();
 const {width, height} = Dimensions.get('screen');
@@ -32,9 +34,18 @@ const {width, height} = Dimensions.get('screen');
 const AppNavigator = () => {
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(0);
+  const shiorimList = useSelector(state => ({
+    ...state.shiorimList,
+  }));
+  const {
+    loading: shiorimLoading,
+    success: shiorimSuccess,
+    shiorim,
+  } = shiorimList;
   const generalMessagesList = useSelector(state => ({
     ...state.generalMessagesList,
   }));
+
   const refCounter = useRef(counter);
   const {
     loading: messagesLoading,
@@ -89,12 +100,16 @@ const AppNavigator = () => {
     const loadZmanims = () => {
       return dispatch(getZmanim());
     };
+    const loadShiorim = () => {
+      return dispatch(getShiorim());
+    };
     return (
       loadGeneralMessages(),
       loadHnzchots(),
       loadOlimLatora(),
       loadTfilotTime(),
-      loadZmanims()
+      loadZmanims(),
+      loadShiorim()
     );
   };
 
@@ -128,6 +143,7 @@ const AppNavigator = () => {
     WelcomeTime: 'WelcomeTime',
     TfilotTime: 'TfilotTime',
     OlimLatora: 'OlimLatora',
+    Shiorim: 'Shiorim',
     Hnzchot: 'Hnzchot',
     GeneralMessages: 'GeneralMessages',
   };
@@ -149,93 +165,111 @@ const AppNavigator = () => {
   // ]);
 
   let changeOptions = {
-    Zmanim: zmanim,
-    TfilotTime: tfilotTimes,
-    OlimLatora: olimLatoras,
-    Hnzchot: hnzchots,
-    GeneralMessages: generalMessages,
+    Zmanim: zmanimsSuccess ? zmanim : {},
+    TfilotTime: tfilotTimeSuccess ? tfilotTimes : [],
+    OlimLatora: olimLatoraSuccess ? olimLatoras : [],
+    Shiorim: shiorimSuccess ? shiorim : [],
+    Hnzchot: hnzchotSuccess ? hnzchots : [],
+    GeneralMessages: messagesSuccess ? generalMessages : [],
   };
   const Renders = () => {
     return (
-      <NavigationContainer>
-        <Image
-          source={require('../images/Bgk.png')}
-          style={{
-            width,
-            height,
-            position: 'absolute',
-          }}
-        />
-        <Stack.Navigator
-          screenOptions={{
-            header: () => null,
-            cardStyle: {
-              backgroundColor: 'transparent',
-            },
-          }}>
-          <Stack.Screen name="Zmanim">
-            {props => (
-              <ZmanimScreen
-                {...props}
-                zmanimsList={zmanimsList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-          <Stack.Screen name="WelcomeTime">
-            {props => (
-              <WelcomeTimeScreen
-                {...props}
-                zmanimsList={zmanimsList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-          <Stack.Screen name="TfilotTime">
-            {props => (
-              <TfilotTimeScreen
-                {...props}
-                tfilotTimeList={tfilotTimeList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
+      <>
+        <NavigationContainer>
+          <Image
+            source={require('../images/bgM.png')}
+            style={{
+              width,
+              height,
+              position: 'absolute',
+            }}
+          />
+          <Stack.Navigator
+            screenOptions={{
+              header: () => null,
+              cardStyle: {
+                backgroundColor: 'transparent',
+              },
+            }}>
+            <Stack.Screen name="Zmanim">
+              {props => (
+                <ZmanimScreen
+                  {...props}
+                  zmanimsList={zmanimsList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="WelcomeTime">
+              {props => (
+                <WelcomeTimeScreen
+                  {...props}
+                  zmanimsList={zmanimsList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="TfilotTime">
+              {props => (
+                <TfilotTimeScreen
+                  {...props}
+                  tfilotTimeList={tfilotTimeList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                  zmanimsList={zmanimsList}
+                />
+              )}
+            </Stack.Screen>
 
-          <Stack.Screen name="OlimLatora">
-            {props => (
-              <OlimLatoraScreen
-                {...props}
-                olimLatoraList={olimLatoraList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-          <Stack.Screen name="Hnzchot">
-            {props => (
-              <HnzchotScreen
-                {...props}
-                hnzchotList={hnzchotList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-          <Stack.Screen name="GeneralMessages">
-            {props => (
-              <GeneralMessagesScreen
-                {...props}
-                generalMessagesList={generalMessagesList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen name="OlimLatora">
+              {props => (
+                <OlimLatoraScreen
+                  {...props}
+                  olimLatoraList={olimLatoraList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                  zmanimsList={zmanimsList}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Shiorim">
+              {props => (
+                <ShiorimScreen
+                  {...props}
+                  shiorimList={shiorimList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                  zmanimsList={zmanimsList}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Hnzchot">
+              {props => (
+                <HnzchotScreen
+                  {...props}
+                  hnzchotList={hnzchotList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                  zmanimsList={zmanimsList}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="GeneralMessages">
+              {props => (
+                <GeneralMessagesScreen
+                  {...props}
+                  generalMessagesList={generalMessagesList}
+                  reaplaseScreanName={reaplaseScreanName}
+                  changeOptions={changeOptions}
+                  zmanimsList={zmanimsList}
+                />
+              )}
+            </Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </>
     );
   };
   const Loding = () => {
@@ -251,6 +285,8 @@ const AppNavigator = () => {
       tfilotTimeLoading &&
       olimLatoraLoading &&
       messagesLoading &&
+      shiorimLoading &&
+      hnzchotLoading &&
       olimLatoraLoading ? (
         <Loding />
       ) : (
@@ -261,93 +297,3 @@ const AppNavigator = () => {
 };
 
 export default AppNavigator;
-/**
- * <Stack.Screen name="Zmanim" component={ZmanimScreen} />
-        <Stack.Screen name="WelcomeTime" component={WelcomeTimeScreen} />
-        <Stack.Screen name="TfilotTime" component={TfilotTimeScreen} />
-        <Stack.Screen name="OlimLatora" component={OlimLatoraScreen} />
-        <Stack.Screen name="Hnzchot" component={HnzchotScreen} />
-        <Stack.Screen
-          name="GeneralMessages"
-          component={GeneralMessagesScreen}
-        />
- *
- */
-
-/**
-         *   {zmanimsLoading &&
-        tfilotTimeLoading &&
-        olimLatoraLoading &&
-        messagesLoading &&
-        hnzchotLoading ? (
-          <Stack.Screen name="loding" component={Loding} />
-        ) : zmanimsSuccess == true ? (
-          <Stack.Screen name="Zmanim">
-            {props => (
-              <ZmanimScreen
-                {...props}
-                zmanimsList={zmanimsList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        ) : zmanimsSuccess === true ? (
-          <Stack.Screen name="WelcomeTime">
-            {props => (
-              <WelcomeTimeScreen
-                {...props}
-                zmanimsList={zmanimsList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        ) : tfilotTimeSuccess === true ? (
-          <Stack.Screen name="TfilotTime">
-            {props => (
-              <TfilotTimeScreen
-                {...props}
-                tfilotTimeList={tfilotTimeList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        ) : olimLatoraSuccess === true ? (
-          <Stack.Screen name="OlimLatora">
-            {props => (
-              <OlimLatoraScreen
-                {...props}
-                olimLatoraList={olimLatoraList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        ) : hnzchotSuccess === true ? (
-          <Stack.Screen name="Hnzchot">
-            {props => (
-              <HnzchotScreen
-                {...props}
-                hnzchotList={hnzchotList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        ) : messagesSuccess === true ? (
-          <Stack.Screen name="GeneralMessages">
-            {props => (
-              <GeneralMessagesScreen
-                {...props}
-                generalMessagesList={generalMessagesList}
-                reaplaseScreanName={reaplaseScreanName}
-                changeOptions={changeOptions}
-              />
-            )}
-          </Stack.Screen>
-        ) : (
-          <Stack.Screen name="loding" component={Loding} />
-        )}
-         */
