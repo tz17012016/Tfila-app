@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View, Image, ImageBackground, LogBox} from 'react-native';
+import {Text, View, ImageBackground} from 'react-native';
 import Hebcal from 'hebcal';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const HnzchotList = ({hnzchotList}) => {
-  const {hnzchots, loading, success} = hnzchotList;
+const HnzchotList = ({changeOptions1}) => {
+  const {Hnzchot} = changeOptions1;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newHnzchots = [];
   React.useEffect(() => {
@@ -31,55 +31,45 @@ const HnzchotList = ({hnzchotList}) => {
     }
     return res;
   };
-  if (hnzchots) {
-    newHnzchots = sliceIntoChunks(hnzchots, 6);
+  if (Hnzchot) {
+    newHnzchots = sliceIntoChunks(Hnzchot, 6);
   }
 
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.containerA}>
-          <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-            הנצחות
-          </Text>
-        </View>
         <View style={styles.containerB}>
-          {loading ? (
-            <Text>loding...</Text>
-          ) : success ? (
-            <>
-              <View style={styles.innergridViewA} />
-              <View style={styles.innergridViewB}>
-                <View style={styles.gridView}>
-                  {newHnzchots[arrIndex] &&
-                    newHnzchots[arrIndex].map(hnzchot => {
-                      return (
-                        <View key={hnzchot._id} style={styles.boxContainer}>
-                          <ImageBackground
-                            style={styles.ImageBackground}
-                            source={require('../images/neshama.png')}>
-                            <View style={styles.innerBoxContainer}>
-                              <View style={styles.innerContainerC}></View>
-                              <View style={styles.innerContainerB}>
-                                <Text style={styles.itemTitle}>
-                                  {`${hnzchot?.parntName} ${hnzchot?.gender}  ${hnzchot?.name}`}
-                                </Text>
-                                <Text style={styles.itemName}>
-                                  {HebrewDate(hnzchot?.dateOfDeath)}
-                                </Text>
-                              </View>
+          <View style={styles.innergridViewA} />
+          <View style={styles.innergridViewB}>
+            <View style={styles.innerViewA}></View>
+            <View style={styles.innerViewB}>
+              <View style={styles.gridView}>
+                {newHnzchots[arrIndex] &&
+                  newHnzchots[arrIndex].map(hnzchot => {
+                    return (
+                      <View key={hnzchot._id} style={styles.boxContainer}>
+                        <ImageBackground
+                          style={styles.ImageBackground}
+                          source={require('../images/objects/neshamaBox.png')}>
+                          <View style={styles.innerBoxContainer}>
+                            <View style={styles.innerContainerC}></View>
+                            <View style={styles.innerContainerB}>
+                              <Text style={styles.itemTitle}>
+                                {`${hnzchot?.parntName} ${hnzchot?.gender} ${hnzchot?.name}`}
+                              </Text>
+                              <Text style={styles.itemName}>
+                                {HebrewDate(hnzchot?.dateOfDeath)}
+                              </Text>
                             </View>
-                          </ImageBackground>
-                        </View>
-                      );
-                    })}
-                </View>
+                          </View>
+                        </ImageBackground>
+                      </View>
+                    );
+                  })}
               </View>
-              <View style={styles.innergridViewA} />
-            </>
-          ) : (
-            <Text>error</Text>
-          )}
+            </View>
+          </View>
+          <View style={styles.innergridViewA} />
         </View>
       </View>
     </>
@@ -108,6 +98,16 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  innerViewA: {
+    flex: 1,
+  },
+  innerViewB: {
+    flex: 4,
+
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   innA: {
     flexDirection: 'row',
 
@@ -132,7 +132,6 @@ const styles = ScaledSheet.create({
   innergridViewB: {
     flex: 5,
     flexDirection: 'column',
-    borderRadius: 10,
   },
   innergridViewC: {},
 
@@ -151,13 +150,13 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   itemName: {
-    fontSize: '8@s',
+    fontSize: '10@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
   itemTitle: {
-    fontSize: '8@s',
+    fontSize: '10@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#ff0000',

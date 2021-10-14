@@ -57,8 +57,11 @@
 		<string>DavidCLM-BoldItalic.ttf</string>
 		<string>DavidCLM-Medium.ttf</string>
 		<string>DavidCLM-MediumItalic.ttf</string>
+		<string>FrankRuehlCLM-Bold.ttf</string>
 		<string>HadasimCLM-Bold.ttf</string>
-		<string>SBL.ttf</string>
+		<string>mugrabi-bold-aaa.ttf</string>
+		<string>mugrabi-regular-aaa.ttf</string>
+		<string>mugrabi-stencil-aaa.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -78,6 +81,8 @@
 		<string>rubicon-icon-font.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>stam.ttf</string>
+		<string>STAM1.TTF</string>
 	</array>
 </dict>
 </plist>

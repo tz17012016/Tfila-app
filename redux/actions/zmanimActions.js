@@ -1,14 +1,15 @@
 import axios from 'axios';
-import {BASE_URL} from '../../utilities/baseUrl';
+import {checkBASE_URL} from '../../utilities/baseUrl';
 import {
   ZMANIM_GET_REQUEST,
   ZMANIM_GET_SUCCESS,
   ZMANIM_GET_FAIL,
 } from '../constants/zmanimConstants';
+
 export const getZmanim = () => async dispatch => {
   try {
     dispatch({type: ZMANIM_GET_REQUEST});
-    const {data} = await axios.get(`${BASE_URL}/api/zmanim`);
+    const {data} = await axios.get(`${await checkBASE_URL()}/api/zmanim`);
     dispatch({type: ZMANIM_GET_SUCCESS, payload: data});
   } catch (error) {
     dispatch({

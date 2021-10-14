@@ -1,129 +1,67 @@
 import React from 'react';
-import {Text, View, LogBox} from 'react-native';
+import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const OlimLatoraList = ({olimLatoraList}) => {
-  const {olimLatoras, loading, success} = olimLatoraList;
-  const oleObject = Object.assign({}, olimLatoras);
+const OlimLatoraList = ({changeOptions1}) => {
+  const {OlimLatora} = changeOptions1;
+  const oleObject = Object.assign({}, OlimLatora);
 
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.containerA}>
-          <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-            עולים לתורה
-          </Text>
-        </View>
         <View style={styles.containerB}>
-          {loading ? (
-            <Text>loding...</Text>
-          ) : success ? (
-            <>
-              <View style={styles.innergridViewA}></View>
-              <View style={styles.innergridViewB}>
-                <View style={styles.innA}>
-                  <View style={styles.gridView}>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[4]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[4]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[5]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[5]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[6]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[6]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[7]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[7]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[1]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[1]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[2]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[2]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[3]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[3]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.innB}>
-                  <View style={styles.gridView}>
-                    <View style={styles.boxContainer}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>
-                          {oleObject[0]?.title}
-                        </Text>
-                        <Text style={styles.itemName}>
-                          {oleObject[0]?.name}
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
+          <View style={styles.innergridViewA}></View>
+          <View style={styles.innergridViewB}>
+            <View style={styles.column}>
+              <View style={[styles.row, styles.space]}>
+                <View style={styles.box1}>
+                  <Text style={styles.itemTitle}>{oleObject[5]?.name}</Text>
                 </View>
               </View>
+              <View style={[styles.row, styles.bigRow]}>
+                <View style={styles.box2}>
+                  <Text style={styles.itemTitle}>{oleObject[2]?.name}</Text>
+                </View>
+              </View>
+              <View style={styles.row}>
+                <View style={styles.box3}>
+                  <Text style={styles.itemTitle}>{oleObject[0]?.name}</Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.column}>
+              <View style={styles.row}></View>
+              <View style={styles.row}>
+                <View style={styles.box4}>
+                  <Text style={styles.itemTitle}>{oleObject[6]?.name}</Text>
+                </View>
+              </View>
+              <View style={styles.row}>
+                <View style={styles.box5}>
+                  <Text style={styles.itemTitle}>{oleObject[3]?.name}</Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.column}>
+              <View style={[styles.row, styles.space]}>
+                <View style={styles.box6}>
+                  <Text style={styles.itemTitle}>{oleObject[7]?.name}</Text>
+                </View>
+              </View>
+              <View style={[styles.row, styles.bigRow]}>
+                <View style={styles.box7}>
+                  <Text style={styles.itemTitle}>{oleObject[4]?.name}</Text>
+                </View>
+              </View>
+              <View style={styles.row}>
+                <View style={styles.box8}>
+                  <Text style={styles.itemTitle}>{oleObject[1]?.name}</Text>
+                </View>
+              </View>
+            </View>
+          </View>
 
-              <View style={styles.innergridViewA}></View>
-            </>
-          ) : (
-            <Text>error</Text>
-          )}
+          <View style={styles.innergridViewA}></View>
         </View>
       </View>
     </>
@@ -132,97 +70,74 @@ const OlimLatoraList = ({olimLatoraList}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    height: '100%',
+    height: '66%',
     flexDirection: 'column',
     justifyContent: 'center',
   },
-  containerA: {
-    flex: 0.9,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
   containerB: {
     flex: 2.8,
+    flexDirection: 'row',
+  },
 
-    flexDirection: 'row',
-  },
-  innA: {
-    flexDirection: 'row',
-
-    flex: 2,
-  },
-  innB: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  containerA1: {
-    height: '50@s',
-    width: '50@s',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  gridView: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-  },
   innergridViewA: {
     flex: 0.7,
     flexDirection: 'row',
   },
   innergridViewB: {
     flex: 6,
+    flexDirection: 'row',
+  },
+  column: {
     flexDirection: 'column',
-    borderRadius: 10,
-    margin: '5@s',
-    marginTop: '15@s',
-    marginBottom: '45@s',
-    padding: '10@s',
+    flex: 1,
   },
-  innergridViewC: {
-    flex: 2,
+  row: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 0.6,
   },
-  innerContainerA: {
-    height: '8@s',
+  bigRow: {
+    flex: 1,
   },
-  innerContainerB: {},
-  boxContainer: {
-    width: '110@s',
-    height: '70@ms',
-    borderRadius: 5,
-    backgroundColor: '#ffd24d',
-    opacity: 0.6,
-    margin: '3@s',
-    marginTop: '4@s',
+  space: {
+    flex: 1,
   },
-  headerTextColor: {
-    fontSize: '32@s',
-    marginBottom: '6@s',
-    color: '#ff4d4d',
-    textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
+  box1: {
+    marginLeft: '50@s',
+    marginTop: '25@s',
   },
-  itemName: {
-    fontSize: '15@s',
-    color: '#000',
-    textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
+  box2: {
+    marginTop: '20@s',
+    marginRight: '5@s',
+  },
+  box3: {
+    marginTop: '20@s',
+    marginLeft: '40@s',
+  },
+  box4: {
+    marginLeft: '5@s',
+  },
+  box5: {
+    marginLeft: '10@s',
+  },
+  box6: {
+    marginRight: '15@s',
+    marginTop: '27@s',
+  },
+  box7: {
+    marginTop: '20@s',
+    marginLeft: '10@s',
+  },
+  box8: {
+    marginTop: '20@s',
+    marginRight: '25@s',
   },
   itemTitle: {
-    fontSize: '18@s',
+    fontSize: '16@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#ff0000',
+    color: '#000',
     fontWeight: '900',
-  },
-  textWithShadow: {
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
   },
 });
 

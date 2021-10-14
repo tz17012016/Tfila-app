@@ -1,16 +1,11 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import HnzchotList from '../components/HnzchotList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
-const HnzchotScreen = ({
-  hnzchotList,
-  reaplaseScreanName,
-  zmanimsList,
-  changeOptions,
-}) => {
-  const refCounter = useRef(changeOptions);
+const HnzchotScreen = ({reaplaseScreanName, changeOptions1}) => {
+  const refCounter = useRef(changeOptions1);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
@@ -31,15 +26,15 @@ const HnzchotScreen = ({
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 15 * 1000);
+      }, 10 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
   return (
     <>
-      <Heder zmanimsList={zmanimsList} />
-      <HnzchotList hnzchotList={hnzchotList} />
-      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
+      <Heder changeOptions1={changeOptions1} />
+      <HnzchotList changeOptions1={changeOptions1} />
+      <Footer changeOptions1={changeOptions1} />
     </>
   );
 };

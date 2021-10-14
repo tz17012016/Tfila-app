@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BASE_URL} from '../../utilities/baseUrl';
+import {checkBASE_URL} from '../../utilities/baseUrl';
 import {
   TFILOT_TIME_GET_REQUEST,
   TFILOT_TIME_GET_SUCCESS,
@@ -8,7 +8,7 @@ import {
 export const getTfilotTime = () => async dispatch => {
   try {
     dispatch({type: TFILOT_TIME_GET_REQUEST});
-    const {data} = await axios.get(`${BASE_URL}/api/tfilaTime`);
+    const {data} = await axios.get(`${await checkBASE_URL()}/api/tfilaTime`);
     dispatch({type: TFILOT_TIME_GET_SUCCESS, payload: data});
   } catch (error) {
     dispatch({

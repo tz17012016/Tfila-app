@@ -1,23 +1,25 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import ZmnimList from '../components/ZmnimList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
-const ZmanimScreen = ({zmanimsList, reaplaseScreanName, changeOptions}) => {
-  const refCounter = useRef(changeOptions);
+const ZmanimScreen = ({reaplaseScreanName, changeOptions1}) => {
+  const refCounter = useRef(changeOptions1);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
-      case refCounter.current.TfilotTime.length >= 1:
+      case Object.keys(refCounter.current.Zmanim).length >= 1:
         return navigation.replace(reaplaseScreanName.WelcomeTime);
-      case refCounter.current.OlimLatora?.length >= 1:
+      case refCounter.current.TfilotTime.length >= 1:
         return navigation.replace(reaplaseScreanName.TfilotTime);
-      case changeOptions.Hnzchot?.length >= 1:
+      case refCounter.current.OlimLatora?.length >= 1:
         return navigation.replace(reaplaseScreanName.OlimLatora);
-      case changeOptions.GeneralMessages?.length >= 1:
+      case refCounter.current.Shiorim?.length >= 1:
+        return navigation.replace(reaplaseScreanName.Shiorim);
+      case refCounter.current.Hnzchot?.length >= 1:
         return navigation.replace(reaplaseScreanName.Hnzchot);
-      case changeOptions.Zmanim?.length >= 1:
+      case refCounter.current.GeneralMessages?.length >= 1:
         return navigation.replace(reaplaseScreanName.GeneralMessages);
       default:
         return navigation.replace(reaplaseScreanName.Zmanim);
@@ -28,15 +30,15 @@ const ZmanimScreen = ({zmanimsList, reaplaseScreanName, changeOptions}) => {
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 15 * 1000);
+      }, 10 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
   return (
     <>
-      <Heder zmanimsList={zmanimsList} />
-      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
-      <ZmnimList zmanimsList={zmanimsList} changeOptions={changeOptions} />
+      <Heder changeOptions1={changeOptions1} />
+      <ZmnimList changeOptions1={changeOptions1} />
+      <Footer changeOptions1={changeOptions1} />
     </>
   );
 };

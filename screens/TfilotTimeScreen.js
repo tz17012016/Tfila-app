@@ -1,16 +1,11 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import TfilotTimeList from '../components/TfilotTimeList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
-const TfilotTimeScreen = ({
-  tfilotTimeList,
-  zmanimsList,
-  reaplaseScreanName,
-  changeOptions,
-}) => {
-  const refCounter = useRef(changeOptions);
+const TfilotTimeScreen = ({reaplaseScreanName, changeOptions1}) => {
+  const refCounter = useRef(changeOptions1);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
@@ -26,39 +21,22 @@ const TfilotTimeScreen = ({
         return navigation.replace(reaplaseScreanName.TfilotTime);
     }
   };
-  // useEffect(() => {
-  //   let secTimer = setInterval(() => {
-  //     checkOptions(refCounter, reaplaseScreanName, navigation);
-  //   }, 5 * 1000);
-  //   return () => clearInterval(secTimer);
-  // }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 5 * 1000);
+      }, 10 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
   return (
     <>
-      <Heder zmanimsList={zmanimsList} />
-      <TfilotTimeList tfilotTimeList={tfilotTimeList} />
-      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
+      <Heder changeOptions1={changeOptions1} />
+      <TfilotTimeList changeOptions1={changeOptions1} />
+      <Footer changeOptions1={changeOptions1} />
     </>
   );
 };
-
-// const TfilotTimeScreen = ({navigation, tfilotTimeList}) => {
-//   useFocusEffect(
-//     React.useCallback(() => {
-//       let secTimer = setTimeout(() => {
-//         navigation.replace('OlimLatora');
-//       }, 1 * 60 * 1000);
-//       return () => clearTimeout(secTimer);
-//     }, []),
-//   );
-//   return <TfilotTimeList tfilotTimeList={tfilotTimeList} />;
-// };
 
 export default TfilotTimeScreen;

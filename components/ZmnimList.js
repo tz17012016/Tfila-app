@@ -1,139 +1,95 @@
 import React from 'react';
-import {View, ImageBackground, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const ZmnimList = ({zmanimsList}) => {
-  const {loading, success, zmanim} = zmanimsList;
+const ZmnimList = ({changeOptions1}) => {
+  const {Zmanim} = changeOptions1;
   return (
     <>
       <View style={styles.container}>
         <View style={styles.containerA}>
-          <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-            זמני היום
-          </Text>
-        </View>
-        <View style={styles.containerB}>
-          {loading ? (
-            <Text>loding...</Text>
-          ) : success ? (
-            <>
-              <View style={styles.innergridViewA}></View>
-              <View style={styles.innergridViewB}>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>פלג המנחה</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.PlagHamincha}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>מנחה קטנה</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.MinhaKtana}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>צאת הכוכבים</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.ZetHakochavim}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>שקיעה</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.SunSet}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>דף היומי</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.DafYomi}
-                      </Text>
-                    </View>
-                  </View>
+          <View style={styles.innergridViewA}></View>
+          <View style={styles.innergridViewB}>
+            <View style={styles.rowContainerA}>
+              <View style={styles.columnContainerA}>
+                <View style={styles.boxContainer_A}>
+                  <Text style={[styles.itemName, styles.textAlign1]}>
+                    {Zmanim && Zmanim.PlagHamincha}
+                  </Text>
                 </View>
               </View>
-              <View style={styles.innergridViewB}>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>חצות היום</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.MidDay}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>זריחה</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.SunRise}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>סוזת"פ</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.SofZmanTfilaGra}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>סוזק"ש</Text>
-                      <Text style={styles.itemName}>
-                        {zmanim && zmanim.SofZmanKriatShmaGra}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <ImageBackground
-                      source={require('../images/neshama.png')}
-                      resizeMode="cover"
-                      style={styles.ImageBackground}>
-                      <View style={styles.innerContainerA}></View>
-                      <View style={styles.innerContainerB}>
-                        <Text style={styles.itemTitle}>מנחה גדולה</Text>
-                        <Text style={styles.itemName}>
-                          {zmanim && zmanim.MinhaGedola}
-                        </Text>
-                      </View>
-                    </ImageBackground>
-                  </View>
+              <View style={styles.columnContainerA}>
+                <View style={styles.boxContainer_A}>
+                  <Text style={[styles.itemName, styles.textAlign2]}>
+                    {Zmanim && Zmanim.AlotHashahar}
+                  </Text>
                 </View>
               </View>
+            </View>
+            <View style={styles.rowContainerB}></View>
+            <View style={styles.rowContainerA}>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_B}>
+                  <Text style={[styles.itemName, styles.textAlign3]}>
+                    {Zmanim && Zmanim.SunSet}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_B}>
+                  <Text style={[styles.itemName, styles.textAlign4]}>
+                    {Zmanim && Zmanim.MidDay}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_B}>
+                  <Text style={[styles.itemName, styles.textAlign5]}>
+                    {Zmanim && Zmanim.SofZmanKriatShmaGra}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_B}>
+                  <Text style={[styles.itemName, styles.textAlign6]}>
+                    {Zmanim && Zmanim.SunRise}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.rowContainerB}></View>
+            <View style={styles.rowContainerA}>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_C}>
+                  <Text style={[styles.itemName, styles.textAlign7]}>
+                    {Zmanim && Zmanim.ZetHakochavim}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_C}>
+                  <Text style={[styles.itemName, styles.textAlign8]}>
+                    {Zmanim && Zmanim.MinhaGedola}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_C}>
+                  <Text style={[styles.itemName, styles.textAlign9]}>
+                    {Zmanim && Zmanim.SofZmanTfilaGra}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.columnContainerB}>
+                <View style={styles.boxContainer_C}>
+                  <Text style={[styles.itemName, styles.textAlign10]}>
+                    {Zmanim && Zmanim.ZmanTalitVeTfilin}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
 
-              <View style={styles.innergridViewA}></View>
-            </>
-          ) : (
-            <Text>error</Text>
-          )}
+          <View style={styles.innergridViewA}></View>
         </View>
       </View>
     </>
@@ -147,81 +103,87 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
   },
   containerA: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  containerB: {
     flex: 2.9,
-
     flexDirection: 'row',
-  },
-  containerA1: {
-    height: '50@s',
-    width: '50@s',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  gridView: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
   },
   innergridViewA: {
     flex: 1,
+
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 3.9,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flex: 5,
+    flexDirection: 'column',
     justifyContent: 'center',
-    borderRadius: 10,
-  },
-  innergridViewC: {
-    flex: 2,
-  },
-  innerContainerA: {
-    height: '5@s',
   },
   innerContainerB: {},
-  boxContainer: {
-    width: '110@s',
-    height: '75@ms',
-    borderRadius: 3,
-    margin: '3@s',
-    marginTop: '3@s',
-    padding: '2@s',
+  rowContainerA: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    flex: 1.5,
   },
-  headerTextColor: {
-    fontSize: '20@s',
-    color: '#ff4d4d',
-    textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
+  rowContainerB: {
+    flex: 0.3,
   },
+  columnContainerA: {
+    justifyContent: 'center',
+    flex: 1,
+  },
+  columnContainerB: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  boxContainer_A: {
+    alignItems: 'center',
+    marginBottom: '5@s',
+    justifyContent: 'center',
+  },
+  boxContainer_B: {
+    alignItems: 'center',
+    marginBottom: '5@s',
+    justifyContent: 'center',
+  },
+  boxContainer_C: {
+    alignItems: 'center',
+    marginTop: '5@s',
+    justifyContent: 'center',
+  },
+
   itemName: {
-    fontSize: '16@s',
+    fontSize: '20@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
   },
-  itemTitle: {
-    fontSize: '17@s',
-    textAlign: 'center',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#ff0000',
-    fontWeight: '900',
+  textAlign1: {
+    marginRight: '70@s',
   },
-  textWithShadow: {
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
+  textAlign2: {
+    marginLeft: '70@s',
   },
-  ImageBackground: {
-    width: '100%',
-    height: '100%',
+  textAlign3: {
+    marginRight: '10@s',
+  },
+  textAlign4: {
+    marginRight: '5@s',
+  },
+  textAlign5: {
+    marginLeft: '7@s',
+  },
+  textAlign6: {
+    marginLeft: '15@s',
+  },
+  textAlign7: {
+    marginRight: '10@s',
+  },
+  textAlign8: {
+    marginRight: '5@s',
+  },
+  textAlign9: {
+    marginLeft: '7@s',
+  },
+  textAlign10: {
+    marginLeft: '15@s',
   },
 });
 

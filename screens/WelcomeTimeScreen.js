@@ -1,18 +1,11 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import WelcomeTime from '../components/WelcomeTime';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
-import {ImageBackground, Dimensions, View, Text} from 'react-native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
-const {width, height} = Dimensions.get('screen');
-const WelcomeTimeScreen = ({
-  zmanimsList,
-  reaplaseScreanName,
-  changeOptions,
-}) => {
-  const {Hnzchot = []} = changeOptions;
-  const refCounter = useRef(changeOptions);
+const WelcomeTimeScreen = ({reaplaseScreanName, changeOptions1}) => {
+  const refCounter = useRef(changeOptions1);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
@@ -31,44 +24,21 @@ const WelcomeTimeScreen = ({
     }
   };
 
-  // useEffect(() => {
-  //   let secTimer = setInterval(() => {
-  //     checkOptions(refCounter, reaplaseScreanName, navigation);
-  //   }, 5 * 1000);
-  //   return () => clearInterval(secTimer);
-  // }, []);
   useFocusEffect(
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 15 * 1000);
+      }, 10 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
   return (
-    <ImageBackground
-      source={require('../images/parshBg.jpg')}
-      resizeMode="cover"
-      style={{
-        width,
-        height,
-      }}>
-      <Heder zmanimsList={zmanimsList} />
-      <WelcomeTime zmanimsList={zmanimsList} />
-      <Footer zmanimsList={zmanimsList} changeOptions={changeOptions} />
-    </ImageBackground>
+    <>
+      <Heder changeOptions1={changeOptions1} />
+      <WelcomeTime changeOptions1={changeOptions1} />
+      <Footer changeOptions1={changeOptions1} />
+    </>
   );
 };
-// const WelcomeTimeScreen = ({navigation, zmanimsList}) => {
-//   useFocusEffect(
-//     React.useCallback(() => {
-//       let secTimer = setTimeout(() => {
-//         navigation.replace('TfilotTime');
-//       }, 1 * 60 * 1000);
-//       return () => clearTimeout(secTimer);
-//     }, [navigation]),
-//   );
-//   return <WelcomeTime zmanimsList={zmanimsList} />;
-// };
 
 export default WelcomeTimeScreen;

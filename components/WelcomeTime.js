@@ -1,78 +1,51 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View, LogBox} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const WelcomeTime = ({zmanimsList}) => {
-  const {loading, success, zmanim} = zmanimsList;
-  //יש לבדוק את הזמן
-  const [time, setTime] = useState(() =>
-    new Date().toLocaleTimeString('he-IL'),
-  );
-  LogBox.ignoreLogs(['Setting a timer']);
-  useEffect(() => {
-    let clock = setInterval(() => {
-      setTime(new Date().toLocaleTimeString('he-IL'));
-    }, 1000);
-    return () => (
-      clearInterval(clock),
-      setTime(() => new Date().toLocaleTimeString('he-IL'))
-    );
-  }, []);
+const WelcomeTime = ({changeOptions1}) => {
+  const {Zmanim} = changeOptions1;
 
   return (
     <>
       <View style={styles.container}>
         <View style={styles.containerA}>
-          {loading ? (
-            <Text>loding...</Text>
-          ) : success ? (
-            <>
-              <View style={styles.innergridViewA}></View>
-              <View style={styles.innergridViewB}>
-                <View style={styles.innerViewA}>
-                  <View style={styles.box3}>
-                    <View style={styles.box5}>
-                      <Text style={styles.itemTextShideTitle}>צאת השבת</Text>
-                      <Text style={styles.itemTextShide}>
-                        {zmanim && zmanim.MotzeyShabat}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.innerViewB}>
-                  <View style={styles.box1}></View>
-                  <View style={styles.box2}>
-                    <Text style={styles.itemTextShideTitle}>פרשת השבוע</Text>
-                    <Text style={styles.itemTextShide}>
-                      {zmanim && zmanim.ParashaOnly}
-                    </Text>
-                  </View>
-                  <View style={styles.box2}></View>
-                  <View style={styles.box2}>
-                    <Text style={styles.itemTextShideTitle}>הפטרה</Text>
-                    <Text style={styles.itemTextShide}>
-                      {zmanim &&
-                        zmanim.HaftaraTemani.replace(/\(([^\)]+)\)/g, '')}
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.innerViewA}>
-                  <View style={styles.box3}>
-                    <View style={styles.box4}>
-                      <Text style={styles.itemTextShideTitle}>כניסת שבת</Text>
-                      <Text style={styles.itemTextShide1}>
-                        {zmanim && zmanim.HadlakatNerot}
-                      </Text>
-                    </View>
-                  </View>
+          <View style={styles.innergridViewA}></View>
+          <View style={styles.innergridViewB}>
+            <View style={styles.innerViewA}>
+              <View style={styles.box3}>
+                <View style={styles.box5}>
+                  <Text style={[styles.itemTextShide, styles.textWithShadow]}>
+                    {Zmanim && Zmanim.MotzeyShabat}
+                  </Text>
                 </View>
               </View>
+            </View>
+            <View style={styles.innerViewB}>
+              <View style={styles.box1}></View>
+              <View style={styles.box2_1}>
+                <Text style={[styles.itemTextShide_A, styles.textWithShadow]}>
+                  {Zmanim && Zmanim.ParashaOnly}
+                </Text>
+              </View>
+              <View style={styles.box1}></View>
+              <View style={styles.box2_2}>
+                <Text style={[styles.itemTextShide_B, styles.textWithShadow]}>
+                  {Zmanim && Zmanim.HaftaraTemani.replace(/\(([^\)]+)\)/g, '')}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.innerViewA}>
+              <View style={styles.box3}>
+                <View style={styles.box4}>
+                  <Text style={[styles.itemTextShide1, styles.textWithShadow]}>
+                    {Zmanim && Zmanim.HadlakatNerot}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
 
-              <View style={styles.innergridViewA}></View>
-            </>
-          ) : (
-            <Text>error</Text>
-          )}
+          <View style={styles.innergridViewA}></View>
         </View>
       </View>
     </>
@@ -102,7 +75,6 @@ const styles = ScaledSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     borderRadius: 10,
-    marginBottom: '45@s',
   },
   innerViewA: {
     flex: 1,
@@ -121,11 +93,26 @@ const styles = ScaledSheet.create({
   },
   box2: {
     flex: 1,
+
     justifyContent: 'center',
     alignItems: 'center',
     height: '100@s',
-    marginLeft: '10@s',
     marginBottom: '2@s',
+  },
+  box2_1: {
+    flex: 1.5,
+    marginTop: '15@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100@s',
+  },
+  box2_2: {
+    flex: 1,
+
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100@s',
+    marginBottom: '20@s',
   },
   box3: {
     flex: 1.7,
@@ -135,54 +122,59 @@ const styles = ScaledSheet.create({
   box4: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: '55@s',
-    marginTop: '20@s',
+    marginLeft: '30@s',
+    marginBottom: '47@s',
   },
   box5: {
     marginRight: '35@s',
-    marginTop: '20@s',
+    marginBottom: '45@s',
     justifyContent: 'center',
     alignItems: 'center',
   },
   itemText: {
     fontSize: '10@s',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#3333ff',
+    fontFamily: 'mugrabi-bold-aaa',
+    color: '#000',
     fontWeight: '900',
     alignItems: 'center',
     paddingRight: '5@s',
   },
   itemTextShide: {
     fontSize: '20@s',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#3333ff',
+    fontFamily: 'mugrabi-bold-aaa',
+    color: '#000',
+    fontWeight: '900',
+    alignItems: 'center',
+  },
+  itemTextShide_A: {
+    fontSize: '28@s',
+    fontFamily: 'stam',
+    color: '#000',
+    fontWeight: '900',
+    alignItems: 'center',
+    paddingRight: '5@s',
+  },
+  itemTextShide_B: {
+    fontSize: '15@s',
+    fontFamily: 'stam',
+    color: '#000',
     fontWeight: '900',
     alignItems: 'center',
     paddingRight: '5@s',
   },
   itemTextShide1: {
     fontSize: '20@s',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#3333ff',
+    fontFamily: 'mugrabi-bold-aaa',
+    color: '#000',
     fontWeight: '900',
     alignItems: 'center',
   },
   itemTextShideTitle: {
     fontSize: '15@s',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#00ccff',
+    fontFamily: 'mugrabi-bold-aaa',
+    color: '#000',
     fontWeight: '900',
   },
 });
 
 export default WelcomeTime;
-/**
- * <Text style={styles.itemName}>
-                              {zmanim &&
-                                zmanim.HaftaraTemani.replace(
-                                  /\(([^\)]+)\)/g,
-                                  '',
-                                )}
-                              {console.log(zmanim.HaftaraTemani)}
-                            </Text>
- */

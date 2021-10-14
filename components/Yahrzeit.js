@@ -1,11 +1,9 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const Yahrzeit = ({changeOptions}) => {
+const Yahrzeit = ({changeOptions1: {Hnzchot = []}}) => {
   const [yahrzeitIndex, setYahrzeitIndex] = React.useState(0);
   const [yahrzeit, setYahrzeit] = React.useState([]);
-  const {Hnzchot} = changeOptions;
-  console.log(Hnzchot);
 
   React.useEffect(() => {
     // Move on to the next yahrzeit every `n` milliseconds
@@ -20,8 +18,7 @@ const Yahrzeit = ({changeOptions}) => {
     };
   }, [yahrzeitIndex]);
 
-  const checkYahrzeitDate = Hnzchot => {
-    console.log('Hnzchot', Hnzchot);
+  const checkYahrzeitDate = (Hnzchot = []) => {
     let tempArr = Hnzchot.filter(h => {
       let yahrzeitDate = new Date(h.dateOfDeath).setFullYear(
         new Date().getFullYear(),
@@ -48,17 +45,29 @@ const Yahrzeit = ({changeOptions}) => {
         };
       }
     });
-    console.log(tempArr);
     return tempArr;
   };
-  console.log(yahrzeit);
   return (
     <View style={styles.innerBox}>
-      <Text style={styles.itemText}>
-        {`יום השנה של: ${yahrzeit[yahrzeitIndex]?.name} ${
-          yahrzeit[yahrzeitIndex]?.gender === 'male' ? 'בת' : 'בן'
-        } ${yahrzeit[yahrzeitIndex]?.parntName}`}
-      </Text>
+      {yahrzeit[yahrzeitIndex] ? (
+        <View style={styles.innerBox_A}>
+          <Image
+            source={require('../images/objects/nerNeshama.png')}
+            imageStyle={{resizeMode: 'contain'}}
+            style={styles.image}
+          />
+          <Text style={styles.itemText}>
+            {`יום השנה של ${yahrzeit[yahrzeitIndex]?.name} ${yahrzeit[yahrzeitIndex]?.gender} ${yahrzeit[yahrzeitIndex]?.parntName}`}
+          </Text>
+          <Image
+            source={require('../images/objects/nerNeshama.png')}
+            imageStyle={{resizeMode: 'contain'}}
+            style={styles.image}
+          />
+        </View>
+      ) : (
+        <></>
+      )}
     </View>
   );
 };
@@ -67,16 +76,25 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    width: '70%',
+    width: '80%',
   },
-
+  innerBox_A: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
   itemText: {
     fontSize: '10@s',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#3333ff',
+    color: '#000',
     fontWeight: '900',
     alignItems: 'center',
-    paddingRight: '5@s',
+    marginTop: '5@s',
+  },
+  image: {
+    width: '14@s',
+    height: '12@s',
+    marginHorizontal: '10@s',
+    marginTop: '2@s',
   },
 });
 export default Yahrzeit;

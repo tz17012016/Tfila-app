@@ -2,22 +2,22 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-import {zmanimsListReducer} from './reducers/zmanimReducers';
-import {hnzchotListReducer} from './reducers/hnzchotReducers';
-import {olimLatoraListReducer} from './reducers/olimLatoraReducers';
-import {generalMessagesListReducer} from './reducers/generalMessagesReducers';
-import {tfilotTimeListReducer} from './reducers/tfilotTimeReducers';
+// import {zmanimsListReducer} from './reducers/zmanimReducers';
+// import {hnzchotListReducer} from './reducers/hnzchotReducers';
+// import {olimLatoraListReducer} from './reducers/olimLatoraReducers';
+// import {generalMessagesListReducer} from './reducers/generalMessagesReducers';
+// import {tfilotTimeListReducer} from './reducers/tfilotTimeReducers';
+// import {shiorimListReducer} from './reducers/shiorimReducers';
 import {dbListReducer} from './reducers/dbReducers';
-import {shiorimListReducer} from './reducers/shiorimReducers';
 
 const reducer = combineReducers({
-  zmanimsList: zmanimsListReducer,
-  hnzchotList: hnzchotListReducer,
-  olimLatoraList: olimLatoraListReducer,
-  generalMessagesList: generalMessagesListReducer,
-  tfilotTimeList: tfilotTimeListReducer,
-  shiorimList: shiorimListReducer,
-  // dbList: dbListReducer,
+  // zmanimsList: zmanimsListReducer,
+  // hnzchotList: hnzchotListReducer,
+  // olimLatoraList: olimLatoraListReducer,
+  // generalMessagesList: generalMessagesListReducer,
+  // tfilotTimeList: tfilotTimeListReducer,
+  // shiorimList: shiorimListReducer,
+  dbList: dbListReducer,
 });
 
 const middleware = [thunk];

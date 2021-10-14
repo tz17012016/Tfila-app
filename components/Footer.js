@@ -1,13 +1,13 @@
 import React from 'react';
-import {Text, View, LogBox} from 'react-native';
+import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import Yahrzeit from './Yahrzeit';
-const Footer = ({changeOptions}) => {
+const Footer = ({changeOptions1}) => {
   return (
     <View style={styles.container}>
       <>
         <View style={styles.innerBox}>
-          <Yahrzeit changeOptions={changeOptions} />
+          <Yahrzeit changeOptions1={changeOptions1} />
         </View>
 
         <View style={styles.innerBox}>
@@ -31,15 +31,17 @@ const styles = ScaledSheet.create({
     fontSize: '25@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#3333ff',
+    color: '#000',
     fontWeight: '900',
     paddingBottom: '10@s',
   },
   innerBox: {
     flexDirection: 'column',
-
     width: '50%',
     alignItems: 'center',
+  },
+  innerBox_A: {
+    flexDirection: 'row',
   },
   innerBox1: {
     flexDirection: 'row',
@@ -47,16 +49,21 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingLeft: '35@s',
+
     width: '70%',
   },
   itemText: {
-    fontSize: '10@s',
-
+    fontSize: '12@s',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#3333ff',
+    color: '#000',
     fontWeight: '900',
     alignItems: 'center',
-    paddingRight: '15@s',
+    marginLeft: '-17@s',
+    marginTop: '5@s',
+  },
+  image: {
+    width: '10@s',
+    height: '10@s',
   },
 });
 

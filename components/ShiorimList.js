@@ -1,12 +1,10 @@
 import React from 'react';
-import {Text, View, Image, ImageBackground, LogBox} from 'react-native';
-import Hebcal from 'hebcal';
+import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import {DataTable} from 'react-native-paper';
-import {Col, Row, Grid} from 'react-native-easy-grid';
+import {Col, Row} from 'react-native-easy-grid';
 
-const ShiorimList = ({shiorimList}) => {
-  const {shiorim, loading, success} = shiorimList;
+const ShiorimList = ({changeOptions1}) => {
+  const {Shiorim} = changeOptions1;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newShiorim = [];
   React.useEffect(() => {
@@ -20,11 +18,6 @@ const ShiorimList = ({shiorimList}) => {
     };
   }, [newShiorim, arrIndex]);
 
-  const HebrewDate = time => {
-    let hebrewDate = new Hebcal.HDate(new Date(time)).toString('h');
-    return hebrewDate;
-  };
-
   const sliceIntoChunks = (arr, chunkSize) => {
     const res = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
@@ -33,64 +26,50 @@ const ShiorimList = ({shiorimList}) => {
     }
     return res;
   };
-  if (shiorim) {
-    newShiorim = sliceIntoChunks(shiorim, 6);
+  if (Shiorim) {
+    newShiorim = sliceIntoChunks(Shiorim, 5);
   }
 
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.containerA}>
-          <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-            שיעורי תורה
-          </Text>
-        </View>
         <View style={styles.containerB}>
-          {loading ? (
-            <Text>loding...</Text>
-          ) : success ? (
-            <>
-              <View style={styles.innergridViewA} />
-              <View style={styles.innergridViewB}>
-                <View style={styles.gridView}>
-                  <View style={styles.container22}>
-                    <Grid>
-                      <Col>
-                        <Row>
-                          <Text style={styles.cell}>נושא השיעור</Text>
-                          <Text style={styles.cell}>זמן השיעור</Text>
-                          <Text style={styles.cell}>שם הרב</Text>
-                          <Text style={styles.cell}>ימים</Text>
+          <View style={styles.innergridViewA} />
+          <View style={styles.innergridViewB}>
+            <View style={styles.blank}></View>
+            <View style={styles.gridView}>
+              <View style={styles.gridViewA}>
+                <Col>
+                  {newShiorim[arrIndex] &&
+                    newShiorim[arrIndex].map(sh => {
+                      return (
+                        <Row style={[styles.row, styles.col11]} key={sh._id}>
+                          <Text style={[styles.cell, styles.col1]}>
+                            {sh?.subject}
+                          </Text>
+                          <Text style={[styles.cell, styles.col2]}>
+                            {new Date(sh?.time)
+                              .toLocaleTimeString('he-IL', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false,
+                              })
+                              .slice(0, 5)}
+                          </Text>
+                          <Text style={[styles.cell, styles.col3]}>
+                            {sh?.name}
+                          </Text>
+                          <Text style={[styles.cell, styles.col4]}>
+                            {sh?.title}
+                          </Text>
                         </Row>
-                        {newShiorim[arrIndex] &&
-                          newShiorim[arrIndex].map(sh => {
-                            return (
-                              <Row key={sh._id}>
-                                <Text style={styles.cell}>{sh?.subject}</Text>
-                                <Text style={styles.cell}>
-                                  {new Date(sh?.time)
-                                    .toLocaleTimeString('he-IL', {
-                                      hour: '2-digit',
-                                      minute: '2-digit',
-                                      hour12: false,
-                                    })
-                                    .slice(0, 5)}
-                                </Text>
-                                <Text style={styles.cell}>{sh?.name}</Text>
-                                <Text style={styles.cell}>{sh?.title}</Text>
-                              </Row>
-                            );
-                          })}
-                      </Col>
-                    </Grid>
-                  </View>
-                </View>
+                      );
+                    })}
+                </Col>
               </View>
-              <View style={styles.innergridViewA} />
-            </>
-          ) : (
-            <Text>error</Text>
-          )}
+            </View>
+          </View>
+          <View style={styles.innergridViewA} />
         </View>
       </View>
     </>
@@ -113,11 +92,10 @@ const styles = ScaledSheet.create({
     flex: 2.7,
     flexDirection: 'row',
   },
-  container22: {
-    width: '100%',
-    height: 200,
-    padding: 16,
+  blank: {
+    flex: 1,
   },
+
   innerBoxContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -126,14 +104,41 @@ const styles = ScaledSheet.create({
   },
   cell: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    marginTop: '2@s',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '8@s',
+    fontSize: '12@s',
     color: '#000',
-    textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
+  },
+  col11: {
+    marginVertical: '5@s',
+  },
+  row: {
+    flex: 1,
+
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  col: {
+    flex: 1.5,
+  },
+  col1: {
+    flex: 1.4,
+    marginRight: '20@s',
+    textAlign: 'right',
+  },
+  col2: {
+    marginLeft: '-6@s',
+    textAlign: 'center',
+  },
+  col3: {
+    marginRight: '10@s',
+    textAlign: 'center',
+  },
+  col4: {
+    marginRight: '10@s',
+    textAlign: 'center',
   },
   innA: {
     flexDirection: 'row',
@@ -148,18 +153,23 @@ const styles = ScaledSheet.create({
   },
 
   gridView: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
+
+    flex: 1.2,
+  },
+  gridViewA: {
+    flex: 1,
+
+    flexDirection: 'column',
   },
   innergridViewA: {
     flex: 1,
     flexDirection: 'row',
   },
   innergridViewB: {
-    flex: 5,
+    flex: 4.5,
+
     flexDirection: 'column',
-    borderRadius: 10,
   },
   innergridViewC: {},
 
@@ -205,45 +215,3 @@ const styles = ScaledSheet.create({
 });
 
 export default ShiorimList;
-/**
- * <View style={styles.innergridViewA} />
-              <View style={styles.innergridViewB}>
-                <View style={styles.gridView}>
-                  <DataTable style={styles.itemName}>
-                    <DataTable.Header>
-                      <DataTable.Title>נושא השיעור</DataTable.Title>
-                      <DataTable.Title>זמן השיעור</DataTable.Title>
-                      <DataTable.Title>שם הרב</DataTable.Title>
-                      <DataTable.Title>ימים</DataTable.Title>
-                    </DataTable.Header>
-
-                    {newShiorim[arrIndex] &&
-                      newShiorim[arrIndex].map(sh => {
-                        return (
-                          <DataTable.Row key={sh._id}>
-                            <DataTable.Cell style={styles.itemName}>
-                              {sh?.subject}
-                            </DataTable.Cell>
-                            <DataTable.Cell style={styles.itemName}>
-                              {new Date(sh?.time)
-                                .toLocaleTimeString('he-IL', {
-                                  hour: '2-digit',
-                                  minute: '2-digit',
-                                  hour12: false,
-                                })
-                                .slice(0, 5)}
-                            </DataTable.Cell>
-                            <DataTable.Cell style={styles.itemName}>
-                              {sh?.name}
-                            </DataTable.Cell>
-                            <DataTable.Cell style={styles.itemName}>
-                              {sh?.title}
-                            </DataTable.Cell>
-                          </DataTable.Row>
-                        );
-                      })}
-                  </DataTable>
-                </View>
-              </View>
-              <View style={styles.innergridViewA} />
- */

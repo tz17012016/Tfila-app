@@ -1,233 +1,141 @@
 import React from 'react';
-import {
-  ImageBackground,
-  FlatList,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  LogBox,
-} from 'react-native';
+import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const TfilotTimeList = ({tfilotTimeList}) => {
-  const {tfilotTimes, loading, success} = tfilotTimeList;
+const TfilotTimeList = ({changeOptions1}) => {
+  const {TfilotTime} = changeOptions1;
+  const [arrIndex, setArrIndex] = React.useState(0);
+  let newTfilotTimes = [];
+  React.useEffect(() => {
+    // Move on to the next arr every `n` milliseconds
 
-  const tfilotTimeObject = Object.assign({}, tfilotTimes);
+    let timeout;
+    if (arrIndex < newTfilotTimes.length - 1) {
+      timeout = setTimeout(() => setArrIndex(arrIndex + 1), 10 * 1000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [newTfilotTimes, arrIndex]);
+
+  const sliceIntoChunks = (arr, chunkSize) => {
+    const res = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      const chunk = arr.slice(i, i + chunkSize);
+      res.push(chunk);
+    }
+    return res;
+  };
+  if (TfilotTime) {
+    let Arr = [...TfilotTime.reverse()];
+
+    newTfilotTimes = sliceIntoChunks(Arr, 4);
+  }
 
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.containerA}>
-          <Text style={[styles.headerTextColor, styles.textWithShadow]}>
-            זמני תפילות
-          </Text>
-        </View>
-        <View style={styles.containerB}>
-          {loading ? (
-            <Text>loding...</Text>
-          ) : success ? (
-            <>
-              <View style={styles.innergridViewA}></View>
-              <View style={styles.innergridViewB}>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>
-                        {tfilotTimeObject[3]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[3]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>
-                        {tfilotTimeObject[4]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[4]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>
-                        {tfilotTimeObject[5]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[5]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.gridView}>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>
-                        {tfilotTimeObject[0]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[0]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>
-                        {tfilotTimeObject[1]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[1]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.boxContainer}>
-                    <View style={styles.innerContainerA}></View>
-                    <View style={styles.innerContainerB}>
-                      <Text style={styles.itemTitle}>
-                        {tfilotTimeObject[2]?.title}
-                      </Text>
-                      <Text style={styles.itemName}>
-                        {new Date(tfilotTimeObject[2]?.time)
-                          .toLocaleTimeString('he-IL', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                          })
-                          .slice(0, 5)}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
+        <View style={styles.innerContainer}>
+          <View style={styles.mainViewA}></View>
+          <View style={styles.mainViewB}>
+            <View style={styles.gridView_A}></View>
+            <View style={styles.gridView_B}>
+              <View style={styles.gridView_B_A}>
+                {newTfilotTimes[arrIndex] &&
+                  newTfilotTimes[arrIndex].map(tfila => {
+                    return (
+                      <View key={tfila._id} style={styles.boxContainer_A}>
+                        <Text style={styles.itemTime}>
+                          {new Date(tfila.time)
+                            .toLocaleTimeString('he-IL', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: false,
+                            })
+                            .slice(0, 5)}
+                        </Text>
+                      </View>
+                    );
+                  })}
               </View>
+              <View style={styles.gridView_B_B}>
+                {newTfilotTimes[arrIndex] &&
+                  newTfilotTimes[arrIndex].map(tfila => {
+                    return (
+                      <View key={tfila._id} style={styles.boxContainer_B}>
+                        <Text style={styles.itemTitle}>{tfila.title}</Text>
+                      </View>
+                    );
+                  })}
+              </View>
+            </View>
+          </View>
 
-              <View style={styles.innergridViewA}></View>
-            </>
-          ) : (
-            <Text>error</Text>
-          )}
+          <View style={styles.mainViewA}></View>
         </View>
       </View>
     </>
   );
 };
+
 const styles = ScaledSheet.create({
   container: {
-    height: '100%',
+    height: '66%',
     flexDirection: 'column',
     justifyContent: 'center',
   },
-  containerA: {
-    flex: 1,
-
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  containerB: {
+  innerContainer: {
     flex: 2.8,
     flexDirection: 'row',
   },
-  containerA1: {
-    height: '50@s',
-    width: '50@s',
+  gridView_A: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  gridView: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-  innergridViewA: {
+  gridView_B: {
+    flex: 2.5,
+    marginRight: '16@s',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  gridView_B_A: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+  },
+  gridView_B_B: {
+    flex: 2.2,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+  },
+  mainViewA: {
+    flex: 1.1,
     flexDirection: 'row',
   },
-  innergridViewB: {
-    flex: 6,
+  mainViewB: {
+    flex: 1.2,
     flexDirection: 'column',
-    borderRadius: 10,
-    margin: '5@s',
-    marginBottom: '60@s',
-    padding: '10@s',
   },
-  innergridViewC: {
-    flex: 2,
+  boxContainer_A: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  innerContainerA: {
-    height: '15@s',
-  },
-  innerContainerB: {},
-  boxContainer: {
-    width: '130@s',
-    height: '110@ms',
-    borderRadius: 3,
-    backgroundColor: '#ffd24d',
-    opacity: 0.6,
-    margin: '6@s',
-  },
-  headerTextColor: {
-    fontSize: '35@s',
-    marginBottom: '12@s',
-    color: '#ff4d4d',
-    textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
-  },
-  itemName: {
-    fontSize: '18@s',
-    color: '#000',
-    textAlign: 'center',
-    fontFamily: 'DavidCLM-Bold',
+  boxContainer_B: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   itemTitle: {
-    fontSize: '20@s',
-    textAlign: 'center',
-    fontFamily: 'HadasimCLM-Bold',
-    color: '#ff0000',
+    fontSize: '15@s',
+    fontFamily: 'stam',
+    color: '#000',
     fontWeight: '900',
   },
-  textWithShadow: {
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
+  itemTime: {
+    fontSize: '15@s',
+    fontFamily: 'stam',
+    color: '#000',
+    fontWeight: '900',
   },
 });
 

@@ -1,18 +1,11 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getGeneralMessages} from '../redux/actions/generalMessagesActions';
-import {
-  NavigationContainer,
-  createNavigationContainerRef,
-} from '@react-navigation/native';
+import {ImageBackground, Image, Dimensions, View, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import {Image, Dimensions, View, Text} from 'react-native';
-import {getHnzchot} from '../redux/actions/hnzchotActions';
-import {getOlimLatora} from '../redux/actions/olimLatoraActions';
-import {getTfilotTime} from '../redux/actions/tfilotTimeActions';
-import {getZmanim} from '../redux/actions/zmanimActions';
-import {getShiorim} from '../redux/actions/shiorimActions';
+
+import {getDB} from '../redux/actions/dbActions';
 
 import ZmanimScreen from '../screens/ZmanimScreen';
 import HnzchotScreen from '../screens/HnzchotScreen';
@@ -22,121 +15,49 @@ import OlimLatoraScreen from '../screens/OlimLatoraScreen';
 import WelcomeTimeScreen from '../screens/WelcomeTimeScreen';
 import ShiorimScreen from '../screens/ShiorimScreen';
 
-const Stack = createStackNavigator();
+import SplashScreen from 'react-native-splash-screen';
+
 const {width, height} = Dimensions.get('screen');
-// export const navigationRef = React.createRef();
-// export const navigationRef = createNavigationContainerRef();
-// export function navigate(name, params) {
-//   if (navigationRef.isReady()) {
-//     navigationRef.navigate(name, params);
-//   }
-// }
+const Stack = createStackNavigator();
+
 const AppNavigator = () => {
   const dispatch = useDispatch();
-  const [counter, setCounter] = useState(0);
-  const shiorimList = useSelector(state => ({
-    ...state.shiorimList,
-  }));
-  const {
-    loading: shiorimLoading,
-    success: shiorimSuccess,
-    shiorim,
-  } = shiorimList;
-  const generalMessagesList = useSelector(state => ({
-    ...state.generalMessagesList,
-  }));
 
-  const refCounter = useRef(counter);
+  const dbList = useSelector(state => ({...state.dbList}));
   const {
-    loading: messagesLoading,
-    success: messagesSuccess,
-    generalMessages,
-  } = generalMessagesList;
-  const hnzchotList = useSelector(state => ({...state.hnzchotList}));
+    loading: dbLoading = true,
+    success: dbSuccess = false,
+    dbError = false,
+    error: ErrorMessage = {},
+    db = {
+      zmanimData: {},
+      tfilaTimeData: [],
+      olieLatoraData: [],
+      shiorimDdata: [],
+      hanzchData: [],
+      generalMessageData: [],
+    },
+  } = dbList;
   const {
-    loading: hnzchotLoading,
-    success: hnzchotSuccess,
-    hnzchots,
-  } = hnzchotList;
-  const olimLatoraList = useSelector(state => ({
-    ...state.olimLatoraList,
-  }));
-  const {
-    loading: olimLatoraLoading,
-    success: olimLatoraSuccess,
-    olimLatoras,
-  } = olimLatoraList;
-  const tfilotTimeList = useSelector(state => ({...state.tfilotTimeList}));
-  const {
-    loading: tfilotTimeLoading,
-    success: tfilotTimeSuccess,
-    tfilotTimes,
-  } = tfilotTimeList;
-  const zmanimsList = useSelector(state => ({...state.zmanimsList}));
-  const {
-    loading: zmanimsLoading,
-    success: zmanimsSuccess,
-    zmanim,
-  } = zmanimsList;
+    zmanimData,
+    tfilaTimeData,
+    olieLatoraData,
+    shiorimDdata,
+    hanzchData,
+    generalMessageData,
+  } = db;
   useEffect(() => {
     loadDb();
-
-    let secTimer = setInterval(() => loadDb(), 1000 * 60 * 60 * 24);
+    SplashScreen.hide();
+    let secTimer = setInterval(() => loadDb(), 1000 * 60 * 60 * 5);
     return () => clearInterval(secTimer);
   }, [dispatch]);
   const loadDb = () => {
-    const loadGeneralMessages = () => {
-      return dispatch(getGeneralMessages());
+    const loadDb1 = () => {
+      return dispatch(getDB());
     };
-    const loadHnzchots = () => {
-      return dispatch(getHnzchot());
-    };
-    const loadOlimLatora = () => {
-      return dispatch(getOlimLatora());
-    };
-    const loadTfilotTime = () => {
-      return dispatch(getTfilotTime());
-    };
-    const loadZmanims = () => {
-      return dispatch(getZmanim());
-    };
-    const loadShiorim = () => {
-      return dispatch(getShiorim());
-    };
-    return (
-      loadGeneralMessages(),
-      loadHnzchots(),
-      loadOlimLatora(),
-      loadTfilotTime(),
-      loadZmanims(),
-      loadShiorim()
-    );
+    return loadDb1();
   };
-
-  // const startTimeout = () => {
-  //   setInterval(() => {
-  //     const arrLengh = screenNamesArry.length;
-  //     const nextScreen = screenNamesArry[(counter + 1) % arrLengh];
-  //     setCounter(refCounter.current + 1);
-  //     navigate(nextScreen);
-  //   }, 1000);
-  // };
-
-  // useEffect(() => {
-  //   startTimeout();
-  // }, []);
-
-  // const checkNamesArray = changeOptions => {
-  //   const {
-  //     Zmanim,
-  //     WelcomeTime,
-  //     TfilotTime,
-  //     OlimLatora,
-  //     Hnzchot,
-  //     GeneralMessages,
-  //   } = changeOptions;
-  //   let screenNames = [];
-  // };
 
   let reaplaseScreanName = {
     Zmanim: 'Zmanim',
@@ -147,37 +68,23 @@ const AppNavigator = () => {
     Hnzchot: 'Hnzchot',
     GeneralMessages: 'GeneralMessages',
   };
-  // const screenNamesArry = [
-  //   'zmanimm',
-  //   'WelcomeTime',
-  //   'TfilotTime',
-  //   'OlimLatora',
-  //   'Hnzchot',
-  //   'GeneralMessages',
-  // ];
-  // let screenDetails = new Map([
-  //   ['Zmanim', zmanim],
-  //   ['WelcomeTime', zmanim],
-  //   ['TfilotTime', tfilotTimes],
-  //   ['OlimLatora', olimLatoras],
-  //   ['Hnzchot', hnzchots],
-  //   ['GeneralMessages', generalMessages],
-  // ]);
 
-  let changeOptions = {
-    Zmanim: zmanimsSuccess ? zmanim : {},
-    TfilotTime: tfilotTimeSuccess ? tfilotTimes : [],
-    OlimLatora: olimLatoraSuccess ? olimLatoras : [],
-    Shiorim: shiorimSuccess ? shiorim : [],
-    Hnzchot: hnzchotSuccess ? hnzchots : [],
-    GeneralMessages: messagesSuccess ? generalMessages : [],
+  let changeOptions1 = {
+    Zmanim: dbSuccess && Object.keys(zmanimData).length >= 1 ? zmanimData : {},
+    TfilotTime: dbSuccess && tfilaTimeData.length >= 1 ? tfilaTimeData : [],
+    OlimLatora: dbSuccess && olieLatoraData.length >= 1 ? olieLatoraData : [],
+    Shiorim: dbSuccess && shiorimDdata.length >= 1 ? shiorimDdata : [],
+    Hnzchot: dbSuccess && hanzchData.length >= 1 ? hanzchData : [],
+    GeneralMessages:
+      dbSuccess && generalMessageData.length >= 1 ? generalMessageData : [],
   };
   const Renders = () => {
     return (
       <>
         <NavigationContainer>
           <Image
-            source={require('../images/bgM.png')}
+            source={require('../images/screans/defaultBackground.png')}
+            resizeMode="contain"
             style={{
               width,
               height,
@@ -193,78 +100,129 @@ const AppNavigator = () => {
             }}>
             <Stack.Screen name="Zmanim">
               {props => (
-                <ZmanimScreen
-                  {...props}
-                  zmanimsList={zmanimsList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                />
+                <ImageBackground
+                  source={require('../images/screans/zmanimBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <ZmanimScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
             <Stack.Screen name="WelcomeTime">
               {props => (
-                <WelcomeTimeScreen
-                  {...props}
-                  zmanimsList={zmanimsList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                />
+                <ImageBackground
+                  source={require('../images/screans/parshBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <WelcomeTimeScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
             <Stack.Screen name="TfilotTime">
               {props => (
-                <TfilotTimeScreen
-                  {...props}
-                  tfilotTimeList={tfilotTimeList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                  zmanimsList={zmanimsList}
-                />
+                <ImageBackground
+                  source={require('../images/screans/tiflotBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <TfilotTimeScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
 
             <Stack.Screen name="OlimLatora">
               {props => (
-                <OlimLatoraScreen
-                  {...props}
-                  olimLatoraList={olimLatoraList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                  zmanimsList={zmanimsList}
-                />
+                <ImageBackground
+                  source={require('../images/screans/koraimBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <OlimLatoraScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
             <Stack.Screen name="Shiorim">
               {props => (
-                <ShiorimScreen
-                  {...props}
-                  shiorimList={shiorimList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                  zmanimsList={zmanimsList}
-                />
+                <ImageBackground
+                  source={require('../images/screans/shiorimBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <ShiorimScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
             <Stack.Screen name="Hnzchot">
               {props => (
-                <HnzchotScreen
-                  {...props}
-                  hnzchotList={hnzchotList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                  zmanimsList={zmanimsList}
-                />
+                <ImageBackground
+                  source={require('../images/screans/hantzchotBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <HnzchotScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
             <Stack.Screen name="GeneralMessages">
               {props => (
-                <GeneralMessagesScreen
-                  {...props}
-                  generalMessagesList={generalMessagesList}
-                  reaplaseScreanName={reaplaseScreanName}
-                  changeOptions={changeOptions}
-                  zmanimsList={zmanimsList}
-                />
+                <ImageBackground
+                  source={require('../images/screans/messageBackground.png')}
+                  resizeMode="contain"
+                  style={{
+                    position: 'absolute',
+                    width,
+                    height,
+                  }}>
+                  <GeneralMessagesScreen
+                    {...props}
+                    reaplaseScreanName={reaplaseScreanName}
+                    changeOptions1={changeOptions1}
+                  />
+                </ImageBackground>
               )}
             </Stack.Screen>
           </Stack.Navigator>
@@ -275,22 +233,65 @@ const AppNavigator = () => {
   const Loding = () => {
     return (
       <View>
-        <Text>loding</Text>
+        <Image
+          source={require('../images/screans/splashBackground.jpg')}
+          resizeMode="cover"
+          style={{
+            width,
+            height,
+            position: 'absolute',
+          }}
+        />
+      </View>
+    );
+  };
+  const Error = () => {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ImageBackground
+          source={require('../images/screans/splashBackground.jpg')}
+          resizeMode="cover"
+          style={{
+            width,
+            height,
+            position: 'absolute',
+          }}>
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: 'center',
+              fontFamily: 'HadasimCLM-Bold',
+              color: '#ff0000',
+              marginBottom: '20@s',
+            }}>
+            לא מחובר לאינטרנט! אנא התחבר לאינטרנט
+          </Text>
+          {ErrorMessage ? (
+            <Text
+              style={{
+                fontSize: 15,
+                textAlign: 'center',
+                fontFamily: 'HadasimCLM-Bold',
+                color: '#0000',
+                marginBottom: '20@s',
+              }}>
+              {ErrorMessage}
+            </Text>
+          ) : (
+            <></>
+          )}
+        </ImageBackground>
       </View>
     );
   };
   return (
     <>
-      {zmanimsLoading &&
-      tfilotTimeLoading &&
-      olimLatoraLoading &&
-      messagesLoading &&
-      shiorimLoading &&
-      hnzchotLoading &&
-      olimLatoraLoading ? (
+      {dbLoading === true && dbSuccess === false ? (
         <Loding />
-      ) : (
+      ) : dbError === false && dbSuccess === true ? (
         <Renders />
+      ) : (
+        <Error />
       )}
     </>
   );
