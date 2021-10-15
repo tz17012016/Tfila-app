@@ -27,7 +27,7 @@ const GeneralMessagesScreen = ({reaplaseScreanName, changeOptions1}) => {
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 10 * 1000);
+      }, 50 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );

@@ -30,7 +30,7 @@ const ZmanimScreen = ({reaplaseScreanName, changeOptions1}) => {
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 10 * 1000);
+      }, 30 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );

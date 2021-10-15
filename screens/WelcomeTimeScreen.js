@@ -13,6 +13,8 @@ const WelcomeTimeScreen = ({reaplaseScreanName, changeOptions1}) => {
         return navigation.replace(reaplaseScreanName.TfilotTime);
       case refCounter.current.OlimLatora?.length >= 1:
         return navigation.replace(reaplaseScreanName.OlimLatora);
+      case refCounter.current.Shiorim?.length >= 1:
+        return navigation.replace(reaplaseScreanName.Shiorim);
       case refCounter.current.Hnzchot?.length >= 1:
         return navigation.replace(reaplaseScreanName.Hnzchot);
       case refCounter.current.GeneralMessages?.length >= 1:
@@ -28,7 +30,7 @@ const WelcomeTimeScreen = ({reaplaseScreanName, changeOptions1}) => {
     React.useCallback(() => {
       let secTimer = setTimeout(() => {
         checkOptions(refCounter, reaplaseScreanName, navigation);
-      }, 10 * 1000);
+      }, 30 * 1000);
       return () => clearTimeout(secTimer);
     }, []),
   );
