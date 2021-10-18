@@ -3,29 +3,29 @@ import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import Clock from './Clock';
 const Heder = ({changeOptions1}) => {
-  const {Zmanim} = changeOptions1;
+  const {Zmanim = {}} = changeOptions1;
   return (
     <View style={styles.container}>
       <View style={styles.innerBox}>
         <View style={styles.innerBox1}>
           <Text
             style={
-              Zmanim && (Zmanim.Omer || Zmanim.Holiday)
+              Zmanim && (Zmanim?.Omer || Zmanim?.Holiday)
                 ? styles.sZmanimDate
                 : styles.itemTitle
             }>
-            {Zmanim && Zmanim.HebrewDate}
+            {Zmanim && Zmanim?.HebrewDate}
           </Text>
-          {Zmanim && Zmanim.Omer ? (
+          {Zmanim && Zmanim?.Omer ? (
             <Text style={[styles.sZmanimDate, styles.sZmanimDate1]}>
-              היום יום ה {Zmanim && Zmanim.Omer} לעומר
+              היום יום ה {Zmanim && Zmanim?.Omer} לעומר
             </Text>
           ) : (
             <></>
           )}
           {Zmanim && Zmanim.Holiday ? (
             <Text style={[styles.sZmanimDate, styles.sZmanimDate1]}>
-              {Zmanim && Zmanim.Holiday}
+              {Zmanim && Zmanim?.Holiday}
             </Text>
           ) : (
             <></>
@@ -37,7 +37,7 @@ const Heder = ({changeOptions1}) => {
       </View>
       <View style={styles.innerBox}>
         <Text style={styles.itemTitle1}>
-          {Zmanim && Zmanim.SelectedDayHeader}
+          {Zmanim && Zmanim?.SelectedDayHeader}
         </Text>
       </View>
     </View>

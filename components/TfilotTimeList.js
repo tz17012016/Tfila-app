@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 const TfilotTimeList = ({changeOptions1}) => {
-  const {TfilotTime} = changeOptions1;
+  const {TfilotTime = []} = changeOptions1;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newTfilotTimes = [];
   React.useEffect(() => {
@@ -27,9 +27,7 @@ const TfilotTimeList = ({changeOptions1}) => {
     return res;
   };
   if (TfilotTime) {
-    let Arr = [...TfilotTime.reverse()];
-
-    newTfilotTimes = sliceIntoChunks(Arr, 4);
+    newTfilotTimes = sliceIntoChunks(TfilotTime, 4);
   }
 
   return (
@@ -46,7 +44,7 @@ const TfilotTimeList = ({changeOptions1}) => {
                     return (
                       <View key={tfila._id} style={styles.boxContainer_A}>
                         <Text style={styles.itemTime}>
-                          {new Date(tfila.time)
+                          {new Date(tfila?.time)
                             .toLocaleTimeString('he-IL', {
                               hour: '2-digit',
                               minute: '2-digit',
@@ -63,7 +61,7 @@ const TfilotTimeList = ({changeOptions1}) => {
                   newTfilotTimes[arrIndex].map(tfila => {
                     return (
                       <View key={tfila._id} style={styles.boxContainer_B}>
-                        <Text style={styles.itemTitle}>{tfila.title}</Text>
+                        <Text style={styles.itemTitle}>{tfila?.title}</Text>
                       </View>
                     );
                   })}

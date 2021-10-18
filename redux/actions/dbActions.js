@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {checkBASE_URL} from '../../utilities/baseUrl';
+import {isAlive} from '../../utilities/baseUrl';
 import {
   DB_GET_REQUEST,
   DB_GET_SUCCESS,
@@ -8,19 +8,22 @@ import {
 export const getDB = () => async dispatch => {
   try {
     dispatch({type: DB_GET_REQUEST});
-    const zmanimData = await axios.get(`${await checkBASE_URL()}/api/zmanim`);
+    const zmanimData = await axios.get(`${await isAlive()}/api/zmanim`);
+    const screenTimerData = await axios.get(
+      `${await isAlive()}/api/screenTimer`,
+    );
     const tfilaTimeData = await axios.get(
-      `${await checkBASE_URL()}/api/tfilaTime`,
+      `${await isAlive()}/api/tfilaTime`,
     );
     const olieLatoraData = await axios.get(
-      `${await checkBASE_URL()}/api/olieLatora`,
+      `${await isAlive()}/api/olieLatora`,
     );
     const shiorimDdata = await axios.get(
-      `${await checkBASE_URL()}/api/shiorim`,
+      `${await isAlive()}/api/shiorim`,
     );
-    const hanzchData = await axios.get(`${await checkBASE_URL()}/api/hanzch`);
+    const hanzchData = await axios.get(`${await isAlive()}/api/hanzch`);
     const generalMessageData = await axios.get(
-      `${await checkBASE_URL()}/api/generalMessage`,
+      `${await isAlive()}/api/generalMessage`,
     );
     let db = {
       zmanimData: zmanimData.data,
@@ -29,6 +32,7 @@ export const getDB = () => async dispatch => {
       shiorimDdata: shiorimDdata.data,
       hanzchData: hanzchData.data,
       generalMessageData: generalMessageData.data,
+      screenTimerData: screenTimerData.data,
     };
     dispatch({type: DB_GET_SUCCESS, payload: db});
   } catch (error) {

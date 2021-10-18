@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {checkBASE_URL} from '../../utilities/baseUrl';
+import {isAlive} from '../../utilities/baseUrl';
 import {
   SHIORIM_GET_REQUEST,
   SHIORIM_GET_SUCCESS,
@@ -8,7 +8,7 @@ import {
 export const getShiorim = () => async dispatch => {
   try {
     dispatch({type: SHIORIM_GET_REQUEST});
-    const {data} = await axios.get(`${await checkBASE_URL()}/api/shiorim`);
+    const {data} = await axios.get(`${await isAlive()}/api/shiorim`);
     dispatch({type: SHIORIM_GET_SUCCESS, payload: data});
   } catch (error) {
     dispatch({

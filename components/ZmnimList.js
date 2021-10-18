@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 const ZmnimList = ({changeOptions1}) => {
-  const {Zmanim} = changeOptions1;
+  const {Zmanim = {}} = changeOptions1;
   return (
     <>
       <View style={styles.container}>
@@ -13,14 +13,14 @@ const ZmnimList = ({changeOptions1}) => {
               <View style={styles.columnContainerA}>
                 <View style={styles.boxContainer_A}>
                   <Text style={[styles.itemName, styles.textAlign1]}>
-                    {Zmanim && Zmanim.PlagHamincha}
+                    {Zmanim && Zmanim?.PlagHamincha}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerA}>
                 <View style={styles.boxContainer_A}>
                   <Text style={[styles.itemName, styles.textAlign2]}>
-                    {Zmanim && Zmanim.AlotHashahar}
+                    {Zmanim && Zmanim?.AlotHashahar}
                   </Text>
                 </View>
               </View>
@@ -30,28 +30,28 @@ const ZmnimList = ({changeOptions1}) => {
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_B}>
                   <Text style={[styles.itemName, styles.textAlign3]}>
-                    {Zmanim && Zmanim.SunSet}
+                    {Zmanim && Zmanim?.SunSet}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_B}>
                   <Text style={[styles.itemName, styles.textAlign4]}>
-                    {Zmanim && Zmanim.MidDay}
+                    {Zmanim && Zmanim?.MidDay}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_B}>
                   <Text style={[styles.itemName, styles.textAlign5]}>
-                    {Zmanim && Zmanim.SofZmanKriatShmaGra}
+                    {Zmanim && Zmanim?.SofZmanKriatShmaGra}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_B}>
                   <Text style={[styles.itemName, styles.textAlign6]}>
-                    {Zmanim && Zmanim.SunRise}
+                    {Zmanim && Zmanim?.SunRise}
                   </Text>
                 </View>
               </View>
@@ -61,28 +61,28 @@ const ZmnimList = ({changeOptions1}) => {
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_C}>
                   <Text style={[styles.itemName, styles.textAlign7]}>
-                    {Zmanim && Zmanim.ZetHakochavim}
+                    {Zmanim && Zmanim?.ZetHakochavim}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_C}>
                   <Text style={[styles.itemName, styles.textAlign8]}>
-                    {Zmanim && Zmanim.MinhaGedola}
+                    {Zmanim && Zmanim?.MinhaGedola}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_C}>
                   <Text style={[styles.itemName, styles.textAlign9]}>
-                    {Zmanim && Zmanim.SofZmanTfilaGra}
+                    {Zmanim && Zmanim?.SofZmanTfilaGra}
                   </Text>
                 </View>
               </View>
               <View style={styles.columnContainerB}>
                 <View style={styles.boxContainer_C}>
                   <Text style={[styles.itemName, styles.textAlign10]}>
-                    {Zmanim && Zmanim.ZmanTalitVeTfilin}
+                    {Zmanim && Zmanim?.ZmanTalitVeTfilin}
                   </Text>
                 </View>
               </View>

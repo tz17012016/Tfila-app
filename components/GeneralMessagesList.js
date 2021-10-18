@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 const generalMessagesList = ({changeOptions1, mSTime}) => {
-  const {GeneralMessages} = changeOptions1;
+  const {GeneralMessages = []} = changeOptions1;
   const [messageIndex, setMessageIndex] = React.useState(0);
   React.useEffect(() => {
     // Move on to the next message every `n` milliseconds
@@ -24,10 +24,10 @@ const generalMessagesList = ({changeOptions1, mSTime}) => {
             <View style={styles.boxContainer}>
               <View>
                 <Text style={styles.itemTitle}>
-                  {GeneralMessages[messageIndex].title}
+                  {GeneralMessages[messageIndex]?.title}
                 </Text>
                 <Text style={styles.itemName}>
-                  {GeneralMessages[messageIndex].content}
+                  {GeneralMessages[messageIndex]?.content}
                 </Text>
               </View>
             </View>

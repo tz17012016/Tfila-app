@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 const OlimLatoraList = ({changeOptions1}) => {
-  const {OlimLatora} = changeOptions1;
+  const {OlimLatora = []} = changeOptions1;
   const oleObject = Object.assign({}, OlimLatora);
 
   return (

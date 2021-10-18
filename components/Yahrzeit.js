@@ -76,7 +76,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    width: '80%',
+    width: '81%',
   },
   innerBox_A: {
     flexDirection: 'row',

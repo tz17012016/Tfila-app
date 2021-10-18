@@ -4,7 +4,7 @@ import Hebcal from 'hebcal';
 import {ScaledSheet} from 'react-native-size-matters';
 
 const HnzchotList = ({changeOptions1}) => {
-  const {Hnzchot} = changeOptions1;
+  const {Hnzchot = []} = changeOptions1;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newHnzchots = [];
   React.useEffect(() => {
@@ -47,7 +47,7 @@ const HnzchotList = ({changeOptions1}) => {
                 {newHnzchots[arrIndex] &&
                   newHnzchots[arrIndex].map(hnzchot => {
                     return (
-                      <View key={hnzchot._id} style={styles.boxContainer}>
+                      <View key={hnzchot?._id} style={styles.boxContainer}>
                         <ImageBackground
                           style={styles.ImageBackground}
                           source={require('../images/objects/neshamaBox.png')}>
@@ -55,7 +55,7 @@ const HnzchotList = ({changeOptions1}) => {
                             <View style={styles.innerContainerC}></View>
                             <View style={styles.innerContainerB}>
                               <Text style={styles.itemTitle}>
-                                {`${hnzchot?.parntName} ${hnzchot?.gender} ${hnzchot?.name}`}
+                                {`${hnzchot?.name} ${hnzchot?.gender} ${hnzchot?.parntName}`}
                               </Text>
                               <Text style={styles.itemName}>
                                 {HebrewDate(hnzchot?.dateOfDeath)}
@@ -138,8 +138,8 @@ const styles = ScaledSheet.create({
   innerContainerA: {},
   innerContainerB: {},
   boxContainer: {
-    width: '120@s',
-    height: '95@ms',
+    width: '125@s',
+    height: '100@ms',
     borderRadius: 5,
   },
   innerContainerC: {},

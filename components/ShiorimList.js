@@ -4,7 +4,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {Col, Row} from 'react-native-easy-grid';
 
 const ShiorimList = ({changeOptions1}) => {
-  const {Shiorim} = changeOptions1;
+  const {Shiorim = []} = changeOptions1;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newShiorim = [];
   React.useEffect(() => {
@@ -43,7 +43,7 @@ const ShiorimList = ({changeOptions1}) => {
                   {newShiorim[arrIndex] &&
                     newShiorim[arrIndex].map(sh => {
                       return (
-                        <Row style={[styles.row, styles.col11]} key={sh._id}>
+                        <Row style={[styles.row, styles.col11]} key={sh?._id}>
                           <Text style={[styles.cell, styles.col1]}>
                             {sh?.subject}
                           </Text>
