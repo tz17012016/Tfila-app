@@ -5,9 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
 import {useRoute} from '@react-navigation/native';
-const PrashaScreen = ({reaplaseScreanName, changeOptions1}) => {
+const PrashaScreen = ({reaplaseScreanName, changeOptions}) => {
   const route = useRoute();
-  const refCounter = useRef(changeOptions1);
+  const refCounter = useRef(changeOptions);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
@@ -40,9 +40,9 @@ const PrashaScreen = ({reaplaseScreanName, changeOptions1}) => {
   );
   return (
     <>
-      <Heder changeOptions1={changeOptions1} />
-      <Prasha changeOptions1={changeOptions1} />
-      <Footer changeOptions1={changeOptions1} />
+      <Heder changeOptions={changeOptions} />
+      <Prasha changeOptions={changeOptions} />
+      <Footer changeOptions={changeOptions} />
     </>
   );
 };

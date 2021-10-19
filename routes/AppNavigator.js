@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ImageBackground, Image, Dimensions, View, Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import {NetworkUtils} from '../utilities/NetworkUtills';
 import {getDB} from '../redux/actions/dbActions';
@@ -22,7 +22,7 @@ import AutoStart from 'react-native-autostart';
 import SplashScreen from 'react-native-splash-screen';
 
 const {width, height} = Dimensions.get('screen');
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   const [conectionObj, setConectionObj] = useState({});
@@ -66,12 +66,12 @@ const AppNavigator = () => {
     return () => clearInterval(secTimer);
   }, [dispatch]);
   const loadDb = async () => {
-    const loadDb1 = () => {
+    const loadDb = () => {
       return dispatch(getDB());
     };
     setConectionObj(await conection());
 
-    return loadDb1();
+    return loadDb();
   };
 
   let reaplaseScreanName = {
@@ -95,13 +95,13 @@ const AppNavigator = () => {
         style={style}
         key={didLoad}
         source={source}
-        resizeMode="contain"
+        resizeMode="stretch"
         onLoad={() => setLoad(true)}>
         {children}
       </ImageBackground>
     );
   };
-  let changeOptions1 = {
+  let changeOptions = {
     Zmanim: dbSuccess && Object.keys(zmanimData)?.length >= 1 ? zmanimData : {},
     TfilotTime:
       dbSuccess && tfilaTimeData?.length >= 1 ? tfilaTimeData.reverse() : [],
@@ -113,20 +113,23 @@ const AppNavigator = () => {
     ScreenTimers:
       dbSuccess && screenTimerData?.length >= 1 ? screenTimerData : [],
   };
+  const Theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'transparent',
+    },
+  };
   const Renders = () => {
     return (
       <>
-        <NavigationContainer>
-          <ImageLoder
-            source={require('../images/screans/defaultBackground.png')}
-          />
+        <ImageLoder
+          source={require('../images/screans/defaultBackground.png')}
+        />
+        <NavigationContainer theme={Theme}>
           <Stack.Navigator
             screenOptions={{
               header: () => null,
-              animationTypeForReplace: 'pop',
-              cardStyle: {
-                backgroundColor: 'transparent',
-              },
             }}>
             <Stack.Screen name="Zmanim">
               {props => (
@@ -135,7 +138,7 @@ const AppNavigator = () => {
                   <ZmanimScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -147,7 +150,7 @@ const AppNavigator = () => {
                   <PrashaScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -159,7 +162,7 @@ const AppNavigator = () => {
                   <TfilotTimeScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -172,7 +175,7 @@ const AppNavigator = () => {
                   <OmerScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -185,7 +188,7 @@ const AppNavigator = () => {
                   <OlimLatoraScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -197,7 +200,7 @@ const AppNavigator = () => {
                   <ShiorimScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -209,7 +212,7 @@ const AppNavigator = () => {
                   <HnzchotScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -221,7 +224,7 @@ const AppNavigator = () => {
                   <GeneralMessagesScreen
                     {...props}
                     reaplaseScreanName={reaplaseScreanName}
-                    changeOptions1={changeOptions1}
+                    changeOptions={changeOptions}
                   />
                 </ImageLoder>
               )}
@@ -307,5 +310,3 @@ const AppNavigator = () => {
 };
 
 export default AppNavigator;
-/**
- */

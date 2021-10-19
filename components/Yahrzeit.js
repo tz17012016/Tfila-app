@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, View, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const Yahrzeit = ({changeOptions1: {Hnzchot = []}}) => {
+import {HebrewCalendar, HDate} from '@hebcal/core';
+const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
   const [yahrzeitIndex, setYahrzeitIndex] = React.useState(0);
   const [yahrzeit, setYahrzeit] = React.useState([]);
 
@@ -20,22 +21,23 @@ const Yahrzeit = ({changeOptions1: {Hnzchot = []}}) => {
 
   const checkYahrzeitDate = (Hnzchot = []) => {
     let tempArr = Hnzchot.filter(h => {
-      let yahrzeitDate = new Date(h.dateOfDeath).setFullYear(
-        new Date().getFullYear(),
-      );
       let nextSutInTwoWeeks = new Date().setDate(
         new Date().getDate() + (((7 - new Date().getDay()) % 7) + 7 || 7),
       );
-      let thisMonth = new Date().getMonth();
+      let thisMonth = new Date().getMonth() + 1;
       let firstDayOfThisWeek = new Date().setDate(
         new Date().getDate() -
           new Date().getDay() +
-          (new Date().getDay() == 0 ? -6 : 1),
+          (new Date().getDay() == 0 ? -6 : 0),
       );
+      const getYahrzeitDate = HebrewCalendar.getYahrzeit(
+        new HDate().getFullYear(),
+        new Date(h.dateOfDeath),
+      ).greg();
       if (
-        new Date(yahrzeitDate).getMonth() === thisMonth &&
-        firstDayOfThisWeek <= new Date(yahrzeitDate) &&
-        nextSutInTwoWeeks >= new Date(yahrzeitDate)
+        new Date(h.dateOfDeath).getMonth() === thisMonth &&
+        firstDayOfThisWeek <= getYahrzeitDate &&
+        nextSutInTwoWeeks >= getYahrzeitDate
       ) {
         return {
           name: h.name ? h.name : '',
@@ -56,9 +58,12 @@ const Yahrzeit = ({changeOptions1: {Hnzchot = []}}) => {
             imageStyle={{resizeMode: 'contain'}}
             style={styles.image}
           />
-          <Text style={styles.itemText}>
-            {`יום השנה של ${yahrzeit[yahrzeitIndex]?.name} ${yahrzeit[yahrzeitIndex]?.gender} ${yahrzeit[yahrzeitIndex]?.parntName}`}
-          </Text>
+          <View style={styles.innerBox_B}>
+            <Text style={styles.itemText1}>{`יום השנה`}</Text>
+            <Text style={styles.itemText}>
+              {`${yahrzeit[yahrzeitIndex]?.name} ${yahrzeit[yahrzeitIndex]?.gender} ${yahrzeit[yahrzeitIndex]?.parntName} ז"ל`}
+            </Text>
+          </View>
           <Image
             source={require('../images/objects/nerNeshama.png')}
             imageStyle={{resizeMode: 'contain'}}
@@ -76,25 +81,37 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    width: '81%',
+    marginLeft: '65@s',
+    flex: 1,
   },
   innerBox_A: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+  },
+  innerBox_B: {
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   itemText: {
+    fontSize: '11@s',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#000',
+    fontWeight: '900',
+    alignItems: 'center',
+    marginBottom: '1@s',
+  },
+  itemText1: {
+    marginTop: '6@s',
     fontSize: '10@s',
     fontFamily: 'HadasimCLM-Bold',
     color: '#000',
     fontWeight: '900',
     alignItems: 'center',
-    marginTop: '5@s',
   },
   image: {
     width: '14@s',
     height: '12@s',
-    marginHorizontal: '10@s',
-    marginTop: '2@s',
+    marginTop: '14@s',
+    marginHorizontal: '5@s',
   },
 });
 export default Yahrzeit;

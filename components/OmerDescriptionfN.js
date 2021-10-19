@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const OmerDescriptionfN = ({changeOptions1}) => {
-  const {Zmanim = {}} = changeOptions1;
+const OmerDescriptionfN = ({changeOptions}) => {
+  const {Zmanim = {}} = changeOptions;
 
   return (
     <View style={styles.container}>

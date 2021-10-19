@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const ZmnimList = ({changeOptions1}) => {
-  const {Zmanim = {}} = changeOptions1;
+const ZmnimList = ({changeOptions}) => {
+  const {Zmanim = {}} = changeOptions;
   return (
     <>
       <View style={styles.container}>

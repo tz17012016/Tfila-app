@@ -5,9 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import Heder from '../components/Heder';
 import {useRoute} from '@react-navigation/native';
 import Footer from '../components/Footer';
-const TfilotTimeScreen = ({reaplaseScreanName, changeOptions1}) => {
+const TfilotTimeScreen = ({reaplaseScreanName, changeOptions}) => {
   const route = useRoute();
-  const refCounter = useRef(changeOptions1);
+  const refCounter = useRef(changeOptions);
   const navigation = useNavigation();
   const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
     switch (true) {
@@ -41,9 +41,9 @@ const TfilotTimeScreen = ({reaplaseScreanName, changeOptions1}) => {
   );
   return (
     <>
-      <Heder changeOptions1={changeOptions1} />
-      <TfilotTimeList changeOptions1={changeOptions1} />
-      <Footer changeOptions1={changeOptions1} />
+      <Heder changeOptions={changeOptions} />
+      <TfilotTimeList changeOptions={changeOptions} />
+      <Footer changeOptions={changeOptions} />
     </>
   );
 };

@@ -5,9 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import Heder from '../components/Heder';
 import Footer from '../components/Footer';
 import {useRoute} from '@react-navigation/native';
-const GeneralMessagesScreen = ({reaplaseScreanName, changeOptions1}) => {
+const GeneralMessagesScreen = ({reaplaseScreanName, changeOptions}) => {
   const route = useRoute();
-  const refCounter = useRef(changeOptions1);
+  const refCounter = useRef(changeOptions);
   const navigation = useNavigation();
   //יש ליצור תיימר שלא יארך יותר מהתימר של המסך
   let mSTime = 0;
@@ -38,9 +38,9 @@ const GeneralMessagesScreen = ({reaplaseScreanName, changeOptions1}) => {
 
   return (
     <>
-      <Heder changeOptions1={changeOptions1} />
-      <GeneralMessagesList mSTime={mSTime} changeOptions1={changeOptions1} />
-      <Footer changeOptions1={changeOptions1} />
+      <Heder changeOptions={changeOptions} />
+      <GeneralMessagesList mSTime={mSTime} changeOptions={changeOptions} />
+      <Footer changeOptions={changeOptions} />
     </>
   );
 };

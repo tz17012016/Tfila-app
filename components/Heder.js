@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import Clock from './Clock';
-const Heder = ({changeOptions1}) => {
-  const {Zmanim = {}} = changeOptions1;
+const Heder = ({changeOptions}) => {
+  const {Zmanim = {}} = changeOptions;
   return (
     <View style={styles.container}>
       <View style={styles.innerBox}>

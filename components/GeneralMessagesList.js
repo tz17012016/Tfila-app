@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-const generalMessagesList = ({changeOptions1, mSTime}) => {
-  const {GeneralMessages = []} = changeOptions1;
+const generalMessagesList = ({changeOptions, mSTime}) => {
+  const {GeneralMessages = []} = changeOptions;
   const [messageIndex, setMessageIndex] = React.useState(0);
   React.useEffect(() => {
     // Move on to the next message every `n` milliseconds

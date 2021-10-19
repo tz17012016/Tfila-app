@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const Prasha = ({changeOptions1}) => {
-  const {Zmanim = {}} = changeOptions1;
+const Prasha = ({changeOptions}) => {
+  const {Zmanim = {}} = changeOptions;
   return (
     <>
       <View style={styles.container}>
@@ -33,6 +33,12 @@ const Prasha = ({changeOptions1}) => {
                     (Zmanim?.HaftaraTemani.replace(/\(([^\)]+)\)/g, '') ||
                       Zmanim?.Haftara.replace(/\(([^\)]+)\)/g, '') ||
                       Zmanim?.HaftaraSfaradi.replace(/\(([^\)]+)\)/g, ''))}
+                </Text>
+                <Text style={styles.itemTextShide_B_A}>
+                  {Zmanim &&
+                    (Zmanim?.HaftaraTemani.match(/\(([^\)]+)\)/g, '') ||
+                      Zmanim?.Haftara.match(/\(([^\)]+)\)/g, '') ||
+                      Zmanim?.HaftaraSfaradi.match(/\(([^\)]+)\)/g, ''))}
                 </Text>
               </View>
             </View>
@@ -109,11 +115,10 @@ const styles = ScaledSheet.create({
   },
   box2_2: {
     flex: 1,
-
     justifyContent: 'center',
     alignItems: 'center',
     height: '100@s',
-    marginBottom: '20@s',
+    marginBottom: '17@s',
   },
   box3: {
     flex: 1.7,
@@ -162,6 +167,13 @@ const styles = ScaledSheet.create({
     fontWeight: '900',
     alignItems: 'center',
     paddingRight: '5@s',
+  },
+  itemTextShide_B_A: {
+    fontSize: '10@s',
+    fontFamily: 'stam',
+    color: '#000',
+    fontWeight: '900',
+    alignItems: 'center',
   },
   itemTextShide1: {
     fontSize: '20@s',

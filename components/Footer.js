@@ -2,12 +2,12 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import Yahrzeit from './Yahrzeit';
-const Footer = ({changeOptions1}) => {
+const Footer = ({changeOptions}) => {
   return (
     <View style={styles.container}>
       <>
         <View style={styles.innerBox}>
-          <Yahrzeit changeOptions1={changeOptions1} />
+          <Yahrzeit changeOptions={changeOptions} />
         </View>
 
         <View style={styles.innerBox}>

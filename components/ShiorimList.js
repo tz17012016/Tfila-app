@@ -3,8 +3,8 @@ import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {Col, Row} from 'react-native-easy-grid';
 
-const ShiorimList = ({changeOptions1}) => {
-  const {Shiorim = []} = changeOptions1;
+const ShiorimList = ({changeOptions}) => {
+  const {Shiorim = []} = changeOptions;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newShiorim = [];
   React.useEffect(() => {

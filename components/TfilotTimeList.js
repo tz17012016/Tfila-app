@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-const TfilotTimeList = ({changeOptions1}) => {
-  const {TfilotTime = []} = changeOptions1;
+const TfilotTimeList = ({changeOptions}) => {
+  const {TfilotTime = []} = changeOptions;
   const [arrIndex, setArrIndex] = React.useState(0);
   let newTfilotTimes = [];
   React.useEffect(() => {
@@ -131,7 +131,7 @@ const styles = ScaledSheet.create({
   },
   itemTime: {
     fontSize: '15@s',
-    fontFamily: 'stam',
+    fontFamily: 'mugrabi-bold-aaa',
     color: '#000',
     fontWeight: '900',
   },
