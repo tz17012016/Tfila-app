@@ -30,10 +30,10 @@ const OmerScreen = ({reaplaseScreanName, changeOptions}) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      // let secTimer = setTimeout(() => {
-      //   checkOptions(refCounter, reaplaseScreanName, navigation);
-      // }, (screenName[0]?.time === undefined || null || 0 ? 10 : screenName[0].time) * 1000);
-      // return () => clearTimeout(secTimer);
+      let secTimer = setTimeout(() => {
+        checkOptions(refCounter, reaplaseScreanName, navigation);
+      }, (screenName[0]?.time === undefined || null || 0 ? 10 : screenName[0].time) * 1000);
+      return () => clearTimeout(secTimer);
     }, []),
   );
 
