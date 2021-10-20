@@ -8,9 +8,11 @@ export const HebrewDate = () => {
   return hebrewDate;
 };
 export const GregDate = () => {
-  let GregDate = new Hebcal.HDate(new Date())
-    .greg()
-    .toLocaleString('he-IL')
-    .replace(/(,[^\)]+)/g, '');
+  let GregDate =
+    ('0' + new Date().getDate()).slice(-2) +
+    '/' +
+    ('0' + (new Date().getMonth() + 1)).slice(-2) +
+    '/' +
+    new Date().getFullYear();
   return GregDate;
 };

@@ -15,7 +15,6 @@
   "dependencies": {
     "@hebcal/core": "^3.26.4",
     "@react-native-community/cli": "^6.1.0",
-    "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/netinfo": "^6.0.2",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/native": "^6.0.6",
