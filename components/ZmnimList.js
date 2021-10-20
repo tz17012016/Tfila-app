@@ -156,34 +156,34 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   textAlign1: {
-    marginRight: '70@s',
+    marginRight: '80@s',
   },
   textAlign2: {
-    marginLeft: '70@s',
+    marginLeft: '80@s',
   },
   textAlign3: {
-    marginRight: '10@s',
+    marginRight: '25@s',
   },
   textAlign4: {
-    marginRight: '5@s',
-  },
-  textAlign5: {
-    marginLeft: '7@s',
-  },
-  textAlign6: {
-    marginLeft: '15@s',
-  },
-  textAlign7: {
     marginRight: '10@s',
   },
+  textAlign5: {
+    marginLeft: '10@s',
+  },
+  textAlign6: {
+    marginLeft: '25@s',
+  },
+  textAlign7: {
+    marginRight: '25@s',
+  },
   textAlign8: {
-    marginRight: '5@s',
+    marginRight: '10@s',
   },
   textAlign9: {
-    marginLeft: '7@s',
+    marginLeft: '10@s',
   },
   textAlign10: {
-    marginLeft: '15@s',
+    marginLeft: '25@s',
   },
 });
 

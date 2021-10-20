@@ -128,11 +128,11 @@ const styles = ScaledSheet.create({
   box4: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: '30@s',
+    marginLeft: '45@s',
     marginBottom: '47@s',
   },
   box5: {
-    marginRight: '35@s',
+    marginRight: '50@s',
     marginBottom: '45@s',
     justifyContent: 'center',
     alignItems: 'center',

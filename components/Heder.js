@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import Clock from './Clock';
+import {GregDate, HebrewDate} from '../utilities/Dates';
 const Heder = ({changeOptions}) => {
   const {Zmanim = {}} = changeOptions;
   return (
@@ -14,22 +15,28 @@ const Heder = ({changeOptions}) => {
                 ? styles.sZmanimDate
                 : styles.itemTitle
             }>
-            {Zmanim && Zmanim?.HebrewDate}
+            {HebrewDate()}
           </Text>
-          {Zmanim && Zmanim?.Omer ? (
-            <Text style={[styles.sZmanimDate, styles.sZmanimDate1]}>
-              היום יום ה {Zmanim && Zmanim?.Omer} לעומר
-            </Text>
-          ) : (
-            <></>
-          )}
-          {Zmanim && Zmanim.Holiday ? (
-            <Text style={[styles.sZmanimDate, styles.sZmanimDate1]}>
-              {Zmanim && Zmanim?.Holiday}
-            </Text>
-          ) : (
-            <></>
-          )}
+          <Text
+            style={
+              Zmanim && (Zmanim?.Omer || Zmanim?.Holiday)
+                ? [styles.sZmanimDate, styles.sZmanimDateSmall]
+                : styles.sZmanimDateSmall
+            }>
+            {`${GregDate()}`}
+            {Zmanim &&
+              Zmanim?.Omer != 0 &&
+              `       ${
+                Zmanim && Zmanim?.Omer
+                  ? `${Zmanim && Zmanim?.Omer} יום לעומר`
+                  : ''
+              }`}
+            {Zmanim &&
+              Zmanim.Holiday &&
+              `        ${
+                Zmanim && Zmanim.Holiday ? `${Zmanim && Zmanim?.Holiday}` : ''
+              } `}
+          </Text>
         </View>
       </View>
       <View style={styles.innerBox}>
@@ -56,8 +63,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'HadasimCLM-Bold',
     color: '#00308f',
     fontWeight: '900',
-    marginBottom: '2@s',
-    marginLeft: '50@s',
+    marginLeft: '40@s',
   },
   itemTitle1: {
     fontSize: '20@s',
@@ -65,7 +71,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'HadasimCLM-Bold',
     color: '#00308f',
     fontWeight: '900',
-    marginBottom: '37@s',
+    marginBottom: '30@s',
     marginRight: '40@s',
   },
 
@@ -76,6 +82,14 @@ const styles = ScaledSheet.create({
     color: '#00308f',
     fontWeight: '900',
     marginLeft: '40@s',
+  },
+  sZmanimDateSmall: {
+    fontSize: '11@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#00308f',
+    fontWeight: '900',
+    marginLeft: '35@s',
   },
   sZmanimDate1: {},
   innerBox: {

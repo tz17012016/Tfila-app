@@ -112,7 +112,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'DavidCLM-Bold',
   },
   col11: {
-    marginVertical: '5@s',
+    marginVertical: '7@s',
   },
   row: {
     flex: 1,
@@ -125,11 +125,11 @@ const styles = ScaledSheet.create({
   },
   col1: {
     flex: 1.4,
-    marginRight: '20@s',
+    marginRight: '30@s',
     textAlign: 'right',
   },
   col2: {
-    marginLeft: '-6@s',
+    marginLeft: '-7@s',
     textAlign: 'center',
   },
   col3: {

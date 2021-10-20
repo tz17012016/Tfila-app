@@ -60,7 +60,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '45@s',
+    marginTop: '75@s',
   },
   innergridViewA: {
     flex: 1.2,

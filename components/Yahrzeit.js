@@ -33,7 +33,7 @@ const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
       const getYahrzeitDate = HebrewCalendar.getYahrzeit(
         new HDate().getFullYear(),
         new Date(h.dateOfDeath),
-      ).greg();
+      )?.greg();
       if (
         new Date(h.dateOfDeath).getMonth() === thisMonth &&
         firstDayOfThisWeek <= getYahrzeitDate &&

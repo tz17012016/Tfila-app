@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, ImageBackground} from 'react-native';
-import Hebcal from 'hebcal';
+import {HebrewDateFromDate} from '../utilities/Dates';
 import {ScaledSheet} from 'react-native-size-matters';
 
 const HnzchotList = ({changeOptions}) => {
@@ -17,11 +17,6 @@ const HnzchotList = ({changeOptions}) => {
       clearTimeout(timeout);
     };
   }, [newHnzchots, arrIndex]);
-
-  const HebrewDate = dateOfDeath => {
-    let hebrewDate = new Hebcal.HDate(new Date(dateOfDeath)).toString('h');
-    return hebrewDate;
-  };
 
   const sliceIntoChunks = (arr, chunkSize) => {
     const res = [];
@@ -60,7 +55,7 @@ const HnzchotList = ({changeOptions}) => {
                                 </Text>
 
                                 <Text style={styles.itemName}>
-                                  {HebrewDate(hnzchot?.dateOfDeath)}
+                                  {HebrewDateFromDate(hnzchot?.dateOfDeath)}
                                 </Text>
                                 <Text
                                   style={styles.itemName}>{`ת.נ.צ.ב.ה`}</Text>
@@ -153,10 +148,10 @@ const styles = ScaledSheet.create({
   itemTitle: {
     fontSize: '10@s',
     textAlign: 'center',
-    fontFamily: 'HadasimCLM-Bold',
+    fontFamily: 'DavidCLM-Bold',
     color: '#000',
     fontWeight: '900',
-    marginTop: '20@s',
+    marginTop: '15@s',
   },
   ImageBackground: {
     flex: 1,

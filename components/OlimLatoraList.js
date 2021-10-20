@@ -6,7 +6,7 @@ const OlimLatoraList = ({changeOptions}) => {
   const {OlimLatora = []} = changeOptions;
   let o1 = OlimLatora.filter(ol => ol.title === 'ראשון')[0]?.name || '';
   let o2 = OlimLatora.filter(ol => ol.title === 'שני')[0]?.name || '';
-  let o3 = OlimLatora.filter(ol => ol.title === 'שלשי')[0]?.name || '';
+  let o3 = OlimLatora.filter(ol => ol.title === 'שלישי')[0]?.name || '';
   let o4 = OlimLatora.filter(ol => ol.title === 'רביעי')[0]?.name || '';
   let o5 = OlimLatora.filter(ol => ol.title === 'חמישי')[0]?.name || '';
   let o6 = OlimLatora.filter(ol => ol.title === 'שישי')[0]?.name || '';
@@ -110,36 +110,36 @@ const styles = ScaledSheet.create({
     flex: 1,
   },
   box1: {
-    marginLeft: '50@s',
+    marginLeft: '40@s',
     marginTop: '25@s',
   },
   box2: {
-    marginTop: '20@s',
-    marginRight: '5@s',
+    marginTop: '15@s',
+    marginRight: '15@s',
   },
   box3: {
-    marginTop: '20@s',
-    marginLeft: '40@s',
+    marginTop: '15@s',
+    marginLeft: '35@s',
   },
   box4: {
-    marginLeft: '5@s',
+    marginLeft: '7@s',
     marginBottom: '8@s',
   },
   box5: {
-    marginLeft: '10@s',
+    marginLeft: '15@s',
     marginBottom: '8@s',
   },
   box6: {
-    marginRight: '15@s',
+    marginRight: '8@s',
     marginTop: '27@s',
   },
   box7: {
-    marginTop: '20@s',
-    marginLeft: '10@s',
+    marginTop: '15@s',
+    marginLeft: '25@s',
   },
   box8: {
-    marginTop: '20@s',
-    marginRight: '25@s',
+    marginTop: '15@s',
+    marginRight: '10@s',
   },
   itemTitle: {
     fontSize: '16@s',

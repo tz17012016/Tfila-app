@@ -71,7 +71,6 @@ const Clock = () => {
     <View style={styles.container}>
       <Text style={styles.headerTextColor}>
         {time}
-
         <Text style={styles.headerTextColor1}>{`:${timeS}`}</Text>
       </Text>
     </View>
@@ -85,13 +84,13 @@ const styles = ScaledSheet.create({
   },
   headerTextColor: {
     fontSize: '35@s',
-    marginBottom: '4@s',
+    marginBottom: '2@s',
     color: '#00308f',
     fontFamily: 'mugrabi-bold-aaa',
   },
   headerTextColor1: {
     fontSize: '25@s',
-    marginBottom: '4@s',
+    marginBottom: '2@s',
     color: '#00308f',
   },
 });
