@@ -11,7 +11,7 @@ const HnzchotList = ({changeOptions}) => {
     // Move on to the next arr every `n` milliseconds
     let timeout;
     if (arrIndex < newHnzchots.length - 1) {
-      timeout = setTimeout(() => setArrIndex(arrIndex + 1), 10 * 1000);
+      timeout = setTimeout(() => setArrIndex(arrIndex + 1), 3 * 1000);
     }
     return () => {
       clearTimeout(timeout);
@@ -29,7 +29,6 @@ const HnzchotList = ({changeOptions}) => {
   if (Hnzchot) {
     newHnzchots = sliceIntoChunks(Hnzchot, 6);
   }
-
   return (
     <>
       <View style={styles.container}>

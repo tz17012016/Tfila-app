@@ -17,7 +17,7 @@ import PrashaScreen from '../screens/PrashaScreen';
 import ShiorimScreen from '../screens/ShiorimScreen';
 import OmerScreen from '../screens/OmerScreen';
 
-import AutoStart from 'react-native-autostart';
+import {isServerAlive} from '../utilities/baseUrl';
 
 import SplashScreen from 'react-native-splash-screen';
 
@@ -59,18 +59,15 @@ const AppNavigator = () => {
   useEffect(() => {
     loadDb();
     SplashScreen.hide();
-    if (AutoStart.isCustomAndroid()) {
-      AutoStart.startAutostartSettings();
-    }
     let secTimer = setInterval(() => loadDb(), 1000 * 60 * 60 * 5);
     return () => clearInterval(secTimer);
   }, [dispatch]);
+
   const loadDb = async () => {
+    setConectionObj(await conection());
     const loadDb = () => {
       return dispatch(getDB());
     };
-    setConectionObj(await conection());
-
     return loadDb();
   };
 
@@ -119,6 +116,50 @@ const AppNavigator = () => {
       ...DefaultTheme.colors,
       background: 'transparent',
     },
+  };
+  const ChackEinternetConectionAgin = conectionObj => {
+    React.useEffect(() => {
+      let secTimer;
+      if (
+        (conectionObj &&
+          conectionObj.isConnected === false &&
+          conectionObj.isInternetReachable === false) ||
+        (conectionObj &&
+          conectionObj.isConnected === true &&
+          conectionObj.isInternetReachable === false)
+      ) {
+        Loder();
+        secTimer = setInterval(() => Loder(), 1000 * 60 * 5);
+      } else {
+        return conectionObj &&
+          conectionObj.isConnected === true &&
+          conectionObj.isInternetReachable === true ? (
+          loadDb() && <Loding />
+        ) : (
+          <></>
+        );
+      }
+      return () => clearInterval(secTimer);
+    }, [conectionObj]);
+    const Loder = async () => {
+      setConectionObj(await conection());
+    };
+  };
+  const ChackIsAlive = isServerAlive => {
+    const [awake, setAwake] = React.useState(false);
+    React.useEffect(() => {
+      let secTimer;
+      if (ErrorMessage && dbError === true && awake !== true) {
+        Loder();
+        secTimer = setInterval(() => Loder(), 1000 * 60 * 10);
+      } else {
+        return !awake ? loadDb() && <Loding /> : <></>;
+      }
+      return () => clearInterval(secTimer);
+    }, [awake]);
+    const Loder = async () => {
+      setAwake(isServerAlive() || false);
+    };
   };
   const Renders = () => {
     return (
@@ -263,6 +304,8 @@ const AppNavigator = () => {
             }}>
             תקלה זמנית בקבלת המידע מהשרת יש לרענן את האפליקצייה בעוד מספר דקות
           </Text>
+          {}
+          {ChackIsAlive(isServerAlive)}
           {ErrorMessage ? console.log(ErrorMessage) : <></>}
         </View>
       </ImageLoder>
@@ -286,6 +329,8 @@ const AppNavigator = () => {
             }}>
             לא מחובר לאינטרנט! בדוק את החיבור ונסה שנית...
           </Text>
+
+          {ChackEinternetConectionAgin(conectionObj)}
         </View>
       </ImageLoder>
     );
@@ -300,7 +345,7 @@ const AppNavigator = () => {
         ) : dbError === false && dbSuccess === true ? (
           <Renders />
         ) : (
-          <Error />
+          ((<Error />), console.log(dbError))
         )
       ) : (
         <NetworkError />

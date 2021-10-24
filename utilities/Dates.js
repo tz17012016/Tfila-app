@@ -1,4 +1,11 @@
 import Hebcal from 'hebcal';
+import {
+  HebrewCalendar,
+  HDate,
+  HebrewDateEvent,
+  Location,
+  Event,
+} from '@hebcal/core';
 export const HebrewDateFromDate = date => {
   let hebrewDate = new Hebcal.HDate(new Date(date)).toString('h');
   return hebrewDate;
@@ -15,4 +22,25 @@ export const GregDate = () => {
     '/' +
     new Date().getFullYear();
   return GregDate;
+};
+export const holidayEvent = () => {
+  const fullYear = new Date().getFullYear();
+  const options = {
+    year: fullYear,
+    location: Location.lookup('israel'),
+  };
+  const events = HebrewCalendar.calendar(options);
+  const arr =
+    events.filter((event, index) => {
+      const hd = event.getDate();
+      const date = hd.greg();
+      if (new HDate(new Date()).isSameDate(event.getDate()) === true) {
+        return {
+          id: index,
+          date: date.toLocaleDateString(),
+          event: event.render('he'),
+        };
+      }
+    }) || [];
+  return arr[0]?.render('he');
 };

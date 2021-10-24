@@ -21,7 +21,7 @@ const reducer = combineReducers({
 });
 
 const middleware = [thunk];
-const composeEnhancers = composeWithDevTools({realtime: true, port: 8000});
+const composeEnhancers = composeWithDevTools({realtime: true, port: 8081});
 const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(...middleware)),

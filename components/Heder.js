@@ -2,7 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import Clock from './Clock';
-import {GregDate, HebrewDate} from '../utilities/Dates';
+import {GregDate, HebrewDate, holidayEvent} from '../utilities/Dates';
+
 const Heder = ({changeOptions}) => {
   const {Zmanim = {}} = changeOptions;
   return (
@@ -43,9 +44,17 @@ const Heder = ({changeOptions}) => {
         <Clock />
       </View>
       <View style={styles.innerBox}>
-        <Text style={styles.itemTitle1}>
+        <Text
+          style={
+            holidayEvent() != undefined ? styles.itemTitle11 : styles.itemTitle1
+          }>
           {Zmanim && Zmanim?.SelectedDayHeader}
         </Text>
+        {holidayEvent() != undefined ? (
+          <Text style={styles.itemTitle112}>{`${holidayEvent()}`}</Text>
+        ) : (
+          <></>
+        )}
       </View>
     </View>
   );
@@ -67,6 +76,23 @@ const styles = ScaledSheet.create({
   },
   itemTitle1: {
     fontSize: '20@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#00308f',
+    fontWeight: '900',
+    marginBottom: '30@s',
+    marginRight: '40@s',
+  },
+  itemTitle11: {
+    fontSize: '20@s',
+    textAlign: 'center',
+    fontFamily: 'HadasimCLM-Bold',
+    color: '#00308f',
+    fontWeight: '900',
+    marginRight: '40@s',
+  },
+  itemTitle112: {
+    fontSize: '10@s',
     textAlign: 'center',
     fontFamily: 'HadasimCLM-Bold',
     color: '#00308f',
