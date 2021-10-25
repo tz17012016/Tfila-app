@@ -1,16 +1,55 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-
+import {HebrewCalendar, HDate} from '@hebcal/core';
 import Yahrzeit from './Yahrzeit';
 const Footer = ({changeOptions}) => {
-  const {Zmanim = {}} = changeOptions;
-
+  const {Zmanim = {}, Hnzchot = []} = changeOptions;
+  const [yahrzeit, setYahrzeit] = React.useState([]);
+  React.useEffect(() => {
+    setYahrzeit(checkYahrzeitDate(Hnzchot));
+  }, []);
+  const checkYahrzeitDate = (Hnzchot = []) => {
+    let tempArr = Hnzchot.filter(h => {
+      let nextSutInTwoWeeks = new Date().setDate(
+        new Date().getDate() + (((7 - new Date().getDay()) % 7) + 7 || 7),
+      );
+      let thisMonth = new Date().getMonth() + 1;
+      let firstDayOfThisWeek = new Date().setDate(
+        new Date().getDate() -
+          new Date().getDay() +
+          (new Date().getDay() == 0 ? -6 : 0),
+      );
+      const getYahrzeitDate = HebrewCalendar.getYahrzeit(
+        new HDate().getFullYear(),
+        new Date(h.dateOfDeath),
+      )?.greg();
+      if (
+        new Date(h.dateOfDeath).getMonth() === thisMonth &&
+        firstDayOfThisWeek <= getYahrzeitDate &&
+        nextSutInTwoWeeks >= getYahrzeitDate
+      ) {
+        return {
+          name: h.name ? h.name : '',
+          gender: h.gender ? h.gender : '',
+          parntName: h.parntName ? h.parntName : '',
+          dateOfDeath: h.dateOfDeath ? h.dateOfDeath : '',
+        };
+      }
+    });
+    return tempArr;
+  };
   return (
     <View style={styles.container}>
       <>
         <View style={styles.innerBox}>
-          <Yahrzeit changeOptions={changeOptions} />
+          {yahrzeit.length >= 1 ? (
+            <Yahrzeit changeOptions={changeOptions} />
+          ) : (
+            <View style={styles.innerBoxit}>
+              <Text style={styles.itemText}>אן לדבר בבית הכנסת !</Text>
+            </View>
+          )}
         </View>
 
         <View style={styles.innerBox}>
@@ -98,6 +137,15 @@ const styles = ScaledSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
+  innerBoxit: {
+    flex: 1,
+    marginLeft: '50@s',
+    marginTop: '5@s',
+    alignItems: 'center',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
   innerBox11: {
     flex: 1,
     marginRight: '50@s',
@@ -128,7 +176,8 @@ const styles = ScaledSheet.create({
   sZmanimDate: {
     fontSize: '10@s',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#000',
+    // color: '#000',
+    color: '#00308f',
     fontWeight: '900',
     alignItems: 'center',
   },
@@ -138,16 +187,11 @@ const styles = ScaledSheet.create({
     marginLeft: '20@s',
     fontSize: '9@s',
     fontFamily: 'HadasimCLM-Bold',
-    color: '#000',
+    // color: '#000',
+    color: '#00308f',
     fontWeight: '900',
     alignItems: 'center',
   },
 });
 
 export default Footer;
-/**
- * 
-<View style={styles.innerBox1}>
-  <Text style={styles.itemText}>בית כנסת בית התפילה</Text>
-</View>
- */

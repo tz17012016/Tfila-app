@@ -5,7 +5,6 @@ import {HebrewCalendar, HDate} from '@hebcal/core';
 const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
   const [yahrzeitIndex, setYahrzeitIndex] = React.useState(0);
   const [yahrzeit, setYahrzeit] = React.useState([]);
-
   React.useEffect(() => {
     // Move on to the next yahrzeit every `n` milliseconds
     let timeout;
@@ -18,7 +17,6 @@ const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
       clearTimeout(timeout);
     };
   }, [yahrzeitIndex]);
-
   const checkYahrzeitDate = (Hnzchot = []) => {
     let tempArr = Hnzchot.filter(h => {
       let nextSutInTwoWeeks = new Date().setDate(
@@ -81,7 +79,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginLeft: '65@s',
+    marginLeft: '60@s',
     flex: 1,
   },
   innerBox_A: {

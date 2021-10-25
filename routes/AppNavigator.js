@@ -8,6 +8,8 @@ import 'react-native-gesture-handler';
 import {NetworkUtils} from '../utilities/NetworkUtills';
 import {getDB} from '../redux/actions/dbActions';
 
+import FastImage from 'react-native-fast-image';
+
 import ZmanimScreen from '../screens/ZmanimScreen';
 import HnzchotScreen from '../screens/HnzchotScreen';
 import TfilotTimeScreen from '../screens/TfilotTimeScreen';
@@ -83,19 +85,21 @@ const AppNavigator = () => {
   };
   const ImageLoder = ({source, children}) => {
     const [didLoad, setLoad] = React.useState(false);
-
     const style = didLoad
       ? {position: 'absolute', width, height}
       : {opacity: 0};
     return (
-      <ImageBackground
+      <FastImage
         style={style}
         key={didLoad}
-        source={source}
-        resizeMode="stretch"
+        source={{
+          uri: Image.resolveAssetSource(source).uri,
+          priority: FastImage.priority.high,
+        }}
+        resizeMode={FastImage.resizeMode.stretch}
         onLoad={() => setLoad(true)}>
         {children}
-      </ImageBackground>
+      </FastImage>
     );
   };
   let changeOptions = {
