@@ -2,32 +2,16 @@ import React, {useRef, useState} from 'react';
 import HnzchotList from '../components/HnzchotList';
 import {useFocusEffect} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
-import Heder from '../components/Heder';
-import Footer from '../components/Footer';
 import {useRoute} from '@react-navigation/native';
 import _ from 'lodash';
 const HnzchotScreen = ({reaplaseScreanName, changeOptions}) => {
   const refCounter = useRef(changeOptions);
   const route = useRoute();
   const {Hnzchot = []} = refCounter.current;
+  const navigation = useNavigation();
   const [Counter, setCounter] = useState(5);
   const [newHnzchots, setNewHnzchots] = useState([]);
   const [CounterTime, setCounterTime] = useState(5);
-  const navigation = useNavigation();
-  const checkOptions = (refCounter, reaplaseScreanName, navigation) => {
-    switch (true) {
-      case refCounter.current.GeneralMessages?.length >= 1:
-        return navigation.replace(reaplaseScreanName.GeneralMessages);
-      case Object.keys(refCounter.current.Zmanim)?.length >= 1:
-        return navigation.replace(reaplaseScreanName.Zmanim);
-      case refCounter.current.TfilotTime?.length >= 1:
-        return navigation.replace(reaplaseScreanName.TfilotTime);
-      case refCounter.current.OlimLatora?.length >= 1:
-        return navigation.replace(reaplaseScreanName.OlimLatora);
-      default:
-        return navigation.replace(reaplaseScreanName.Hnzchot);
-    }
-  };
   let screenName = refCounter.current.ScreenTimers?.filter(
     s => route?.name === s?.screenName,
   );
@@ -41,6 +25,20 @@ const HnzchotScreen = ({reaplaseScreanName, changeOptions}) => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      const checkOptions = () => {
+        switch (true) {
+          case refCounter.current.GeneralMessages?.length >= 1:
+            return navigation.replace(reaplaseScreanName.GeneralMessages);
+          case Object.keys(refCounter.current.Zmanim)?.length >= 1:
+            return navigation.replace(reaplaseScreanName.Zmanim);
+          case refCounter.current.TfilotTime?.length >= 1:
+            return navigation.replace(reaplaseScreanName.TfilotTime);
+          case refCounter.current.OlimLatora?.length >= 1:
+            return navigation.replace(reaplaseScreanName.OlimLatora);
+          default:
+            return navigation.replace(reaplaseScreanName.Hnzchot);
+        }
+      };
       if (Hnzchot) {
         setNewHnzchots(sliceIntoChunks(Hnzchot, 6));
         setCounter(newHnzchots.length || 5);
@@ -54,9 +52,7 @@ const HnzchotScreen = ({reaplaseScreanName, changeOptions}) => {
   );
   return (
     <>
-      <Heder changeOptions={changeOptions} />
       <HnzchotList changeOptions={changeOptions} CounterTime={CounterTime} />
-      <Footer changeOptions={changeOptions} />
     </>
   );
 };

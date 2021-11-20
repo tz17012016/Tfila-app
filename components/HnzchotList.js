@@ -45,7 +45,7 @@ const HnzchotList = ({changeOptions, CounterTime}) => {
                         <View key={hnzchot?._id} style={styles.boxContainer}>
                           <ImageBackground
                             style={styles.ImageBackground}
-                            source={require('../images/objects/neshamaBox.png')}>
+                            source={require('../assets/images/objects/neshamaBox.png')}>
                             <View style={styles.innerBoxContainer}>
                               <View style={styles.innerContainerC}></View>
                               <View style={styles.innerContainerB}>

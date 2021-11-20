@@ -9,6 +9,10 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 // import {tfilotTimeListReducer} from './reducers/tfilotTimeReducers';
 // import {shiorimListReducer} from './reducers/shiorimReducers';
 import {dbListReducer} from './reducers/dbReducers';
+import {
+  chackConnectionReducer,
+  chackIsServerAliveReducer,
+} from './reducers/ChackConnectionReducers';
 
 const reducer = combineReducers({
   // zmanimsList: zmanimsListReducer,
@@ -18,8 +22,9 @@ const reducer = combineReducers({
   // tfilotTimeList: tfilotTimeListReducer,
   // shiorimList: shiorimListReducer,
   dbList: dbListReducer,
+  chackConnection: chackConnectionReducer,
+  chackIsServerAlive: chackIsServerAliveReducer,
 });
-
 const middleware = [thunk];
 const composeEnhancers = composeWithDevTools({realtime: true, port: 8081});
 const store = createStore(

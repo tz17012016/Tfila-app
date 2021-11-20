@@ -6,15 +6,18 @@ import Yahrzeit from './Yahrzeit';
 const Footer = ({changeOptions}) => {
   const {Zmanim = {}, Hnzchot = []} = changeOptions;
   const [yahrzeit, setYahrzeit] = React.useState([]);
+
   React.useEffect(() => {
     setYahrzeit(checkYahrzeitDate(Hnzchot));
   }, []);
+
   const checkYahrzeitDate = (Hnzchot = []) => {
     let tempArr = Hnzchot.filter(h => {
       let nextSutInTwoWeeks = new Date().setDate(
         new Date().getDate() + (((7 - new Date().getDay()) % 7) + 7 || 7),
       );
       let thisMonth = new Date().getMonth() + 1;
+      let dateOfDeathMonth = new Date(h.dateOfDeath).getMonth() + 1;
       let firstDayOfThisWeek = new Date().setDate(
         new Date().getDate() -
           new Date().getDay() +
@@ -24,10 +27,13 @@ const Footer = ({changeOptions}) => {
         new HDate().getFullYear(),
         new Date(h.dateOfDeath),
       )?.greg();
+      const getYahrzeitNextDateDay = new HDate(getYahrzeitDate).next().greg();
+
       if (
-        new Date(h.dateOfDeath).getMonth() === thisMonth &&
+        dateOfDeathMonth === thisMonth &&
         firstDayOfThisWeek <= getYahrzeitDate &&
-        nextSutInTwoWeeks >= getYahrzeitDate
+        nextSutInTwoWeeks >= getYahrzeitDate &&
+        getYahrzeitNextDateDay > getYahrzeitDate
       ) {
         return {
           name: h.name ? h.name : '',
@@ -39,6 +45,7 @@ const Footer = ({changeOptions}) => {
     });
     return tempArr;
   };
+
   return (
     <View style={styles.container}>
       <>
@@ -47,7 +54,7 @@ const Footer = ({changeOptions}) => {
             <Yahrzeit changeOptions={changeOptions} />
           ) : (
             <View style={styles.innerBoxit}>
-              <Text style={styles.itemText}>אן לדבר בבית הכנסת !</Text>
+              <Text style={styles.itemText}>אין לדבר בבית הכנסת !</Text>
             </View>
           )}
         </View>
@@ -60,45 +67,53 @@ const Footer = ({changeOptions}) => {
               <Text style={styles.itemText}>בית כנסת בית התפילה</Text>
             </View>
           )}
-          <View
-            style={
-              Zmanim && (Zmanim?.TefilaChanges || Zmanim?.Tahanun)
-                ? styles.innerBox1
-                : styles.innerBox2
-            }>
-            <Text
+          {Zmanim && (
+            <View
               style={
-                Zmanim && Zmanim?.TefilaChanges
-                  ? [styles.sZmanimDate, styles.sZmanimDateSmall]
-                  : styles.sZmanimDateSmall
+                Zmanim && (Zmanim?.TefilaChanges || Zmanim?.Tahanun)
+                  ? styles.innerBox1
+                  : styles.innerBox2
               }>
-              {`${Zmanim && Zmanim?.TefilaChanges.replace(/\n|\r/g, ' ')}`}
-            </Text>
-            <Text
-              style={
-                Zmanim && Zmanim?.Tahanun
-                  ? [styles.sZmanimDate, styles.sZmanimDateSmall]
-                  : styles.sZmanimDateSmall
-              }>
-              {`${Zmanim && Zmanim?.Tahanun}`}
-            </Text>
-            <Text
-              style={
-                Zmanim && Zmanim?.GeshemTal
-                  ? [styles.sZmanimDate, styles.sZmanimDateSmall]
-                  : styles.sZmanimDate
-              }>
-              {`${Zmanim && Zmanim?.GeshemTal}`}
-            </Text>
-            <Text
-              style={
-                Zmanim && Zmanim?.BirkatHashanim
-                  ? [styles.sZmanimDate, styles.sZmanimDateSmall]
-                  : styles.sZmanimDate
-              }>
-              {`${Zmanim && Zmanim?.BirkatHashanim}`}
-            </Text>
-          </View>
+              <Text
+                style={
+                  Zmanim && Zmanim?.TefilaChanges
+                    ? [styles.sZmanimDate, styles.sZmanimDateSmall]
+                    : styles.sZmanimDateSmall
+                }>
+                {`${
+                  Zmanim && Zmanim?.TefilaChanges
+                    ? Zmanim?.TefilaChanges?.replace(/\n|\r/g, ' ')
+                    : ''
+                }`}
+              </Text>
+              <Text
+                style={
+                  Zmanim && Zmanim?.Tahanun
+                    ? [styles.sZmanimDate, styles.sZmanimDateSmall]
+                    : styles.sZmanimDateSmall
+                }>
+                {`${Zmanim && Zmanim?.Tahanun ? Zmanim?.Tahanun : ''}`}
+              </Text>
+              <Text
+                style={
+                  Zmanim && Zmanim?.GeshemTal
+                    ? [styles.sZmanimDate, styles.sZmanimDateSmall]
+                    : styles.sZmanimDate
+                }>
+                {`${Zmanim && Zmanim?.GeshemTal ? Zmanim?.GeshemTal : ''}`}
+              </Text>
+              <Text
+                style={
+                  Zmanim && Zmanim?.BirkatHashanim
+                    ? [styles.sZmanimDate, styles.sZmanimDateSmall]
+                    : styles.sZmanimDate
+                }>
+                {`${
+                  Zmanim && Zmanim?.BirkatHashanim ? Zmanim?.BirkatHashanim : ''
+                }`}
+              </Text>
+            </View>
+          )}
         </View>
       </>
     </View>

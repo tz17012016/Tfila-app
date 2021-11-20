@@ -5,4 +5,7 @@ export class NetworkUtils {
     return response;
   }
 }
-
+export const Connection = async () => {
+  const isConnected = await NetworkUtils.isNetworkAvailable();
+  return isConnected;
+};

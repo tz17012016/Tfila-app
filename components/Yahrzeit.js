@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, View, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import {HebrewCalendar, HDate} from '@hebcal/core';
+
+import {HebrewCalendar, HDate, Zmanim} from '@hebcal/core';
 const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
   const [yahrzeitIndex, setYahrzeitIndex] = React.useState(0);
   const [yahrzeit, setYahrzeit] = React.useState([]);
@@ -23,6 +24,7 @@ const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
         new Date().getDate() + (((7 - new Date().getDay()) % 7) + 7 || 7),
       );
       let thisMonth = new Date().getMonth() + 1;
+      let dateOfDeathMonth = new Date(h.dateOfDeath).getMonth() + 1;
       let firstDayOfThisWeek = new Date().setDate(
         new Date().getDate() -
           new Date().getDay() +
@@ -32,10 +34,13 @@ const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
         new HDate().getFullYear(),
         new Date(h.dateOfDeath),
       )?.greg();
+      const getYahrzeitNextDateDay = new HDate(getYahrzeitDate).next().greg();
+
       if (
-        new Date(h.dateOfDeath).getMonth() === thisMonth &&
+        dateOfDeathMonth === thisMonth &&
         firstDayOfThisWeek <= getYahrzeitDate &&
-        nextSutInTwoWeeks >= getYahrzeitDate
+        nextSutInTwoWeeks >= getYahrzeitDate &&
+        getYahrzeitNextDateDay > getYahrzeitDate
       ) {
         return {
           name: h.name ? h.name : '',
@@ -52,7 +57,7 @@ const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
       {yahrzeit[yahrzeitIndex] ? (
         <View style={styles.innerBox_A}>
           <Image
-            source={require('../images/objects/nerNeshama.png')}
+            source={require('../assets/images/objects/nerNeshama.png')}
             imageStyle={{resizeMode: 'contain'}}
             style={styles.image}
           />
@@ -63,7 +68,7 @@ const Yahrzeit = ({changeOptions: {Hnzchot = []}}) => {
             </Text>
           </View>
           <Image
-            source={require('../images/objects/nerNeshama.png')}
+            source={require('../assets/images/objects/nerNeshama.png')}
             imageStyle={{resizeMode: 'contain'}}
             style={styles.image}
           />

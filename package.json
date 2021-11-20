@@ -1,5 +1,5 @@
 {
-  "name": "Tfila-app",
+  "name": "tfila-app",
   "version": "0.0.1",
   "proxy": "http://localhost:5000",
   "private": true,
@@ -8,8 +8,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "eject": "react-native eject",
+    "apkrelease": "cd android && gradlew.bat clean && gradlew.bat assembleRelease",
     "test": "jest",
     "lint": "eslint .",
+    "stacktrace": "cd android && gradlew installDebug --stacktrace",
     "debug": "start 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
@@ -31,6 +33,7 @@
     "react": "17.0.1",
     "react-live-clock": "^5.2.0",
     "react-native": "^0.64.2",
+    "react-native-auto-scrolling": "^3.0.2",
     "react-native-autostart": "^1.0.7",
     "react-native-cardview": "^2.0.5",
     "react-native-easy-grid": "^0.2.2",
@@ -53,7 +56,7 @@
     "react-router-native": "^5.2.0",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -61,12 +64,20 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
     "eslint": "7.14.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^26.6.3",
     "jetifier": "^2.0.0",
     "metro-react-native-babel-preset": "^0.64.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "17.0.1",
     "remote-redux-devtools": "^0.5.0"
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "jest": {
     "preset": "react-native"
