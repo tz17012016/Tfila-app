@@ -11,7 +11,7 @@ export const DefaultImageLoder = ({source, children}) => {
         width,
         height,
       }
-    : {backgroundColor: 'rgba(0,0,0,0.5)'};
+    : {backgroundColor: 'rgba(0,0,0,0.8)'};
   return (
     <FastImage
       style={style}
@@ -34,7 +34,7 @@ export const ImageLoder = ({source, children}) => {
         width,
         height,
       }
-    : {backgroundColor: 'rgba(0,0,0,0.5)'};
+    : {backgroundColor: 'rgba(0,0,0,0.8)'};
   return (
     <FastImage
       style={style}

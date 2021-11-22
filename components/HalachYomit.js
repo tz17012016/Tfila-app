@@ -2,12 +2,12 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 const HalachYomit = ({CounterTime, changeOptions}) => {
-  const {HalachYomit = []} = changeOptions;
+  const {HalachYomit: HalachYomitDta = []} = changeOptions;
   const [heIndex, setMessageIndex] = React.useState(0);
 
   React.useEffect(() => {
     let timeout;
-    if (heIndex < HalachYomit.length - 1) {
+    if (heIndex < HalachYomitDta.length - 1) {
       timeout = setTimeout(
         () => setMessageIndex(heIndex + 1),
         CounterTime * 1000,
@@ -16,7 +16,7 @@ const HalachYomit = ({CounterTime, changeOptions}) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [CounterTime, HalachYomit, heIndex]);
+  }, [CounterTime, HalachYomitDta, heIndex]);
 
   return (
     <View style={styles.container}>
@@ -26,7 +26,7 @@ const HalachYomit = ({CounterTime, changeOptions}) => {
           <View style={styles.gridView}>
             <View style={styles.boxContainer}>
               <View>
-                <Text style={styles.itemName}>{HalachYomit[heIndex]}</Text>
+                <Text style={styles.itemName}>{HalachYomitDta[heIndex]}</Text>
               </View>
             </View>
           </View>

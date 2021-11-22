@@ -38,7 +38,6 @@ const MainScreenRenders = ({reaplaseScreanName, changeOptions}) => {
           screenOptions={{
             header: () => null,
           }}>
-         
           <Stack.Screen name="Zmanim">
             {props => (
               <ImageLoder
@@ -96,7 +95,7 @@ const MainScreenRenders = ({reaplaseScreanName, changeOptions}) => {
               </ImageLoder>
             )}
           </Stack.Screen>
-           <Stack.Screen name="HagimScreen">
+          <Stack.Screen name="HagimScreen">
             {props => (
               <ImageLoder
                 source={require('../assets/images/screans/hagimBackground.jpg')}>
@@ -110,7 +109,7 @@ const MainScreenRenders = ({reaplaseScreanName, changeOptions}) => {
               </ImageLoder>
             )}
           </Stack.Screen>
-<Stack.Screen name="ShabatScreen">
+          <Stack.Screen name="ShabatScreen">
             {props => (
               <ImageLoder
                 source={require('../assets/images/screans/shabatBackground.jpg')}>
@@ -169,7 +168,7 @@ const MainScreenRenders = ({reaplaseScreanName, changeOptions}) => {
           <Stack.Screen name="HalachYomit">
             {props => (
               <ImageLoder
-                source={require('../assets/images/screans/messageBackground.png')}>
+                source={require('../assets/images/screans/hlachYomitBackground.jpg')}>
                 <Heder changeOptions={changeOptions} />
                 <HalachYomitScreen
                   {...props}

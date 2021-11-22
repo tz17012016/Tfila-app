@@ -14,7 +14,7 @@ const ShiorimScreen = ({reaplaseScreanName, changeOptions}) => {
     React.useCallback(() => {
       const checkOptions = () => {
         switch (true) {
-          case refCounter.current.halchYomitData?.length >= 1:
+          case refCounter.current.HalachYomit?.length >= 1:
             return navigation.replace(reaplaseScreanName.HalachYomit);
           case refCounter.current.Hnzchot?.length >= 1:
             return navigation.replace(reaplaseScreanName.Hnzchot);

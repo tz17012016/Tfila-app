@@ -9,6 +9,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 // import {tfilotTimeListReducer} from './reducers/tfilotTimeReducers';
 // import {shiorimListReducer} from './reducers/shiorimReducers';
 import {dbListReducer} from './reducers/dbReducers';
+import {halchYomitReducers} from './reducers/halchYomitReducers';
 import {
   chackConnectionReducer,
   chackIsServerAliveReducer,
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   dbList: dbListReducer,
   chackConnection: chackConnectionReducer,
   chackIsServerAlive: chackIsServerAliveReducer,
+  halchYomit: halchYomitReducers,
 });
 const middleware = [thunk];
 const composeEnhancers = composeWithDevTools({realtime: true, port: 8081});

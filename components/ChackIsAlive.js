@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getDB} from '../redux/actions/dbActions';
 import SplashScreen from 'react-native-splash-screen';
 import ServerError from './ServerError';
+import {getHalchYomitDb} from '../redux/actions/halchYomitActions';
 const ChackIsAlive = () => {
   const dispatch = useDispatch();
   const chackIsServerAlive = useSelector(state => ({
@@ -46,7 +47,11 @@ const ChackIsAlive = () => {
 
   const loadDbFromRedux2 = React.useCallback(() => {
     const loadDb = async () => {
-      return dispatch(getConnection()), dispatch(getDB());
+      return (
+        dispatch(getConnection()),
+        dispatch(getDB()),
+        dispatch(getHalchYomitDb())
+      );
     };
     return loadDb();
   }, [dispatch]);

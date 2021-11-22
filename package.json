@@ -8,6 +8,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "eject": "react-native eject",
+    "npminstaller": "npm i",
     "apkrelease": "cd android && gradlew.bat clean && gradlew.bat assembleRelease",
     "test": "jest",
     "lint": "eslint .",

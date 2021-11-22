@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDB} from '../actions/dbActions';
+import {getHalchYomitDb} from '../actions/halchYomitActions';
 import {getConnection} from '../actions/ChackConnectionActions';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from '../../routes/AppNavigator';
@@ -10,6 +11,14 @@ const DB = () => {
   const dbList = useSelector(state => ({...state.dbList}));
 
   const chackConnection = useSelector(state => ({...state.chackConnection}));
+  const halchYomit = useSelector(state => ({...state.halchYomit}));
+  const {
+    loading: halachLoading = true,
+    success: halachSuccess = false,
+    halachError = false,
+    halchYomitData = [],
+    error: halachErrorMassege = '',
+  } = halchYomit;
   const {
     loading: connectionLoading = true,
     success: connectionSuccess = false,
@@ -46,7 +55,6 @@ const DB = () => {
     generalMessageData,
     screenTimerData,
   } = db;
-
   React.useEffect(() => {
     loadDbFromRedux();
     SplashScreen.hide();
@@ -55,7 +63,11 @@ const DB = () => {
   }, [dispatch, loadDbFromRedux]);
   const loadDbFromRedux = React.useCallback(() => {
     const loadDb = async () => {
-      return dispatch(getDB()), dispatch(getConnection());
+      // return (
+      //   dispatch(getConnection()),
+      //   dispatch(getDB()),
+      //   dispatch(getHalchYomitDb())
+      // );
     };
     return loadDb();
   }, [dispatch]);
@@ -84,6 +96,8 @@ const DB = () => {
       dbSuccess && generalMessageData?.length >= 1 ? generalMessageData : [],
     ScreenTimers:
       dbSuccess && screenTimerData?.length >= 1 ? screenTimerData : [],
+    HalachYomit:
+      halachSuccess && halchYomitData?.length >= 1 ? halchYomitData : [],
   };
   return (
     <AppNavigator

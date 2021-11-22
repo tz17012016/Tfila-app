@@ -1,5 +1,5 @@
 import {
-   CHACK_CONNECTION_REQUEST,
+  CHACK_CONNECTION_REQUEST,
   CHACK_CONNECTION_SUCCESS,
   CHACK_CONNECTION_FAIL,
   CHACK_CONNECTION_FOR_SERVER_REQUEST,
@@ -7,7 +7,6 @@ import {
   CHACK_CONNECTION_FOR_SERVER_FAIL,
 } from '../constants/ChackConnectionConstants';
 export const chackConnectionReducer = (state = {}, action) => {
-  
   switch (action.type) {
     case CHACK_CONNECTION_REQUEST:
       return {
@@ -26,7 +25,6 @@ export const chackConnectionReducer = (state = {}, action) => {
   }
 };
 export const chackIsServerAliveReducer = (state = {}, action) => {
-  console.log(action);
   switch (action.type) {
     case CHACK_CONNECTION_FOR_SERVER_REQUEST:
       return {

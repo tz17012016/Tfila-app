@@ -3,6 +3,7 @@ import {getConnection} from '../redux/actions/ChackConnectionActions';
 import {useDispatch} from 'react-redux';
 import {getDB} from '../redux/actions/dbActions';
 import SplashScreen from 'react-native-splash-screen';
+import {getHalchYomitDb} from '../redux/actions/halchYomitActions';
 const ChackEinternetConectionAgin = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -14,7 +15,11 @@ const ChackEinternetConectionAgin = () => {
 
   const loadDbFromRedux = React.useCallback(() => {
     const loadDb = async () => {
-      return dispatch(getDB()), dispatch(getConnection());
+      return (
+        dispatch(getConnection()),
+        dispatch(getDB()),
+        dispatch(getHalchYomitDb())
+      );
     };
     return loadDb();
   }, [dispatch]);
