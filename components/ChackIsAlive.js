@@ -36,7 +36,7 @@ const ChackIsAlive = () => {
       }, 1000 * 30);
     }
     return () => clearInterval(secTimer);
-  }, [dispatch, loadDbFromRedux1, loadDbFromRedux2]);
+  }, [dispatch, isServerAlive, loadDbFromRedux1, loadDbFromRedux2]);
 
   const loadDbFromRedux1 = React.useCallback(() => {
     const loadDb = async () => {

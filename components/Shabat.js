@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 const Hagim = ({changeOptions}) => {
   const {Zmanim = {}} = changeOptions;
-  const s = `שבת שלום ומבורך, לכל באי בית הכנסת ומשפחותיהם`;
+  const s = `שבת שלום ומבורך, לכל באי בית הכנסת ומשפחותיהם.`;
   return (
     <View style={styles.container}>
       <View style={styles.containerB}>

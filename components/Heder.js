@@ -89,6 +89,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'HadasimCLM-Bold',
     color: '#00308f',
     fontWeight: '900',
+    marginBottom: '-2@s',
     marginRight: '40@s',
   },
   itemTitle112: {
@@ -97,7 +98,7 @@ const styles = ScaledSheet.create({
     fontFamily: 'HadasimCLM-Bold',
     color: '#00308f',
     fontWeight: '900',
-    marginBottom: '30@s',
+    marginBottom: '35@s',
     marginRight: '40@s',
   },
 

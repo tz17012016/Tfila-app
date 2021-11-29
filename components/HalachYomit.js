@@ -96,11 +96,11 @@ const styles = ScaledSheet.create({
     marginBottom: '20@s',
   },
   itemName: {
-    fontSize: '12@s',
+    fontSize: '15@s',
     color: '#000',
     textAlign: 'center',
     fontFamily: 'DavidCLM-Bold',
-    marginBottom: '30@s',
+    marginBottom: '22@s',
   },
   ImageBackground: {
     flex: 1,

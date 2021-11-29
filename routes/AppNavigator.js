@@ -21,7 +21,7 @@ const AppNavigator = ({
   const [LoadingStage, setLoadingStage] = React.useState(true);
   React.useEffect(() => {
     !connectionLoading ? setLoadingStage(false) : setLoadingStage(true);
-  }, [LoadingStage, connectionLoading]);
+  }, [LoadingStage, connectionLoading, isInternetReachable, loadDbFromRedux]);
 
   return (
     <>

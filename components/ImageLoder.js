@@ -2,7 +2,6 @@ import React from 'react';
 import {Image, Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('screen');
 import FastImage from 'react-native-fast-image';
-const imgHeight = height * '100%';
 export const DefaultImageLoder = ({source, children}) => {
   const [didLoad, setLoad] = React.useState(false);
   const style = didLoad

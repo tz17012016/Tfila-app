@@ -63,11 +63,11 @@ const DB = () => {
   }, [dispatch, loadDbFromRedux]);
   const loadDbFromRedux = React.useCallback(() => {
     const loadDb = async () => {
-      // return (
-      //   dispatch(getConnection()),
-      //   dispatch(getDB()),
-      //   dispatch(getHalchYomitDb())
-      // );
+      return (
+        dispatch(getConnection()),
+        dispatch(getDB()),
+        dispatch(getHalchYomitDb())
+      );
     };
     return loadDb();
   }, [dispatch]);

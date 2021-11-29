@@ -31,9 +31,9 @@ export const getHalchYomit = async () => {
       calendar_itemsIndex[1] || 2,
     );
     return [
-      he[arrayOfIndexs[0] || 0].replace(new RegExp('<[^>]*>', 'g'), ''),
-      he[arrayOfIndexs[1] || 1].replace(new RegExp('<[^>]*>', 'g'), ''),
-      he[arrayOfIndexs[2] || 2].replace(new RegExp('<[^>]*>', 'g'), ''),
+      he[arrayOfIndexs[0] || 0].replace(new RegExp('<[^>]*>', 'gm'), ''),
+      he[arrayOfIndexs[1] || 1].replace(new RegExp('<[^>]*>', 'gm'), ''),
+      he[arrayOfIndexs[2] || 2].replace(new RegExp('<[^>]*>', 'gm'), ''),
     ];
   }
 };
