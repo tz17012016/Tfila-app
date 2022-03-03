@@ -28,8 +28,8 @@ The technologies that used in this project:
 - board of The Shabat If it's time
 - board of The Fast if its the time
 - board of The holidayIf it's time
-- showing the yahrzeit day ("The anniversary of the Jewish deceased") if it is the same day from bord of the deceased for hnzchot
-- showing the time now inclode hebrew date and georgian date
+- showing the yahrzeit day ("The anniversary of the Jewish deceased") if it is the same day from board of the deceased for hnzchot
+- showing the time's now inclode hebrew date and Gregorian date of today's date
 - if there is a holiday it will show a propre screen for evrey holdy in the year
 - If there is a holiday, then it will show what additions need to be added to the prayer
 
