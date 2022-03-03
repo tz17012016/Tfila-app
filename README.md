@@ -13,21 +13,21 @@ The technologies that used in this project:
 
 # Features
 
-- the app support all landscape mode device sache as all tv device as well as pc monitors.
-- the app can apdate itself evrey  hors
-- if there are no conectivty to the server or the server is down the app will notfy you and will awit for reconect agine hends free aportion
-- board of the deceased for hnzchot
-- board of massges
+- the app support all landscape mode device such as all tv device as well as pc monitors.
+- the app can update itself every 5 hours
+- if there is no connectivity to the server or the server is down the app will notify you and will wait for reconnecting again hands-free operation
+- board of The Deceased For Hnzchot
+- board of Massages
 - board of Alia Latora
-- board of tfilot times
-- board of zmni hiom
-- board of halch yomit
+- board of Tfilot times
+- board of Today's Zmanim
+- board of Today's Halch 
 - board of Torah lesson 
-- board of the Parshat Savoa
-- board of the the today's Omer if its the time
-- board of the the shabat if its the time
-- board of the the fast if its the time
-- board of the the holiday if its the time
+- board of The Parshat Savoa
+- board of The today's Omer If it's time
+- board of The Shabat If it's time
+- board of The Fast if its the time
+- board of The holidayIf it's time
 - showing the yahrzeit day ("The anniversary of the Jewish deceased") if it is the same day from bord of the deceased for hnzchot
 - showing the time now inclode hebrew date and georgian date
 - if there is a holiday it will show a propre screen for evrey holdy in the year
@@ -63,7 +63,7 @@ cd android && gradlew.bat clean && gradlew.bat assembleRelease
 
 # preview of some of the app screns:
 
-# Screen of Tfilot Times
+# Screen of Today's Zmanim
 
 ![20211227_191708](https://user-images.githubusercontent.com/71942613/156555835-71f215fc-61b3-4abd-a77b-64830f33a317.jpg)
 
@@ -87,6 +87,6 @@ cd android && gradlew.bat clean && gradlew.bat assembleRelease
 
 ![20211227_191647](https://user-images.githubusercontent.com/71942613/156557613-18e1ecd4-37e3-481e-83bf-c5895dd75f32.jpg)
 
-# Screen of Halch Yomit
+# Screen of Today's Halch
 
 ![20211227_191607](https://user-images.githubusercontent.com/71942613/156557788-2a490785-8206-4db1-8399-e649308f1cc7.jpg)
